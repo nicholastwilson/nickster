@@ -9,8 +9,9 @@
 
 [Deploy]
 	Npm Build			npm run build
+	Git Stage			git add .
 	Git Commit			git commit -a -m "Message"
-	Git Push			git push https://nicholastwilson@github.com/nicholastwilson/nickster.git
+	Git Push			git push
 
 [Run]
 	GitHub Pages URL		https://nicholastwilson.github.io/nickster/
