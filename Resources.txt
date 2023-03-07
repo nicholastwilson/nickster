@@ -1,0 +1,20 @@
+[Edit]
+	Source			/nickster/src
+	Git Repository		https://github.com/nicholastwilson/nickster.git
+	Git Resync			reset --hard origin/main
+
+[Test]
+	Npm Start			npm start
+	Test URL			http://localhost:3000
+
+[Deploy]
+	Npm Build			npm run build
+	Git Commit			git commit -a -m "Message"
+	Git Push			git push https://nicholastwilson@github.com/nicholastwilson/nickster.git
+
+[Run]
+	GitHub Pages URL		https://nicholastwilson.github.io/nickster/
+
+[Documentation]
+	Git Reference		https://git-scm.com/docs
+	Git Visual Reference	https://marklodato.github.io/visual-git-guide/index-en.html
