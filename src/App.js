@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import QoS_svg from './QoS.svg';
+import JoD_svg from './JoD.svg';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+       	<img src={QoS_svg} alt="Queen of Spades" className="App-logo" />
+		<img src={JoD_svg} alt="Jack of Diamonds" className="App-logo" />
+	  {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
