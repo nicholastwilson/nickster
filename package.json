@@ -14,8 +14,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "git add . && git commit -a -m \"Message\" && git push && git status",
+    "predeploy": "npm run build && set /p message=Enter commit message:",
+    "deploy": "git add . && git commit -a -m \"%message%\" && git push && git status",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
