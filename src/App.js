@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
        	<img src={QoS_svg} alt="Queen of Spades" className="App-logo" />
-		<img src={JoD_svg} alt="Jack of Diamonds" className="App-logo" />
+		<img src={JoD_svg} alt="Jack of Diamonds" className="App-logo2" />
 	  {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <p>
           Edit <code>src/App.js</code> and save to reload.
