@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/nickster/static/css/main.e034a31b.css",
-    "main.js": "/nickster/static/js/main.0db6b6c3.js",
+    "main.js": "/nickster/static/js/main.9722c7fd.js",
     "static/media/JoD.svg": "/nickster/static/media/JoD.9440f925dccd41638742870a9f792f7a.svg",
     "static/media/QoS.svg": "/nickster/static/media/QoS.a5dd738c2d0beae0fd958fcb590da95b.svg",
     "static/media/logo.svg": "/nickster/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/nickster/index.html",
     "main.e034a31b.css.map": "/nickster/static/css/main.e034a31b.css.map",
-    "main.0db6b6c3.js.map": "/nickster/static/js/main.0db6b6c3.js.map"
+    "main.9722c7fd.js.map": "/nickster/static/js/main.9722c7fd.js.map"
   },
   "entrypoints": [
     "static/css/main.e034a31b.css",
-    "static/js/main.0db6b6c3.js"
+    "static/js/main.9722c7fd.js"
   ]
 }
