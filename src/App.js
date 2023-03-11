@@ -1,26 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import QoS_svg from './QoS.svg';
-import JoD_svg from './JoD.svg';
+import qos_png from './qos.png';
+import jod_png from './jod.png';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-       	<img src={QoS_svg} alt="Queen of Spades" className="App-logo" />
-		<img src={JoD_svg} alt="Jack of Diamonds" className="App-logo2" />
-	  {/* <img src={logo} className="App-logo" alt="logo" /> */}
+       	<img src={qos_png} alt="Queen of Spades" className="App-logo" />
+		    <img src={jod_png} alt="Jack of Diamonds" className="App-logo2" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Nickster Cards™ coming to a browser near you!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
