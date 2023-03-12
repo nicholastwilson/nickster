@@ -3,8 +3,8 @@ import Rank from '.\Rank';
 
 class PlayingCard() {
 
- var Suit suit;
- var Rank rank;
+ suit;
+ rank;
 
  constructor(suit, rank) {
   this.suit = suit;
