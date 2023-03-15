@@ -1,33 +1,34 @@
 [Edit]
-	Source                     /nickster/src
-	Git Repository             https://github.com/nicholastwilson/nickster.git
-	Git Resync                 reset --hard origin/main
+	Source                        /nickster/src
+	Git Repository                https://github.com/nicholastwilson/nickster.git
+	Git Resync                    reset --hard origin/main
 
 [Test]
-	Npm Start                  npm start
-	Test URL                   http://localhost:3000
+	Npm Start                     npm start
+	Test URL                      http://localhost:3000
 
 [Deploy]
-	Npm Build                 npm run build
-	Git Stage                 git add .
-	Git Commit                git commit -a -m ""
-	Git Push                  git push
+	Npm Build                    npm run build
+	Git Stage                    git add .
+	Git Commit                   git commit -a -m ""
+	Git Push                     git push
 
 [Run]
-	GitHub Pages URL           https://nicholastwilson.github.io/nickster
+	GitHub Pages URL              https://nicholastwilson.github.io/nickster
 
 [Troubleshoot]
-	Git Status                 git status
-	Git Commit History         git log
-	Git Config                 git config -l --show-origin --show-scope
+	Git Status                    git status
+	Git Commit History            git log
+	Git Remote Branches Status    git remote show origin
+	Git Config                    git config -l --show-origin --show-scope
 
 [Documentation]
-	Create React App           https://create-react-app.dev/docs/getting-started
-	GitHub Pages Deployment    https://create-react-app.dev/docs/deployment#github-pages
-	React JS                   https://reactjs.org/tutorial/tutorial.html
-	W3 React                   https://www.w3schools.com/react/default.asp
-	Git Reference              https://git-scm.com/docs
-	Git Visual Reference       https://marklodato.github.io/visual-git-guide/index-en.html
+	Create React App              https://create-react-app.dev/docs/getting-started
+	GitHub Pages Deployment       https://create-react-app.dev/docs/deployment#github-pages
+	React JS                      https://reactjs.org/tutorial/tutorial.html
+	W3 React                      https://www.w3schools.com/react/default.asp
+	Git Reference                 https://git-scm.com/docs
+	Git Visual Reference          https://marklodato.github.io/visual-git-guide/index-en.html
 
 [Tools]
-	SVG to JSX                 https://svg2jsx.com
+	SVG to JSX                    https://svg2jsx.com
