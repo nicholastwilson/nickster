@@ -22,13 +22,20 @@
 	Git Remote Branches Status    git remote show origin
 	Git Config                    git config -l --show-origin --show-scope
 
-[Documentation]
-	Create React App              https://create-react-app.dev/docs/getting-started
-	GitHub Pages Deployment       https://create-react-app.dev/docs/deployment#github-pages
-	React JS                      https://reactjs.org/tutorial/tutorial.html
-	W3 React                      https://www.w3schools.com/react/default.asp
-	Git Reference                 https://git-scm.com/docs
-	Git Visual Reference          https://marklodato.github.io/visual-git-guide/index-en.html
-
 [Tools]
 	SVG to JSX                    https://svg2jsx.com
+
+[Documentation]
+	[React]
+	    React JS                  https://reactjs.org/tutorial/tutorial.html
+	    Create React App          https://create-react-app.dev/docs/getting-started
+	    W3 React                  https://www.w3schools.com/react/default.asp
+	    React Animations          https://github.com/FormidableLabs/react-animations
+	[CSS]
+	    W3 CSS Animations         https://www.w3schools.com/css/css3_animations.asp
+	    CSS Animations            https://www.lambdatest.com/blog/css-animations-tutorial/
+	    Styled Components         https://styled-components.com/docs/api
+	[Git]
+	    Git Reference             https://git-scm.com/docs
+	    Git Visual Reference      https://marklodato.github.io/visual-git-guide/index-en.html
+	    GitHub Pages Deployment   https://create-react-app.dev/docs/deployment#github-pages

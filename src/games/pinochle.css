@@ -1,0 +1,40 @@
+/* Pinochle */
+.Pinochle {
+    text-align: center;
+    background-color: #282c34;
+    background-color: #527185;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+.Pinochle-link {
+    color: #61dafb;
+}
+
+/* Wavify text */
+.wavify {
+    margin-top: 0.6em;
+}
+.wavify span {
+    display: inline-block;
+    animation: wavify-keyframes 3s ease-in-out infinite;
+}
+.wavify span:nth-of-type(1) { animation-delay: 0.0s; }
+.wavify span:nth-of-type(2) { animation-delay: 0.1s; }
+.wavify span:nth-of-type(3) { animation-delay: 0.2s; }
+.wavify span:nth-of-type(4) { animation-delay: 0.3s; }
+.wavify span:nth-of-type(5) { animation-delay: 0.4s; }
+.wavify span:nth-of-type(6) { animation-delay: 0.5s; }
+.wavify span:nth-of-type(7) { animation-delay: 0.6s; }
+.wavify span:nth-of-type(8) { animation-delay: 0.7s; }
+.wavify span:nth-of-type(9) { animation-delay: 0.8s; }
+.wavify span:nth-of-type(10) { animation-delay: 0.9s; }
+@keyframes wavify-keyframes {
+     0%{ transform: translateY(0em); }
+    33%{ transform: translateY(-0.6em); }
+    67%{ transform: translateY(0em); }
+}
