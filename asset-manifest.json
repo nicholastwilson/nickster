@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/nickster/static/css/main.9e4c01e9.css",
-    "main.js": "/nickster/static/js/main.83dcedbe.js",
+    "main.css": "/nickster/static/css/main.f7a9a15b.css",
+    "main.js": "/nickster/static/js/main.ebf41a9a.js",
     "static/media/qos.png": "/nickster/static/media/qos.50f2adf4325db9cd607a.png",
     "static/media/jod.png": "/nickster/static/media/jod.a2982f621b40de1375da.png",
     "index.html": "/nickster/index.html",
-    "main.9e4c01e9.css.map": "/nickster/static/css/main.9e4c01e9.css.map",
-    "main.83dcedbe.js.map": "/nickster/static/js/main.83dcedbe.js.map"
+    "main.f7a9a15b.css.map": "/nickster/static/css/main.f7a9a15b.css.map",
+    "main.ebf41a9a.js.map": "/nickster/static/js/main.ebf41a9a.js.map"
   },
   "entrypoints": [
-    "static/css/main.9e4c01e9.css",
-    "static/js/main.83dcedbe.js"
+    "static/css/main.f7a9a15b.css",
+    "static/js/main.ebf41a9a.js"
   ]
 }
