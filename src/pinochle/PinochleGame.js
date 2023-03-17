@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { merge, tada, flip } from 'react-animations';
+// import styled, { keyframes } from 'styled-components';
+// import { merge, tada, flip } from 'react-animations';
 // import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
-import './pinochle-title.css';
+import './pinochle-title.scss';
 import qos_png from './qos.png';
 import jod_png from './jod.png';
 
 class PinochleGame extends Component {
 
     render() {
-        const TadaFlip = styled.div`font-size: 48px; margin-top: 0.6em; animation: ${keyframes`${merge(tada, flip)}`} 5s infinite`;
+        // const TadaFlip = styled.div`font-size: 48px; margin-top: 0.6em; animation: ${keyframes`${merge(tada, flip)}`} 5s infinite`;
         // const CardQS = styled.img`height: 20vmin; inline-block; animation: ${keyframes`from {transform: rotate(0deg);} to {transform: rotate(360deg);}`} infinite 3s alternate;`;
         // const CardJD = styled.img`height: 20vmin; inline-block; animation: ${keyframes`from {transform: rotate(360deg);} to {transform: rotate(0deg);}`} infinite 3s alternate;`;
         // const WavyText = styled.div`font-size: 20px; animation: ${wavifyKeyframes} 1s ease-in-out infinite;`;
         return (
             <div class="title-page">
-                <TadaFlip>Nickster Cards™</TadaFlip>
+                <div class="title-text">Nickster Cards™</div>
                 <p/><p/>
                 <div class="title-cards" style={{ "white-space": "nowrap" }}>
                     <img class="title-card-left" src={qos_png} alt="Queen of Spades" />

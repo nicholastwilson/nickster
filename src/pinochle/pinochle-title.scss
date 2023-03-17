@@ -1,4 +1,4 @@
-@import "../util/animate.css";
+@import "~animate.css/animate.min.css";
 
 /* Page */
 .title-page {
@@ -15,10 +15,10 @@
 }
 
 /* Title */
-.title {
+.title-text {
     font-size: 48px;
     margin-top: 0.6em;
-    animation: tada;
+    animation: Tada;
     animation-duration: 5;
     animation-iteration-count: infinite;
 }

@@ -1,4 +1,4 @@
-import PinochleGame from './games/PinochleGame';
+import PinochleGame from './pinochle/PinochleGame';
 
 function App() {
   return (
