@@ -1,11 +1,9 @@
 import PinochleGame from './pinochle/PinochleGame';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <PinochleGame />
     </div>
   );
 }
-
-export default App;
