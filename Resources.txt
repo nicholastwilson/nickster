@@ -23,6 +23,9 @@
 	Git Config                    git config -l --show-origin --show-scope
 
 [Tools]
+	Optimize SVGs (SVGO)          https://github.com/svg/svgo
+	                                  npm -g install svgo
+                                      svgo -r -f /path/to/svgs -o /path/to/outputs
 	SVG to JSX                    https://svg2jsx.com
 
 [Documentation]
@@ -39,3 +42,7 @@
 	    Git Reference             https://git-scm.com/docs
 	    Git Visual Reference      https://marklodato.github.io/visual-git-guide/index-en.html
 	    GitHub Pages Deployment   https://create-react-app.dev/docs/deployment#github-pages
+    [Framer Motion]
+		Documentation             https://www.framer.com/motion/
+        Open Replay Tutorial      https://blog.openreplay.com/doing-animations-in-react-with-framer-motion/
+        Log Rocket Tutorial       https://blog.logrocket.com/framer-motion-tutorial/

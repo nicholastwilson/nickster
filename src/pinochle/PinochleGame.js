@@ -1,53 +1,76 @@
-import { useState } from 'react';
-import { useSpring, animated, config, easings, useSprings } from '@react-spring/web';
+// import { useState } from 'react';
+// import { useSpring, animated, config, easings, useSprings } from '@react-spring/web';
 // import styled, { keyframes } from 'styled-components';
 // import { merge, tada, flip } from 'react-animations';
 // import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
-import './pinochle-title.scss';
-import qos_png from './qos.png';
-import jod_png from './jod.png';
+import { motion } from 'framer-motion';
+import './pinochle-title.css';
+import qos_svg from '../images/cards/queen_of_spades.svg';
+import jod_svg from '../images/cards/jack_of_diamonds.svg';
 
 export default function PinochleGame() {
-    const [titleReverse, setTitleReverse] = useState(false);
-    const titleProps = useSpring({
-        // loop: true,
-        from: { transform: "rotateY(0deg)" },
-        to: [
-            // { transform: "rotateY(45deg)" },
-            // { transform: "rotateY(90deg)" },
-            // { transform: "rotateY(135deg)" },
-            { transform: "rotateY(180deg)" },
-            // { transform: "rotateY(90deg)" },
-            // { transform: "rotateY(360deg)" },
-            { transform: "rotateY(0deg)" },
-            { transform: "rotateY(0deg)" },
-            { transform: "rotateY(0deg)" },
-        ],
-        config: Object.assign(config.gentle, {
-            easing: easings.default,
-            duration: 1000,
-            bounce: 1
-        }),
-        // clamp: true,
-        reverse: titleReverse,
-        onRest: () => setTitleReverse(!titleReverse)
-    });
-    // const TadaFlip = styled.div`font-size: 48px; margin-top: 0.6em; animation: ${keyframes`${merge(tada, flip)}`} 5s infinite`;
-    // const CardQS = styled.img`height: 20vmin; inline-block; animation: ${keyframes`from {transform: rotate(0deg);} to {transform: rotate(360deg);}`} infinite 3s alternate;`;
-    // const CardJD = styled.img`height: 20vmin; inline-block; animation: ${keyframes`from {transform: rotate(360deg);} to {transform: rotate(0deg);}`} infinite 3s alternate;`;
-    // const WavyText = styled.div`font-size: 20px; animation: ${wavifyKeyframes} 1s ease-in-out infinite;`;
     return (
         <div class="title-page">
-            <animated.div style={titleProps}>Nickster Cards™</animated.div>
-            {/* <div class="title-text">Nickster Cards™</div> */}
-            <p/><p/>
-            <div class="title-cards" style={{ "white-space": "nowrap" }}>
-                <img class="title-card-left" src={qos_png} alt="Queen of Spades" />
-                <img class="title-card-right" src={jod_png} alt="Jack of Diamonds" />
+            <div><motion.div 
+                className="title-text"
+                animate={{ 
+                    scale: [1, 1.1, 1.1, 1, 1], 
+                    rotate: [0, -3, 3, -3, 3, 0] 
+                }}
+                transition={{ 
+                    duration: 1, 
+                    ease: "easeInOut", 
+                    repeat: Infinity, 
+                    repeatDelay: 3 
+                }}
+            >
+                Nickster Cards™
+            </motion.div></div>
+            <div className="title-cards">
+                <motion.img className="title-card-left" src={qos_svg} alt="Queen of Spades" 
+                    initial={{
+                        boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)"
+                    }}
+                    animate={{ 
+                        x: [0, -100, 0], 
+                        rotate: [-22.5, -360, -22.5], 
+                        transition: { 
+                            delay: 2, 
+                            duration: 3, 
+                            times: [0, 0.75, 1], 
+                            ease: "easeInOut", 
+                            repeat: Infinity, 
+                            repeatDelay: 2 
+                        }
+                    }} 
+                    whileTap={{ 
+                        scale: 1.2, 
+                        boxShadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)" 
+                    }}
+                />
+                <motion.img className="title-card-right" src={jod_svg} alt="Jack of Diamonds" 
+                    initial={{
+                        boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)"
+                    }}
+                    animate={{ 
+                        x: [0, 100, 0], 
+                        rotate: [22.5, 360, 22.5], 
+                        transition: { 
+                            delay: 2, 
+                            duration: 3, 
+                            times: [0, 0.75, 1], 
+                            ease: "easeInOut", 
+                            repeat: Infinity, 
+                            repeatDelay: 2 
+                        }
+                    }} 
+                    whileTap={{ 
+                        scale: 1.2, 
+                        boxShadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)"
+                    }}
+                />
             </div>
-            <p/><p/>
-            <div class="loading">{ ("Loading...").split('').map(function (a) { return <span>{a}</span> }) }</div>
-            <p/>
+            <div><div className="title-loading">{ ("Loading...").split('').map(function (a) { return <span>{a}</span> }) }</div></div>
             {/* <p/><p/>
             <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={this.start}>Play!</button> */}
         </div>
