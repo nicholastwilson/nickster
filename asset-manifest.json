@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/nickster/static/css/main.f7a9a15b.css",
-    "main.js": "/nickster/static/js/main.ebf41a9a.js",
-    "static/media/qos.png": "/nickster/static/media/qos.50f2adf4325db9cd607a.png",
-    "static/media/jod.png": "/nickster/static/media/jod.a2982f621b40de1375da.png",
+    "main.css": "/nickster/static/css/main.f7ff73db.css",
+    "main.js": "/nickster/static/js/main.da37fb88.js",
+    "static/media/queen_of_spades.svg": "/nickster/static/media/queen_of_spades.78923eb96cfb7d47929e4b533b17e590.svg",
+    "static/media/jack_of_diamonds.svg": "/nickster/static/media/jack_of_diamonds.baa1df0f66414bf0f84b5a029231eab5.svg",
     "index.html": "/nickster/index.html",
-    "main.f7a9a15b.css.map": "/nickster/static/css/main.f7a9a15b.css.map",
-    "main.ebf41a9a.js.map": "/nickster/static/js/main.ebf41a9a.js.map"
+    "main.f7ff73db.css.map": "/nickster/static/css/main.f7ff73db.css.map",
+    "main.da37fb88.js.map": "/nickster/static/js/main.da37fb88.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7a9a15b.css",
-    "static/js/main.ebf41a9a.js"
+    "static/css/main.f7ff73db.css",
+    "static/js/main.da37fb88.js"
   ]
 }
