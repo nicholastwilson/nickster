@@ -1,14 +1,10 @@
 // import { useState } from 'react';
-// import { useSpring, animated, config, easings, useSprings } from '@react-spring/web';
-// import styled, { keyframes } from 'styled-components';
-// import { merge, tada, flip } from 'react-animations';
-// import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
 import { motion } from 'framer-motion';
 import './pinochle-title.css';
 import qos_svg from '../images/cards/queen_of_spades2.svg';
 import jod_svg from '../images/cards/jack_of_diamonds2.svg';
 
-export default function PinochleGame() {
+export default function PinochleTitleScreen() {
     return (
         <div class="title-page">
             <div><motion.div 
