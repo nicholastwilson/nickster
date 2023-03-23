@@ -5,8 +5,8 @@
 // import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
 import { motion } from 'framer-motion';
 import './pinochle-title.css';
-import qos_svg from '../images/cards/queen_of_spades.svg';
-import jod_svg from '../images/cards/jack_of_diamonds.svg';
+import qos_svg from '../images/cards/queen_of_spades2.svg';
+import jod_svg from '../images/cards/jack_of_diamonds2.svg';
 
 export default function PinochleGame() {
     return (
@@ -32,7 +32,7 @@ export default function PinochleGame() {
                         boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)"
                     }}
                     animate={{ 
-                        x: [0, -100, 0], 
+                        x: [0, -50, 0], 
                         rotate: [-22.5, -360, -22.5], 
                         transition: { 
                             delay: 2, 
@@ -53,7 +53,7 @@ export default function PinochleGame() {
                         boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)"
                     }}
                     animate={{ 
-                        x: [0, 100, 0], 
+                        x: [0, 50, 0], 
                         rotate: [22.5, 360, 22.5], 
                         transition: { 
                             delay: 2, 
