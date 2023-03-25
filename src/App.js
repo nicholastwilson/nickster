@@ -1,4 +1,4 @@
-import PinochleGame from './pinochle/PinochleGame';
+import PinochleGame from './games/pinochle/PinochleGame';
 
 export default function App() {
   return (

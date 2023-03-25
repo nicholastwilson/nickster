@@ -21,6 +21,7 @@
 	Git Commit History            git log
 	Git Remote Branches Status    git remote show origin
 	Git Config                    git config -l --show-origin --show-scope
+	Npm Installed Packages        npm list
 
 [Tools]
 	Optimize SVGs (SVGO)          https://github.com/svg/svgo
