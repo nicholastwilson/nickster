@@ -1,0 +1,67 @@
+/* Cards */
+.card {
+    width: 250px;
+    height: 350px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    display: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+}
+
+/* Suits */
+.suit-hearts, .suit-diamonds {
+    color: red;
+}
+.suit-spades, .suit-clubs {
+    color: black;
+}
+
+/* Corners */
+.top-left, .top-right, .bottom-left, .bottom-right {
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+}
+.top-left {
+    top: 5px;
+    left: 5px;
+}
+.top-right {
+    top: 5px;
+    right: 5px;
+}
+.bottom-left {
+    bottom: 5px;
+    left: 5px;
+}
+.bottom-right {
+    bottom: 5px;
+    right: 5px;
+}
+
+/* Center */
+.center-hearts, .center-diamonds, .center-spades, .center-clubs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 160px;
+    height: 260px;
+    background-color: white;
+    border-radius: 10px;
+}
+.center-hearts, .center-diamonds {
+    border: 2px solid red;
+}
+.center-spades, .center-clubs {
+    border: 2px solid black;
+}
+.center-pattern {
+    font-size: 64px;
+    font-weight: bold;
+}

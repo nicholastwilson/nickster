@@ -6,16 +6,21 @@ import qos_svg from '../images/cards/queen_of_spades2.svg';
 import jod_svg from '../images/cards/jack_of_diamonds2.svg';
 import {createCard} from '../util/CardUtils';
 import { unmountComponentAtNode } from 'react-dom';
+import Card from '../Card';
 
 export default function PinochleTitleScreen() {
     const cardContainerRef = useRef(null);
     const randomCardRef = useRef(null);
     return (
-        <div class="title-page" style={{ "grid-template-rows": "1fr 1fr 1fr 1fr" }}>
+        <div className="title-page" style={{  }}>
             {createTitleText()}
             {createTitleCards(cardContainerRef)}
             {createTitleLoading()}
-            {createTitleButton(cardContainerRef, randomCardRef)}
+            {/* {createTitleButton(cardContainerRef, randomCardRef)} */}
+            <motion.div><Card suit="hearts" rank="K" style={{left: 0}} /></motion.div>
+            <motion.div><Card suit="spades" rank="K" style={{left: 250}} /></motion.div>
+            <motion.div><Card suit="diamonds" rank="K" style={{left: 500, transform: "translateX(300px)"}} /></motion.div>
+            <motion.div><Card suit="clubs" rank="K" style={{left: 750, transform: "translateX(500px)"}} /></motion.div>
             {/* <p/><p/>
             <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={this.start}>Play!</button> */}
         </div>
