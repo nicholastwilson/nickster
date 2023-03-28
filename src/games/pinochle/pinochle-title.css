@@ -1,19 +1,21 @@
 /* Page */
-
 .title-page {
-    display: grid;
-    grid-auto-flow: column;
+    /* position: relative; */
+    /* grid-auto-flow: column;
     grid-auto-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr; */
+    /* position: relative; */
     background-color: #527185;
     min-height: 100vh;
     font-size: calc(10px + 2vmin);
     color: white;
 }
-
 .title-page > * {
-    display: flex;
+    position: absolute;
+    /* top: 50%;
+    left: 50%; */
     margin: auto;
+    /* border: 1px solid blue; */
 }
 
 /* Title */
@@ -22,16 +24,18 @@
 }
 
 /* Title cards */
+
 .title-cards > img {
+    /* position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto; */
     display: "inline-block";
+    height: 20vmin;
     /* box-shadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)"; */
     /* filter: drop-shadow(2px 2px 2px black); */
-}
-.title-card-left {
-    height: 20vmin;
-}
-.title-card-right {
-    height: 20vmin;
 }
 
 /* Loading text */

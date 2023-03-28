@@ -1,4 +1,4 @@
-import React, { useState, useRef, Children, createElement } from 'react';
+import React, { useState, useEffect, useRef, Children, createElement } from 'react';
 import ReactDOM from 'react-dom/client';
 import { motion } from 'framer-motion';
 import './pinochle-title.css';
@@ -10,10 +10,14 @@ import Card from '../Card';
 
 export default function PinochleTitleScreen() {
     const cardContainerRef = useRef(null);
+    const titleTextRef = useRef(null);
     const randomCardRef = useRef(null);
+    useEffect(() => {
+        // alert(titleTextRef.current.offsetWidth);
+    });
     return (
-        <div className="title-page" style={{  }}>
-            {createTitleText()}
+        <div className="title-page">
+            {createTitleText(titleTextRef)}
             {createTitleCards(cardContainerRef)}
             {createTitleLoading()}
             {/* {createTitleButton(cardContainerRef, randomCardRef)} */}
@@ -21,26 +25,17 @@ export default function PinochleTitleScreen() {
             <motion.div><Card suit="spades" rank="K" style={{left: 250}} /></motion.div>
             <motion.div><Card suit="diamonds" rank="K" style={{left: 500, transform: "translateX(300px)"}} /></motion.div>
             <motion.div><Card suit="clubs" rank="K" style={{left: 750, transform: "translateX(500px)"}} /></motion.div>
-            {/* <p/><p/>
-            <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={this.start}>Play!</button> */}
+            {/* <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={this.start}>Play!</button> */}
         </div>
     );
 }
 
-function createTitleText() {
+function createTitleText(titleTextRef) {
     return (
-        <motion.div 
-            className="title-text"
-            animate={{ 
-                scale: [1, 1.1, 1.1, 1, 1], 
-                rotate: [0, -3, 3, -3, 3, 0] 
-            }}
-            transition={{ 
-                duration: 1, 
-                ease: "easeInOut", 
-                repeat: Infinity, 
-                repeatDelay: 3 
-            }}
+        <motion.div ref={titleTextRef} className="title-text"
+            initial={{ x: (titleTextRef.current.getBoundingClientRect() - titleTextRef.current.offsetWidth) / 2 }}
+            animate={{ scale: [1, 1.1, 1.1, 1, 1], rotate: [0, -3, 3, -3, 3, 0] }}
+            transition={{ duration: 1, ease: "easeInOut", repeat: Infinity, repeatDelay: 3 }}
         >
             Nickster Cards™
         </motion.div>
@@ -51,46 +46,14 @@ function createTitleCards(cardContainerRef) {
     return (
         <div ref={cardContainerRef} className="title-cards" id="card-container">
             <motion.img className="title-card-left" src={qos_svg} alt="Queen of Spades" 
-                initial={{
-                    boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)"
-                }}
-                animate={{ 
-                    x: [0, -50, 0], 
-                    rotate: [-22.5, -360, -22.5], 
-                    transition: { 
-                        delay: 2, 
-                        duration: 3, 
-                        times: [0, 0.75, 1], 
-                        ease: "easeInOut", 
-                        repeat: Infinity, 
-                        repeatDelay: 2 
-                    }
-                }} 
-                whileTap={{ 
-                    scale: 1.2, 
-                    boxShadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)" 
-                }}
+                initial={{ scale: 1.2, boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)" }}
+                animate={{  x: [0, -150, 0], rotate: [-22.5, -360, -22.5], transition: { delay: 2, duration: 3, times: [0, 0.75, 1], ease: "easeInOut", repeat: Infinity, repeatDelay: 2 } }} 
+                whileTap={{ scale: 1.5, boxShadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)" }}
             />
             <motion.img className="title-card-right" src={jod_svg} alt="Jack of Diamonds" 
-                initial={{
-                    boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)"
-                }}
-                animate={{ 
-                    x: [0, 50, 0], 
-                    rotate: [22.5, 360, 22.5], 
-                    transition: { 
-                        delay: 2, 
-                        duration: 3, 
-                        times: [0, 0.75, 1], 
-                        ease: "easeInOut", 
-                        repeat: Infinity, 
-                        repeatDelay: 2 
-                    }
-                }} 
-                whileTap={{ 
-                    scale: 1.2, 
-                    boxShadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)"
-                }}
+                initial={{ scale: 1.2, boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)" }}
+                animate={{ x: [0, 150, 0], rotate: [22.5, 360, 22.5], transition: { delay: 2, duration: 3, times: [0, 0.75, 1], ease: "easeInOut", repeat: Infinity, repeatDelay: 2 } }} 
+                whileTap={{ scale: 1.5, boxShadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)" }}
             />
         </div>
     );
@@ -116,10 +79,7 @@ function createTitleButton(cardContainerRef, randomCardRef) {
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             <button style={{ height: '40px', width: '100px', fontSize: '20px' }} onClick={handleClick}>
                 <div style={{display:"inline-flex"}}>
-                    <div style={{color:"red"}}>♥</div>&nbsp;
-                    ♠&nbsp;
-                    <div style={{color:"red"}}>♦</div>&nbsp;
-                    ♣
+                    <div style={{color:"red"}}>♥</div>&nbsp;♠&nbsp;<div style={{color:"red"}}>♦</div>&nbsp;♣
                 </div>
             </button>
         </div>
