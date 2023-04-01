@@ -21,10 +21,10 @@ export default function PinochleTitleScreen() {
             {createTitleCards(cardContainerRef)}
             {createTitleLoading()}
             {/* {createTitleButton(cardContainerRef, randomCardRef)} */}
-            <motion.div style={{ top: "0%", left: "0%" }}><Card suit="hearts" rank="K" /></motion.div>
-            <motion.div style={{ top: "100%", left: "0%", translateY: "-100%" }}><Card suit="spades" rank="K" /></motion.div>
-            <motion.div style={{ top: "0%", left: "100%", translateX: "-100%" }}><Card suit="diamonds" rank="K" /></motion.div>
-            <motion.div style={{ top: "100%", left: "100%", translateX: "-100%", translateY: "-100%" }}><Card suit="clubs" rank="K" /></motion.div>
+            <div style={{ top: 0, left: 0 }}><motion.div style={{ top: 0, left: 0 }}><Card suit="hearts" rank="K" /></motion.div></div>
+            <div style={{ top: 0, right: 0 }}><motion.div style={{ top: 0, right: 0 }}><Card suit="spades" rank="K" /></motion.div></div>
+            <div style={{ bottom: 0, left: 0 }}><motion.div style={{ bottom: 0, left: 0 }}><Card suit="clubs" rank="K" /></motion.div></div>
+            <div style={{ bottom: 0, right: 0 }}><motion.div style={{ bottom: 0, right: 0 }}><Card suit="diamonds" rank="K" /></motion.div></div>
             {/* <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={this.start}>Play!</button> */}
         </div>
     );
