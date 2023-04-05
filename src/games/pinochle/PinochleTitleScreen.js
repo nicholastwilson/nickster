@@ -25,7 +25,8 @@ export default function PinochleTitleScreen() {
             <div style={{ top: 0, right: 0 }}><motion.div style={{ top: 0, right: 0 }}><Card suit="spades" rank="K" /></motion.div></div>
             <div style={{ bottom: 0, left: 0 }}><motion.div style={{ bottom: 0, left: 0 }}><Card suit="clubs" rank="K" /></motion.div></div>
             <div style={{ bottom: 0, right: 0 }}><motion.div style={{ bottom: 0, right: 0 }}><Card suit="diamonds" rank="K" /></motion.div></div>
-            {/* <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={this.start}>Play!</button> */}
+            {createTitleButton(cardContainerRef, randomCardRef)}
+            {/* <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={start}>Play!</button> */}
         </div>
     );
 }
@@ -33,7 +34,7 @@ export default function PinochleTitleScreen() {
 function createTitleText(titleTextRef) {
     return (
         <motion.div ref={titleTextRef} className="title-text"
-            initial={{ top: "20%", left: "50%", translateX: "-50%", translateY: "-50%", border: "1px solid red" }}
+            initial={{ top: "20%", left: "50%", translateX: "-50%", translateY: "-50%" }}
             animate={{ scale: [1, 1.1, 1.1, 1, 1], rotate: [0, -3, 3, -3, 3, 0] }}
             transition={{ duration: 1, ease: "easeInOut", repeat: Infinity, repeatDelay: 3 }}
         >
@@ -45,7 +46,7 @@ function createTitleText(titleTextRef) {
 function createTitleCards(cardContainerRef) {
     return (
         <div ref={cardContainerRef} className="title-cards" id="card-container" 
-            style={{ top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)", border: "1px solid green" }}
+            style={{ top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}
         >
             <motion.img className="title-card-left" src={qos_svg} alt="Queen of Spades" 
                 initial={{ scale: 1.2, boxShadow: "2px 2px 2px 0px rgba(0, 0, 0, 0.75)" }}
@@ -63,7 +64,7 @@ function createTitleCards(cardContainerRef) {
 
 function createTitleLoading() {
     return (
-        <div style={{ top: "80%", left: "50%", transform: "translateX(-50%) translateY(-50%)", border: "1px solid blue" }}>
+        <div style={{ top: "80%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
             <div className="title-loading">{ ("Loading...").split('').map(function (a) { return <span>{a}</span> }) }</div>
         </div>
     );
@@ -80,7 +81,7 @@ function createTitleButton(cardContainerRef, randomCardRef) {
         // render(<div id="random-card">Testing!</div>, containerEl);
     }
     return (
-        <div style={{ top: "67%", left: "50%", translateX: "-50%", translateY: "-50%", display: 'flex', flexDirection: 'row' }}>
+        <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
             <button style={{ height: '40px', width: '100px', fontSize: '20px' }} onClick={handleClick}>
                 <div style={{display:"inline-flex"}}>
                     <div style={{color:"red"}}>♥</div>&nbsp;♠&nbsp;<div style={{color:"red"}}>♦</div>&nbsp;♣

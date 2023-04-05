@@ -12,12 +12,20 @@ function Card({suit, rank}) {
     const suitSymbol = suitSymbolMap[suit];
     return (
         <div className={"card suit-" + suit}>
-            <div className={"suit-" + suit + " top-left"}>{rank}<br/>{suitSymbol}</div>
-            <div className={"suit-" + suit + " top-right"}>{rank}<br/>{suitSymbol}</div>
-            <div className={"suit-" + suit + " bottom-left"}>{suitSymbol}<br/>{rank}</div>
-            <div className={"suit-" + suit + " bottom-right"}>{suitSymbol}<br/>{rank}</div>
-            <div className={"center-" + suit}>
-                <div className={"suit-" + suit + " center-pattern"}>{suitSymbol}</div>
+            <div className="card-content">
+                <div className="card-corners">
+                    <div className={"suit-" + suit + " top-left-rank"}>{rank}</div>
+                    <div className={"suit-" + suit + " top-left-suit"}>{suitSymbol}</div>
+                    <div className={"suit-" + suit + " top-right-rank"}>{rank}</div>
+                    <div className={"suit-" + suit + " top-right-suit"}>{suitSymbol}</div>
+                    <div className={"suit-" + suit + " bottom-left-rank"}>{rank}</div>
+                    <div className={"suit-" + suit + " bottom-left-suit"}>{suitSymbol}</div>
+                    <div className={"suit-" + suit + " bottom-right-rank"}>{rank}</div>
+                    <div className={"suit-" + suit + " bottom-right-suit"}>{suitSymbol}</div>
+                    <div className={"center-" + suit}>
+                        <div className={"suit-" + suit + " center-pattern"}>{suitSymbol}</div>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -1,14 +1,11 @@
 /* Cards */
 .card {
-    width: 250px;
-    height: 350px;
+    width: 200px;
+    height: 280px;
     border: 2px solid black;
     border-radius: 10px;
     background-color: white;
-    display: relative;
-    flex-direction: column;
-    justify-content: space-between;
-    position: absolute;
+    position: relative;
 }
 
 /* Suits */
@@ -20,10 +17,17 @@
 }
 
 /* Corners */
+.corners * {
+    font-size: 32px;
+    font-weight: bold;
+    /* position: relative; */
+}
+.corners > * {
+    position: absolute;
+}
 .top-left, .top-right, .bottom-left, .bottom-right {
     font-size: 32px;
     font-weight: bold;
-    position: absolute;
 }
 .top-left {
     top: 5px;
@@ -47,7 +51,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     left: 40px;
     top: 40px;
     width: 160px;
