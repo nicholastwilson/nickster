@@ -12,8 +12,8 @@ function Card({suit, rank}) {
     const suitSymbol = suitSymbolMap[suit];
     return (
         <div className={"card suit-" + suit}>
-            <div className="card-content">
-                <div className="card-corners">
+            <div className="content">
+                <div className="corners">
                     <div className={"suit-" + suit + " top-left-rank"}>{rank}</div>
                     <div className={"suit-" + suit + " top-left-suit"}>{suitSymbol}</div>
                     <div className={"suit-" + suit + " top-right-rank"}>{rank}</div>
