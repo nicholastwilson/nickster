@@ -1,30 +1,23 @@
 import React from "react";
 import cardCSS from './card.css';
 
-const suitSymbolMap = {
-    hearts: "♥",
-    spades: "♠",
-    diamonds: "♦",
-    clubs: "♣"
-}
-
 function Card({suit, rank}) {
-    const suitSymbol = suitSymbolMap[suit];
+    const suitSymbol = (suit == "hearts") ? "♥" : (suit == "spades") ? "♠" : (suit == "diamonds") ? "♦" : (suit == "clubs") ? "♣" : "?";
     return (
         <div className={"card suit-" + suit}>
-            <div className="content">
+            <div className="card-content">
                 <div className="corners">
-                    <div className={"suit-" + suit + " top-left-rank"}>{rank}</div>
-                    <div className={"suit-" + suit + " top-left-suit"}>{suitSymbol}</div>
-                    <div className={"suit-" + suit + " top-right-rank"}>{rank}</div>
-                    <div className={"suit-" + suit + " top-right-suit"}>{suitSymbol}</div>
-                    <div className={"suit-" + suit + " bottom-left-rank"}>{rank}</div>
-                    <div className={"suit-" + suit + " bottom-left-suit"}>{suitSymbol}</div>
-                    <div className={"suit-" + suit + " bottom-right-rank"}>{rank}</div>
-                    <div className={"suit-" + suit + " bottom-right-suit"}>{suitSymbol}</div>
-                    <div className={"center-" + suit}>
-                        <div className={"suit-" + suit + " center-pattern"}>{suitSymbol}</div>
+                    <div className={"top-left-container"}>
+                        <div className={"suit-" + suit + " top-left-rank"}>{rank}</div>
+                        <div className={"suit-" + suit + " top-left-suit"}>{suitSymbol}</div>
                     </div>
+                    <div className={"bottom-right-container"}>
+                        <div className={"suit-" + suit + " bottom-right-rank"}>{rank}</div>
+                        <div className={"suit-" + suit + " bottom-right-suit"}>{suitSymbol}</div>
+                    </div>
+                </div>
+                <div className={"center-" + suit}>
+                    <div className={"suit-" + suit + " center-pattern-" + rank}>{suitSymbol}</div>
                 </div>
             </div>
         </div>
