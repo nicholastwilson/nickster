@@ -4,36 +4,49 @@ import { motion } from 'framer-motion';
 import './pinochle-title.css';
 import qos_svg from '../images/cards/queen_of_spades2.svg';
 import jod_svg from '../images/cards/jack_of_diamonds2.svg';
+import {Suits, Ranks} from './PinochleGame';
 import {createCard} from '../util/CardUtils';
 import { unmountComponentAtNode } from 'react-dom';
 import Card from '../Card';
 
 export default function PinochleTitleScreen() {
-    const cardContainerRef = useRef(null);
-    const titleTextRef = useRef(null);
-    const randomCardRef = useRef(null);
-    useEffect(() => {
-        // alert(titleTextRef.current.offsetWidth);
-    });
+    const [cards, setCards] = useState([]);
+    const addCard = () => {
+        let suit = Suits[Math.floor(Math.random() * Suits.length)];
+        let rank = Ranks[Math.floor(Math.random() * Ranks.length)];
+        let top = Math.random() * 65;
+        let left = Math.random() * 25 + (Math.random() < 0.5 ? 65 : 0);
+        let newCard = (
+            <div style={{ top: top + "%", left: left + "%" }}><motion.div><Card suit={suit} rank={rank} /></motion.div></div>
+        );
+        if(cards.length < 20)
+            setCards([...cards, newCard]);
+        else
+            setCards([...cards.slice(1), newCard]);
+    };
+    const keydown = (e) => {
+        addCard();
+    };
     return (
-        <div className="title-page">
-            {createTitleText(titleTextRef)}
-            {createTitleCards(cardContainerRef)}
+        <div className="title-page" tabindex="0" onKeyDown={keydown}>
+            {cards}
+            {createTitleText()}
+            {createTitleCards()}
             {createTitleLoading()}
             {/* {createTitleButton(cardContainerRef, randomCardRef)} */}
-            <div style={{ top: 0, left: 0 }}><motion.div><Card suit="hearts" rank="A" /></motion.div></div>
+            {/* <div style={{ top: 0, left: 0 }}><motion.div><Card suit="hearts" rank="10" /></motion.div></div>
             <div style={{ top: 0, right: 0 }}><motion.div><Card suit="spades" rank="A" /></motion.div></div>
             <div style={{ bottom: 0, left: 0 }}><motion.div><Card suit="clubs" rank="A" /></motion.div></div>
-            <div style={{ bottom: 0, right: 0 }}><motion.div><Card suit="diamonds" rank="A" /></motion.div></div>
-            {createTitleButton(cardContainerRef, randomCardRef)}
+            <div style={{ bottom: 0, right: 0 }}><motion.div><Card suit="diamonds" rank="A" /></motion.div></div> */}
+            {createTitleButton(addCard)}
             {/* <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={start}>Play!</button> */}
         </div>
     );
 }
 
-function createTitleText(titleTextRef) {
+function createTitleText() {
     return (
-        <motion.div ref={titleTextRef} className="title-text"
+        <motion.div className="title-text"
             initial={{ top: "20%", left: "50%", translateX: "-50%", translateY: "-50%" }}
             animate={{ scale: [1, 1.1, 1.1, 1, 1], rotate: [0, -3, 3, -3, 3, 0] }}
             transition={{ duration: 1, ease: "easeInOut", repeat: Infinity, repeatDelay: 3 }}
@@ -43,9 +56,9 @@ function createTitleText(titleTextRef) {
     );
 }
 
-function createTitleCards(cardContainerRef) {
+function createTitleCards() {
     return (
-        <div ref={cardContainerRef} className="title-cards" id="card-container" 
+        <div className="title-cards" id="card-container" 
             style={{ top: "50%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}
         >
             <motion.img className="title-card-left" src={qos_svg} alt="Queen of Spades" 
@@ -70,22 +83,13 @@ function createTitleLoading() {
     );
 }
 
-function createTitleButton(cardContainerRef, randomCardRef) {
-    function handleClick() {
-        const container = cardContainerRef.current;
-        const containerEl = document.getElementById("card-container");
-        if(containerEl.childElementCount > 2) {
-            unmountComponentAtNode(containerEl.getElementById("random-card"));
-        }
-        // containerEl.appendChild(createElement("div", { id: "random-card" }, "Testing!"));
-        // render(<div id="random-card">Testing!</div>, containerEl);
-    }
+var interval = 0;
+
+function createTitleButton(addCard) {
     return (
         <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-            <button style={{ height: '40px', width: '100px', fontSize: '20px' }} onClick={handleClick}>
-                <div style={{display:"inline-flex"}}>
-                    <div style={{color:"red"}}>♥</div>&nbsp;♠&nbsp;<div style={{color:"red"}}>♦</div>&nbsp;♣
-                </div>
+            <button style={{ height: '40px', width: '100px', fontSize: '20px' }} onClick={addCard}>
+                <div style={{display:"inline-block"}}>Add Card</div>
             </button>
         </div>
     );

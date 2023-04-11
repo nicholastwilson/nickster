@@ -1,7 +1,7 @@
 import React from "react";
 import cardCSS from './card.css';
 
-function Card({suit, rank}) {
+export default function Card({suit, rank}) {
     const suitSymbol = (suit == "hearts") ? "♥" : (suit == "spades") ? "♠" : (suit == "diamonds") ? "♦" : (suit == "clubs") ? "♣" : "?";
     return (
         <div className={"card suit-" + suit}>
@@ -23,5 +23,3 @@ function Card({suit, rank}) {
         </div>
     );
 }
-
-export default Card;

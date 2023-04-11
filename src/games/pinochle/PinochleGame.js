@@ -7,3 +7,6 @@ export default function PinochleGame() {
         </div>
     );
 }
+
+export const Suits = ['hearts', 'spades', 'diamonds', 'clubs'];
+export const Ranks = ['9', 'J', 'Q', 'K', '10', 'A'];
