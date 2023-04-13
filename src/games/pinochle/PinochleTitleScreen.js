@@ -2,22 +2,42 @@ import React, { useState, useEffect, useRef, Children, createElement } from 'rea
 import ReactDOM from 'react-dom/client';
 import { motion } from 'framer-motion';
 import './pinochle-title.css';
-import qos_svg from '../images/cards/queen_of_spades2.svg';
-import jod_svg from '../images/cards/jack_of_diamonds2.svg';
-import {Suits, Ranks} from './PinochleGame';
-import {createCard} from '../util/CardUtils';
+import qos_svg from '../images/playing_cards/queen_of_spades2.svg';
+import jod_svg from '../images/playing_cards/jack_of_diamonds2.svg';
 import { unmountComponentAtNode } from 'react-dom';
-import Card from '../Card';
+import PlayingCard, {Suits, Ranks} from '../PlayingCard';
+import PinochleGame, {createDeck} from './PinochleGame';
+
+var si = 0;
+var ri = -1;
 
 export default function PinochleTitleScreen() {
     const [cards, setCards] = useState([]);
+    const deck = createDeck();
     const addCard = () => {
-        let suit = Suits[Math.floor(Math.random() * Suits.length)];
-        let rank = Ranks[Math.floor(Math.random() * Ranks.length)];
+        ri++;
+        if(ri === Ranks.length) {
+            ri = 0;
+            si++;
+            if(si === Suits.length)
+                si = 0;
+        }
+        let suit = Suits[si];
+        let rank = Ranks[ri];
+        // let suit = Suits[Math.floor(Math.random() * Suits.length)];
+        // let rank = Ranks[Math.floor(Math.random() * Ranks.length)];
         let top = Math.random() * 65;
         let left = Math.random() * 25 + (Math.random() < 0.5 ? 65 : 0);
         let newCard = (
-            <div style={{ top: top + "%", left: left + "%" }}><motion.div><Card suit={suit} rank={rank} /></motion.div></div>
+            <div style={{ top: top + "%", left: left + "%" }}>
+                <motion.div
+                    // animate={{ rotate: [0, 360] }}
+                    // transition={{ duration: 10, repeat: Infinity }}
+                >
+                    {deck[Math.floor(Math.random() * deck.length)]}
+                    {/* <PlayingCard suit={suit} rank={rank} /> */}
+                </motion.div>
+            </div>
         );
         if(cards.length < 20)
             setCards([...cards, newCard]);
@@ -33,13 +53,7 @@ export default function PinochleTitleScreen() {
             {createTitleText()}
             {createTitleCards()}
             {createTitleLoading()}
-            {/* {createTitleButton(cardContainerRef, randomCardRef)} */}
-            {/* <div style={{ top: 0, left: 0 }}><motion.div><Card suit="hearts" rank="10" /></motion.div></div>
-            <div style={{ top: 0, right: 0 }}><motion.div><Card suit="spades" rank="A" /></motion.div></div>
-            <div style={{ bottom: 0, left: 0 }}><motion.div><Card suit="clubs" rank="A" /></motion.div></div>
-            <div style={{ bottom: 0, right: 0 }}><motion.div><Card suit="diamonds" rank="A" /></motion.div></div> */}
-            {createTitleButton(addCard)}
-            {/* <button style={{height: "30px", width: "100px", fontSize: "16px"}} onClick={start}>Play!</button> */}
+            {createAddCardButton(addCard)}
         </div>
     );
 }
@@ -85,7 +99,7 @@ function createTitleLoading() {
 
 var interval = 0;
 
-function createTitleButton(addCard) {
+function createAddCardButton(addCard) {
     return (
         <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
             <button style={{ height: '40px', width: '100px', fontSize: '20px' }} onClick={addCard}>
