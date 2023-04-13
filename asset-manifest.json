@@ -1,15 +1,24 @@
 {
   "files": {
-    "main.css": "/nickster/static/css/main.f7ff73db.css",
-    "main.js": "/nickster/static/js/main.da37fb88.js",
-    "static/media/queen_of_spades.svg": "/nickster/static/media/queen_of_spades.78923eb96cfb7d47929e4b533b17e590.svg",
-    "static/media/jack_of_diamonds.svg": "/nickster/static/media/jack_of_diamonds.baa1df0f66414bf0f84b5a029231eab5.svg",
+    "main.css": "/nickster/static/css/main.a161a37e.css",
+    "main.js": "/nickster/static/js/main.76547535.js",
+    "static/media/queen_of_spades2.svg": "/nickster/static/media/queen_of_spades2.f50fa4283938ce405cb8e4dced5633f5.svg",
+    "static/media/jack_of_diamonds2.svg": "/nickster/static/media/jack_of_diamonds2.9cf1ce536f9af1fcb6b86fb90a02b17c.svg",
+    "static/media/jh.png": "/nickster/static/media/jh.dbe11028967e8ab8270f.png",
+    "static/media/kh.png": "/nickster/static/media/kh.f99fab7581a86f68f1a6.png",
+    "static/media/kd.png": "/nickster/static/media/kd.23ff4b202cd9b4f9b524.png",
+    "static/media/qh.png": "/nickster/static/media/qh.4abe23d95ecb5139987c.png",
+    "static/media/jd.png": "/nickster/static/media/jd.169fbe6db53c9b6a8d9a.png",
+    "static/media/js.png": "/nickster/static/media/js.759dba736a3f6947db10.png",
+    "static/media/ks.png": "/nickster/static/media/ks.ee47e9e212fd133024b6.png",
+    "static/media/qs.png": "/nickster/static/media/qs.25dfe9d96b68dad19119.png",
+    "static/media/qd.png": "/nickster/static/media/qd.4a9aa3a893cadb5f64f6.png",
     "index.html": "/nickster/index.html",
-    "main.f7ff73db.css.map": "/nickster/static/css/main.f7ff73db.css.map",
-    "main.da37fb88.js.map": "/nickster/static/js/main.da37fb88.js.map"
+    "main.a161a37e.css.map": "/nickster/static/css/main.a161a37e.css.map",
+    "main.76547535.js.map": "/nickster/static/js/main.76547535.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7ff73db.css",
-    "static/js/main.da37fb88.js"
+    "static/css/main.a161a37e.css",
+    "static/js/main.76547535.js"
   ]
 }
