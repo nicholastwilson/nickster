@@ -39,20 +39,17 @@ export default function PinochleTitleScreen() {
                 </motion.div>
             </div>
         );
-        if(cards.length < 20)
-            setCards([...cards, newCard]);
-        else
-            setCards([...cards.slice(1), newCard]);
+        setCards([...cards.slice(cards.length == 20 ? 1 : 0), newCard]);
     };
     const keydown = (e) => {
         addCard();
     };
     return (
         <div className="title-page" tabindex="0" onKeyDown={keydown}>
-            {cards}
             {createTitleText()}
             {createTitleCards()}
             {createTitleLoading()}
+            {cards}
             {createAddCardButton(addCard)}
         </div>
     );
