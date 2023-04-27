@@ -11,7 +11,7 @@ export default function PinochleGame() {
 
 export function createDeck() {
     const suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
-    const ranks = ["9", "Jack", "Queen", "King", "10", "Ace"];
+    const ranks = ["Nine", "Jack", "Queen", "King", "Ten", "Ace"];
     const deck = [];
     for(var s = 0; s < suits.length; s++) {
         for(var r = 0; r < ranks.length; r++) {
