@@ -50,3 +50,4 @@
 
 [Miscellaneous]
 	Suit characters               ♥ <&#9829;>, ♠ <&#9824;>, ♦ <&#9830;>, ♣ <&#9827;>
+	SVG icons                     https://www.svgrepo.com
