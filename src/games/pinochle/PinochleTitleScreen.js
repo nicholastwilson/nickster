@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
-import _ from 'lodash';
-import { motion } from 'framer-motion';
-import './pinochle-title.css';
-import PlayingCard, {Suits, Ranks} from '../PlayingCard';
-import PinochleGame, {createDeck} from './PinochleGame';
+import React, { useState } from "react";
+import _ from "lodash";
+import { motion } from "framer-motion";
+import Select from "react-select";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import "./pinochle-title.scss";
+import PlayingCard, {Suits, Ranks} from "../PlayingCard";
+import PinochleGame, {createDeck} from "./PinochleGame";
+
+var cardIdx = 0;
 
 export default function PinochleTitleScreen() {
     const [cards, setCards] = useState([]);
-
+    const [trump, setTrump] = useState(null);
     function handleAddCard() {
         let newCard = (
-            <div style={{ top: _.random(5, 55) + "%", left: (_.random(0, 1) ? 2 : 75) + "%" }}>
-                <PlayingCard 
-                    suit={_.sample(Object.keys(Suits))} 
-                    rank={_.sample(["Nine", "Ten", "Jack", "Queen", "King", "Ace"])} 
-                    trumpClass={_.random(0, 3) ? "not-trump" : "trump"}
-                />
-            </div>
+            <PlayingCard 
+                suit={_.sample(Object.keys(Suits))} 
+                rank={_.sample(["Nine", "Jack", "Queen", "King", "Ten", "Ace"])} 
+                trumpClass={_.random(0, 3) ? "not-trump" : "trump"}
+            />
         );
-        setCards([...cards.slice(cards.length === 10 ? 1 : 0), newCard]);
+        let temp = cards.slice(0);
+        temp[cardIdx++] = newCard;
+        if(cardIdx == 12)
+            cardIdx = 0;
+        setCards(temp);
+        // setCards([...cards.slice(cards.length === 12 ? 1 : 0), newCard]);
     }
 
     return (
@@ -32,20 +40,54 @@ export default function PinochleTitleScreen() {
                 Nickster Cards™
             </motion.div>
             {/* {createTitleCards()} */}
-            {/* Loading... */}
-            <div style={{ top: "80%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-                <div className="title-loading">{ ("Loading...").split('').map(function (a) { return <span>{a}</span> }) }</div>
-            </div>
             {/* Cards */}
-            {cards}
+            <div className="cards-container">
+                {cards}
+            </div>
             {/* Add card button */}
             <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-                <button style={{ height: "40px", width: "160px", fontSize: "20px" }} onClick={handleAddCard}>
+                <motion.button whileTap={{ scale: 0.9 }} style={{ height: "40px", width: "160px", fontSize: "20px", "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 0.3)" }} onClick={handleAddCard}>
                     <div style={{display: "flex", "font-size": "20px"}}>
-                        <div style={{color:"#D40000"}}>♥</div> ♠ Add Card<div style={{color:"#D40000"}}>♦</div> ♣
+                        <div style={{color:"#D40000"}}>♥</div>  ♠  Add Card  <div style={{color:"#D40000"}}>♦</div>  ♣
                     </div>
-                </button>
+                </motion.button>
             </div>
+            {/* Select trump suit drop-down */}
+            <div style={{ position: "absolute", width: "200px", height: "40px", top: "77%", left: "50%", transform: "translateX(-50%) translateY(-50%)", "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 0.3)" }}>
+                <Dropdown style={{ "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 1.0)" }}
+                    options={["Clubs", "Diamonds", "Hearts", "Spades"]}
+                    onChange={setTrump}
+                    placeholder="Select an option"
+                />
+                {/* <Select
+                    defaultValue={trump}
+                    onChange={setTrump}
+                    options={[
+                        { value: "Clubs", label: "Clubs" },
+                        { value: "Diamonds", label: "Diamonds" },
+                        { value: "Hearts", label: "Hearts" },
+                        { value: "Spades", label: "Spades" }
+                    ]}
+                    placeholder="Select trump..."
+                    theme={(theme) => ({
+                        ...theme,
+                        borderRadius: 5,
+                        colors: {
+                            ...theme.colors,
+                            // text: 'black',
+                            // font:'#3599B8',
+                            // primary25: '#3599B8',
+                            // primary: 'black',
+                            // neutral80: 'black',
+                            // color: 'black',
+                        },
+                    })}
+                /> */}
+            </div>
+            {/* Loading... */}
+            {/* <div style={{ top: "85%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
+                <div className="title-loading">{ ("Loading...").split("").map(function (a) { return <span>{a}</span> }) }</div>
+            </div> */}
         </div>
     );
 

@@ -39,6 +39,11 @@
 	    W3 CSS Animations         https://www.w3schools.com/css/css3_animations.asp
 	    CSS Animations            https://www.lambdatest.com/blog/css-animations-tutorial/
 	    Styled Components         https://styled-components.com/docs/api
+	[SVG]
+		Mozilla SVG Documentation https://developer.mozilla.org/en-US/docs/Web/SVG
+		SVG Crop                  https://svgcrop.com/
+	[Fonts]
+		Google Fonts              https://fonts.google.com/
 	[Git]
 	    Git Reference             https://git-scm.com/docs
 	    Git Visual Reference      https://marklodato.github.io/visual-git-guide/index-en.html

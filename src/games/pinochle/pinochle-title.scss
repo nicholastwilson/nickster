@@ -1,0 +1,124 @@
+/// Mixin to place items on a circle
+/// @author Hugo Giraudel
+/// @author Ana Tudor
+/// @param {Integer} $item-count - Number of items on the circle
+/// @param {Length} $circle-size - Large circle size
+/// @param {Length} $item-size - Single item size
+@mixin on-circle($item-count, $circle-size, $item-size) {  
+    position: relative;
+    width:  $circle-size;
+    height: $circle-size;
+    border-radius: 50%;
+    padding: 0; 
+    list-style: none;
+
+    > * {
+        display: block;
+        position: absolute;
+        top:  50%; 
+        left: 50%;
+        margin: -($item-size / 2);
+        width:  $item-size;
+        height: $item-size;
+
+        $angle: (360 / $item-count);
+        $rot: 0;
+
+        @for $i from 1 through $item-count {
+            &:nth-of-type(#{$i}) {
+                transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+            }
+
+            $rot: $rot + $angle;
+        }
+    }
+}
+
+/* Page */
+.title-page {
+    /* position: relative; */
+    /* grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr; */
+    /* position: relative; */
+    background-color: #527185;
+    min-height: 100vh;
+    /* font-family: 'Inter';
+    font-size: calc(8px + 2vmin); */
+    color: white;
+}
+.title-page > * {
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); */
+    /* margin: auto; */
+    /* border: 1px solid blue; */
+}
+
+/* Title text */
+.title-text {
+    font-size: 48px;
+}
+
+/* Title cards */
+.title-cards > img {
+    /* position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto; */
+    display: "inline-block";
+    height: 20vmin;
+    /* box-shadow: "5px 5px 5px 0px rgba(0, 0, 0, 0.25)"; */
+    /* filter: drop-shadow(2px 2px 2px black); */
+}
+
+/* Cards container */
+.cards-container {
+    // position: relative;
+    // @include on-circle($item-count: 36, $circle-size: 500px, $item-size: 1px);
+    // top: 200px;
+    // left: 10%;
+    // width: 50%;
+    // height: 10%;
+    // border: 1px solid brown;
+}
+.cards-container > div { position: absolute; }
+.cards-container > div:nth-of-type(1) { top: 250px; left: 150px; rotate: -25deg; }
+.cards-container > div:nth-of-type(2) { top: 235px; left: 178px; rotate: -20deg; }
+.cards-container > div:nth-of-type(3) { top: 222px; left: 206px; rotate: -15deg; }
+.cards-container > div:nth-of-type(4) { top: 211px; left: 235px; rotate: -10deg; }
+.cards-container > div:nth-of-type(5) { top: 203px; left: 265px; rotate: -5deg; }
+.cards-container > div:nth-of-type(6) { top: 198px; left: 296px; rotate: -0deg; }
+.cards-container > div:nth-of-type(7) { top: 198px; left: 328px; rotate: +5deg; }
+.cards-container > div:nth-of-type(8) { top: 200px; left: 360px; rotate: +10deg; }
+.cards-container > div:nth-of-type(9) { top: 204px; left: 392px; rotate: +15deg; }
+.cards-container > div:nth-of-type(10) { top: 212px; left: 424px; rotate: +20deg; }
+.cards-container > div:nth-of-type(11) { top: 221px; left: 456px; rotate: +25deg; }
+.cards-container > div:nth-of-type(12) { top: 234px; left: 488px; rotate: +30deg; }
+
+/* Loading text */
+.title-loading {
+    margin-top: 0.6em;
+}
+.title-loading span {
+    display: inline-block;
+    animation: title-loading-keyframes 3s ease-in-out infinite;
+}
+.title-loading span:nth-of-type(1) { animation-delay: 0.0s; }
+.title-loading span:nth-of-type(2) { animation-delay: 0.1s; }
+.title-loading span:nth-of-type(3) { animation-delay: 0.2s; }
+.title-loading span:nth-of-type(4) { animation-delay: 0.3s; }
+.title-loading span:nth-of-type(5) { animation-delay: 0.4s; }
+.title-loading span:nth-of-type(6) { animation-delay: 0.5s; }
+.title-loading span:nth-of-type(7) { animation-delay: 0.6s; }
+.title-loading span:nth-of-type(8) { animation-delay: 0.7s; }
+.title-loading span:nth-of-type(9) { animation-delay: 0.8s; }
+.title-loading span:nth-of-type(10) { animation-delay: 0.9s; }
+@keyframes title-loading-keyframes {
+     0%{ transform: translateY(0em); }
+    33%{ transform: translateY(-0.6em); }
+    67%{ transform: translateY(0em); }
+}

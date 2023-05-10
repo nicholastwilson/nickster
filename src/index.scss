@@ -1,0 +1,16 @@
+* {
+  /* Disables all panning and zooming gestures */
+  touch-action: none;
+  /* Disable text selection */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+body {
+  margin: 0;
+  /* Fonts */
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

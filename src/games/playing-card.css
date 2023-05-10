@@ -8,9 +8,10 @@ Cards
     border-radius: 10px;
     background-color: white;
     position: relative;
-    font-family: NicksterLight;
-    font-weight: bold;
-    /* transform: scaleX(70%) scaleY(70%); */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transform: scaleX(80%) scaleY(80%);
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 .card * {
     position: absolute;
@@ -37,43 +38,37 @@ Corners
     width: 100%;
     height: 100%;
 }
+.corner-1, .corner-2 {
+    top: -2px;
+    width: 38px;
+    font-size: 46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .corner-2 {
     bottom: 0px;
     right: 0px;
     transform: rotate(180deg);
 }
-.corner-1-rank, .corner-2-rank {
-    top: -3px;
-    left: 3px;
-    font-size: 46px;
+:is(.corner-1-rank, .corner-2-rank).rank-Ten {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 44px;
+    left: -1px;
+    letter-spacing: -7px;
 }
 .corner-1-suit, .corner-2-suit {
-    width: 34px;
+    width: 32px;
     top: 52px;
-    left: 2px;
-}
-:is(.corner-1-rank, .corner-2-rank).rank-Nine {
-    font-size: 54px;
-}
-/* Reduce font size of "10" */
-:is(.corner-1-rank, .corner-2-rank).rank-Ten {
-    font-family: NicksterLight;
-    font-size: 44px;
-    font-weight: bold;
-    left: 0px;
-    top: 0px;
-    letter-spacing: -6px;
-}
-:is(.corner-1-rank, .corner-2-rank).rank-Jack {
-    left: 6px;
 }
 
 /***************************************************
 Center
 ***************************************************/
 .center {
-    width: 60%;
-    height: 75%;
+    width: 120px;
+    height: 210px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -87,188 +82,325 @@ Center
 .center.suit-Diamonds, .center.suit-Hearts {
     border: 2px solid #D40000;
 }
+/***** Ace *****/
 .rank-Ace.center-pip-1 {
-    width: 90px;
+    width: 75%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-:is(.center-pip-1, .center-pip-2):is(.rank-King, .rank-Queen, .rank-Jack) {
-    width: 38px;
+/***** Two *****/
+.center.rank-Two > img {
+    width: 44px;
 }
-.center-pip-2:is(.rank-King, .rank-Queen, .rank-Jack) {
+.center-pip-1.rank-Two {
+    top: 14px;
+    left: 38px;
+}
+.center-pip-2.rank-Two {
+    bottom: 14px;
+    left: 38px;
     transform: rotate(180deg);
 }
+/***** Three *****/
+.center.rank-Three > img {
+    width: 44px;
+}
+.center-pip-1.rank-Three {
+    top: 14px;
+    left: 38px;
+}
+.center-pip-2.rank-Three {
+    top: 83px;
+    left: 38px;
+}
+.center-pip-3.rank-Three {
+    bottom: 14px;
+    left: 38px;
+    transform: rotate(180deg);
+}
+/***** Four *****/
+.center.rank-Four > img {
+    width: 44px;
+}
+.center-pip-1.rank-Four {
+    top: 10px;
+    left: 4px;
+}
+.center-pip-2.rank-Four {
+    bottom: 10px;
+    left: 4px;
+    transform: rotate(180deg);
+}
+.center-pip-3.rank-Four {
+    top: 10px;
+    right: 4px;
+}
+.center-pip-4.rank-Four {
+    bottom: 10px;
+    right: 4px;
+    transform: rotate(180deg);
+}
+/***** Five *****/
+.center.rank-Five > img {
+    width: 44px;
+}
+.center-pip-1.rank-Five {
+    top: 10px;
+    left: 4px;
+}
+.center-pip-2.rank-Five {
+    bottom: 10px;
+    left: 4px;
+    transform: rotate(180deg);
+}
+.center-pip-3.rank-Five {
+    top: 83px;
+    left: 38px;
+}
+.center-pip-4.rank-Five {
+    top: 10px;
+    right: 4px;
+}
+.center-pip-5.rank-Five {
+    bottom: 10px;
+    right: 4px;
+    transform: rotate(180deg);
+}
+/***** Six *****/
+.center.rank-Six > img {
+    width: 44px;
+}
+.center-pip-1.rank-Six {
+    top: 10px;
+    left: 4px;
+}
+.center-pip-2.rank-Six {
+    top: 83px;
+    left: 4px;
+}
+.center-pip-3.rank-Six {
+    bottom: 10px;
+    left: 4px;
+    transform: rotate(180deg);
+}
+.center-pip-4.rank-Six {
+    top: 10px;
+    right: 4px;
+}
+.center-pip-5.rank-Six {
+    top: 83px;
+    right: 4px;
+}
+.center-pip-6.rank-Six {
+    bottom: 10px;
+    right: 4px;
+    transform: rotate(180deg);
+}
+/***** Seven *****/
+.center.rank-Seven > img {
+    width: 42px;
+}
+.center-pip-1.rank-Seven {
+    top: 10px;
+    left: 2px;
+}
+.center-pip-2.rank-Seven {
+    top: 84px;
+    left: 2px;
+}
+.center-pip-3.rank-Seven {
+    bottom: 10px;
+    left: 2px;
+    transform: rotate(180deg);
+}
+.center-pip-4.rank-Seven {
+    top: 49px;
+    left: 39px;
+}
+.center-pip-5.rank-Seven {
+    top: 10px;
+    right: 2px;
+}
+.center-pip-6.rank-Seven {
+    top: 84px;
+    right: 2px;
+}
+.center-pip-7.rank-Seven {
+    bottom: 10px;
+    right: 2px;
+    transform: rotate(180deg);
+}
+/***** Eight *****/
+.center.rank-Eight > img {
+    width: 42px;
+}
+.center-pip-1.rank-Eight {
+    top: 10px;
+    left: 2px;
+}
+.center-pip-2.rank-Eight {
+    top: 84px;
+    left: 2px;
+}
+.center-pip-3.rank-Eight {
+    bottom: 10px;
+    left: 2px;
+    transform: rotate(180deg);
+}
+.center-pip-4.rank-Eight {
+    top: 49px;
+    left: 39px;
+}
+.center-pip-5.rank-Eight {
+    bottom: 49px;
+    left: 39px;
+    transform: rotate(180deg);
+}
+.center-pip-6.rank-Eight {
+    top: 10px;
+    right: 2px;
+}
+.center-pip-7.rank-Eight {
+    top: 84px;
+    right: 2px;
+}
+.center-pip-8.rank-Eight {
+    bottom: 10px;
+    right: 2px;
+    transform: rotate(180deg);
+}
+/***** Nine *****/
 .center.rank-Nine > img {
-    width: 38px;
+    width: 40px;
 }
 .center-pip-1.rank-Nine {
-    top: 2px;
+    top: 10px;
     left: 2px;
 }
 .center-pip-2.rank-Nine {
-    top: 57px;
+    top: 60px;
     left: 2px;
 }
 .center-pip-3.rank-Nine {
-    top: 112px;
+    bottom: 60px;
     left: 2px;
     transform: rotate(180deg);
 }
 .center-pip-4.rank-Nine {
-    top: 167px;
+    bottom: 10px;
     left: 2px;
     transform: rotate(180deg);
 }
 .center-pip-5.rank-Nine {
     top: 85px;
-    left: 41px;
+    left: 40px;
 }
 .center-pip-6.rank-Nine {
-    top: 2px;
+    top: 13px;
     right: 2px;
 }
 .center-pip-7.rank-Nine {
-    top: 57px;
+    top: 62px;
     right: 2px;
 }
 .center-pip-8.rank-Nine {
-    top: 112px;
+    bottom: 62px;
     right: 2px;
     transform: rotate(180deg);
 }
 .center-pip-9.rank-Nine {
-    top: 167px;
+    bottom: 13px;
     right: 2px;
     transform: rotate(180deg);
 }
+/***** Ten *****/
 .center.rank-Ten > img {
-    width: 38px;
+    width: 40px;
 }
 .center-pip-1.rank-Ten {
-    top: 2px;
+    top: 10px;
     left: 2px;
 }
 .center-pip-2.rank-Ten {
-    top: 57px;
+    top: 60px;
     left: 2px;
 }
 .center-pip-3.rank-Ten {
-    top: 112px;
+    bottom: 60px;
     left: 2px;
     transform: rotate(180deg);
 }
 .center-pip-4.rank-Ten {
-    top: 167px;
+    bottom: 10px;
     left: 2px;
     transform: rotate(180deg);
 }
 .center-pip-5.rank-Ten {
-    top: 85px;
-    left: 41px;
+    top: 33px;
+    left: 40px;
 }
 .center-pip-6.rank-Ten {
-    top: 2px;
-    right: 2px;
+    bottom: 33px;
+    left: 40px;
+    transform: rotate(180deg);
 }
 .center-pip-7.rank-Ten {
-    top: 57px;
+    top: 10px;
     right: 2px;
 }
 .center-pip-8.rank-Ten {
-    top: 112px;
+    top: 60px;
     right: 2px;
-    transform: rotate(180deg);
 }
 .center-pip-9.rank-Ten {
-    top: 167px;
+    bottom: 60px;
     right: 2px;
     transform: rotate(180deg);
 }
 .center-pip-10.rank-Ten {
-    top: 167px;
+    bottom: 10px;
     right: 2px;
     transform: rotate(180deg);
 }
-:is(.center-pip-1, .center-pip-2).suit-Clubs:is(.rank-King, .rank-Queen, .rank-Jack) {
-    width: 38px;
-}
-.center-pip-1.suit-Clubs:is(.rank-King, .rank-Queen, .rank-Jack) {
-    top: 2px;
-    left: 0px;
-}
-.center-pip-2.suit-Clubs:is(.rank-King, .rank-Queen, .rank-Jack) {
-    bottom: 0px;
-    right: 0px;
-}
-.center.rank-King.suit-Clubs {
-    background-image: url("./images/playing_cards/king-clubs.png");
-}
-.center.rank-Queen.suit-Clubs {
-    background-image: url("./images/playing_cards/queen-clubs.png");
-}
+/***** Jack *****/
 .center.rank-Jack.suit-Clubs {
     background-image: url("./images/playing_cards/jack-clubs.png");
-}
-:is(.center-pip-1, .center-pip-2).suit-Diamonds:is(.rank-King, .rank-Queen, .rank-Jack) {
-    width: 38px;
-}
-.center-pip-1.suit-Diamonds:is(.rank-King, .rank-Queen, .rank-Jack) {
-    top: 1px;
-    left: 2px;
-}
-.center-pip-2.suit-Diamonds:is(.rank-King, .rank-Queen, .rank-Jack) {
-    bottom: 1px;
-    right: 2px;
-}
-.center.rank-King.suit-Diamonds {
-    background-image: url("./images/playing_cards/king-diamonds.png");
-}
-.center.rank-Queen.suit-Diamonds {
-    background-image: url("./images/playing_cards/queen-diamonds.png");
 }
 .center.rank-Jack.suit-Diamonds {
     background-image: url("./images/playing_cards/jack-diamonds.png");
 }
-:is(.center-pip-1, .center-pip-2).suit-Hearts:is(.rank-King, .rank-Queen, .rank-Jack) {
-    width: 38px;
+.center.rank-Jack.suit-Hearts {
+    background-image: url("./images/playing_cards/jack-hearts.png");
 }
-.center-pip-1.suit-Hearts:is(.rank-King, .rank-Queen, .rank-Jack) {
-    top: 5px;
-    left: 0px;
+.center.rank-Jack.suit-Spades {
+    background-image: url("./images/playing_cards/jack-spades.png");
 }
-.center-pip-2.suit-Hearts:is(.rank-King, .rank-Queen, .rank-Jack) {
-    bottom: 5px;
-    right: 0px;
+/***** Queen *****/
+.center.rank-Queen.suit-Clubs {
+    background-image: url("./images/playing_cards/queen-clubs.png");
 }
-.center.rank-King.suit-Hearts {
-    background-image: url("./images/playing_cards/king-hearts.png");
+.center.rank-Queen.suit-Diamonds {
+    background-image: url("./images/playing_cards/queen-diamonds.png");
 }
 .center.rank-Queen.suit-Hearts {
     background-image: url("./images/playing_cards/queen-hearts.png");
 }
-.center.rank-Jack.suit-Hearts {
-    background-image: url("./images/playing_cards/jack-hearts.png");
-}
-:is(.center-pip-1, .center-pip-2).suit-Spades:is(.rank-King, .rank-Queen, .rank-Jack) {
-    width: 38px;
-}
-.center-pip-1.suit-Spades:is(.rank-King, .rank-Queen, .rank-Jack) {
-    top: 2px;
-    left: 0px;
-}
-.center-pip-2.suit-Spades:is(.rank-King, .rank-Queen, .rank-Jack) {
-    bottom: 3px;
-    right: 0px;
-}
-.center.rank-King.suit-Spades {
-    background-image: url("./images/playing_cards/king-spades.png");
-}
 .center.rank-Queen.suit-Spades {
     background-image: url("./images/playing_cards/queen-spades.png");
 }
-.center.rank-Jack.suit-Spades {
-    background-image: url("./images/playing_cards/jack-spades.png");
+/***** King *****/
+.center.rank-King.suit-Clubs {
+    background-image: url("./images/playing_cards/king-clubs.png");
+}
+.center.rank-King.suit-Diamonds {
+    background-image: url("./images/playing_cards/king-diamonds.png");
+}
+.center.rank-King.suit-Hearts {
+    background-image: url("./images/playing_cards/king-hearts.png");
+}
+.center.rank-King.suit-Spades {
+    background-image: url("./images/playing_cards/king-spades.png");
 }
 
 /***************************************************
@@ -276,16 +408,4 @@ Trump
 ***************************************************/
 .trump.card {
     background-color: gold;
-}
-
-/***************************************************
-Fonts
-***************************************************/
-@font-face {
-    font-family: "NicksterLight";
-    src: url("../fonts/Inter-Light.ttf") format("truetype");
-}
-@font-face {
-    font-family: "NicksterRegular";
-    src: url("../fonts/Inter-Regular.ttf") format("truetype");
 }
