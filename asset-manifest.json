@@ -1,24 +1,29 @@
 {
   "files": {
-    "main.css": "/nickster/static/css/main.a161a37e.css",
-    "main.js": "/nickster/static/js/main.76547535.js",
-    "static/media/queen_of_spades2.svg": "/nickster/static/media/queen_of_spades2.f50fa4283938ce405cb8e4dced5633f5.svg",
-    "static/media/jack_of_diamonds2.svg": "/nickster/static/media/jack_of_diamonds2.9cf1ce536f9af1fcb6b86fb90a02b17c.svg",
-    "static/media/jh.png": "/nickster/static/media/jh.dbe11028967e8ab8270f.png",
-    "static/media/kh.png": "/nickster/static/media/kh.f99fab7581a86f68f1a6.png",
-    "static/media/kd.png": "/nickster/static/media/kd.23ff4b202cd9b4f9b524.png",
-    "static/media/qh.png": "/nickster/static/media/qh.4abe23d95ecb5139987c.png",
-    "static/media/jd.png": "/nickster/static/media/jd.169fbe6db53c9b6a8d9a.png",
-    "static/media/js.png": "/nickster/static/media/js.759dba736a3f6947db10.png",
-    "static/media/ks.png": "/nickster/static/media/ks.ee47e9e212fd133024b6.png",
-    "static/media/qs.png": "/nickster/static/media/qs.25dfe9d96b68dad19119.png",
-    "static/media/qd.png": "/nickster/static/media/qd.4a9aa3a893cadb5f64f6.png",
+    "main.css": "/nickster/static/css/main.6f5edfd4.css",
+    "main.js": "/nickster/static/js/main.df0af08c.js",
+    "static/media/jack-hearts.png": "/nickster/static/media/jack-hearts.dbe11028967e8ab8270f.png",
+    "static/media/king-hearts.png": "/nickster/static/media/king-hearts.f99fab7581a86f68f1a6.png",
+    "static/media/jack-clubs.png": "/nickster/static/media/jack-clubs.e5fe445ca46911305968.png",
+    "static/media/king-diamonds.png": "/nickster/static/media/king-diamonds.23ff4b202cd9b4f9b524.png",
+    "static/media/queen-hearts.png": "/nickster/static/media/queen-hearts.4abe23d95ecb5139987c.png",
+    "static/media/jack-diamonds.png": "/nickster/static/media/jack-diamonds.169fbe6db53c9b6a8d9a.png",
+    "static/media/jack-spades.png": "/nickster/static/media/jack-spades.759dba736a3f6947db10.png",
+    "static/media/king-spades.png": "/nickster/static/media/king-spades.ee47e9e212fd133024b6.png",
+    "static/media/queen-clubs.png": "/nickster/static/media/queen-clubs.2553d55b9ba0aa6a48f9.png",
+    "static/media/queen-spades.png": "/nickster/static/media/queen-spades.25dfe9d96b68dad19119.png",
+    "static/media/king-clubs.png": "/nickster/static/media/king-clubs.e955b3ee04591a07afb9.png",
+    "static/media/queen-diamonds.png": "/nickster/static/media/queen-diamonds.4a9aa3a893cadb5f64f6.png",
+    "static/media/suit-clubs.svg": "/nickster/static/media/suit-clubs.3a78bf7baf79ce6992b1e97ee65267c6.svg",
+    "static/media/suit-spades.svg": "/nickster/static/media/suit-spades.4497342d9d4791d8bb54f460eb07083d.svg",
+    "static/media/suit-hearts.svg": "/nickster/static/media/suit-hearts.8c563e91acf40fb050a03da5adf33bfb.svg",
     "index.html": "/nickster/index.html",
-    "main.a161a37e.css.map": "/nickster/static/css/main.a161a37e.css.map",
-    "main.76547535.js.map": "/nickster/static/js/main.76547535.js.map"
+    "static/media/suit-diamonds.svg": "/nickster/static/media/suit-diamonds.dca94948244b4ee4904081da77aecd89.svg",
+    "main.6f5edfd4.css.map": "/nickster/static/css/main.6f5edfd4.css.map",
+    "main.df0af08c.js.map": "/nickster/static/js/main.df0af08c.js.map"
   },
   "entrypoints": [
-    "static/css/main.a161a37e.css",
-    "static/js/main.76547535.js"
+    "static/css/main.6f5edfd4.css",
+    "static/js/main.df0af08c.js"
   ]
 }
