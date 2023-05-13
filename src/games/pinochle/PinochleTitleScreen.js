@@ -43,7 +43,7 @@ export default function PinochleTitleScreen() {
             </div>
             {/* Add card button */}
             <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-                <motion.button whileTap={{ scale: 0.9 }} style={{ height: "40px", width: "160px", fontSize: "20px", "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 0.3)" }} onClick={handleAddCard}>
+                <motion.button whileTap={{ translateY: "10%" }} style={{ height: "40px", width: "160px", fontSize: "20px", "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 0.3)" }} onClick={handleAddCard}>
                     <div style={{display: "flex", "font-size": "20px"}}>
                         <div style={{color:"#D40000"}}>♥</div>  ♠  Add Card  <div style={{color:"#D40000"}}>♦</div>  ♣
                     </div>
