@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import _ from "lodash";
 import { motion } from "framer-motion";
-import Select from "react-select";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import "./pinochle-title.scss";
 import PlayingCard, {Suits, Ranks} from "../PlayingCard";
 import PinochleGame, {createDeck} from "./PinochleGame";
@@ -23,7 +20,7 @@ export default function PinochleTitleScreen() {
         );
         let temp = cards.slice(0);
         temp[cardIdx++] = newCard;
-        if(cardIdx == 12)
+        if(cardIdx === 12)
             cardIdx = 0;
         setCards(temp);
         // setCards([...cards.slice(cards.length === 12 ? 1 : 0), newCard]);
@@ -53,37 +50,6 @@ export default function PinochleTitleScreen() {
                 </motion.button>
             </div>
             {/* Select trump suit drop-down */}
-            <div style={{ position: "absolute", width: "200px", height: "40px", top: "77%", left: "50%", transform: "translateX(-50%) translateY(-50%)", "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 0.3)" }}>
-                <Dropdown style={{ "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 1.0)" }}
-                    options={["Clubs", "Diamonds", "Hearts", "Spades"]}
-                    onChange={setTrump}
-                    placeholder="Select an option"
-                />
-                {/* <Select
-                    defaultValue={trump}
-                    onChange={setTrump}
-                    options={[
-                        { value: "Clubs", label: "Clubs" },
-                        { value: "Diamonds", label: "Diamonds" },
-                        { value: "Hearts", label: "Hearts" },
-                        { value: "Spades", label: "Spades" }
-                    ]}
-                    placeholder="Select trump..."
-                    theme={(theme) => ({
-                        ...theme,
-                        borderRadius: 5,
-                        colors: {
-                            ...theme.colors,
-                            // text: 'black',
-                            // font:'#3599B8',
-                            // primary25: '#3599B8',
-                            // primary: 'black',
-                            // neutral80: 'black',
-                            // color: 'black',
-                        },
-                    })}
-                /> */}
-            </div>
             {/* Loading... */}
             {/* <div style={{ top: "85%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
                 <div className="title-loading">{ ("Loading...").split("").map(function (a) { return <span>{a}</span> }) }</div>
