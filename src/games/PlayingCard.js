@@ -39,7 +39,7 @@ export default function PlayingCard({suit, rank, trumpClass}) {
         );
     }
     return (
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ translateY: -15 }}>
+        <motion.div whileTap={{ translateY: -15 }}>
             <div className={"card " + trumpClass}>
                 <div className="card-content">
                     <div className="corners">

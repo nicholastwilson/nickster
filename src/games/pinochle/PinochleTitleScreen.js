@@ -5,8 +5,6 @@ import "./pinochle-title.scss";
 import PlayingCard, {Suits, Ranks} from "../PlayingCard";
 import PinochleGame, {createDeck} from "./PinochleGame";
 
-var cardIdx = 0;
-
 export default function PinochleTitleScreen() {
     const [cards, setCards] = useState([]);
     const [trump, setTrump] = useState(null);
@@ -18,12 +16,11 @@ export default function PinochleTitleScreen() {
                 trumpClass={_.random(0, 3) ? "not-trump" : "trump"}
             />
         );
-        let temp = cards.slice(0);
-        temp[cardIdx++] = newCard;
-        if(cardIdx === 12)
-            cardIdx = 0;
-        setCards(temp);
-        // setCards([...cards.slice(cards.length === 12 ? 1 : 0), newCard]);
+        if(cards.length < 12) {
+            setCards([...cards.slice(0), newCard]);
+        } else {
+            setCards([newCard]);
+        }
     }
 
     return (
