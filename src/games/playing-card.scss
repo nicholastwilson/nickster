@@ -327,51 +327,51 @@ Center
 }
 /***** Ten *****/
 .center.rank-Ten > img {
-    width: 4.3vw;
+    width: 4vw;
 }
 .center-pip-1.rank-Ten {
     top: 0.5vw;
-    left: 0;
+    left: 0.125vw;
 }
 .center-pip-2.rank-Ten {
     top: 5.25vw;
-    left: 0;
+    left: 0.125vw;
 }
 .center-pip-3.rank-Ten {
     bottom: 5.25vw;
-    left: 0;
+    left: 0.125vw;
     transform: rotate(180deg);
 }
 .center-pip-4.rank-Ten {
     bottom: 0.5vw;
-    left: 0;
+    left: 0.125vw;
     transform: rotate(180deg);
 }
 .center-pip-5.rank-Ten {
     top: 2.75vw;
-    left: 3.75vw;
+    left: 4vw;
 }
 .center-pip-6.rank-Ten {
     bottom: 2.75vw;
-    left: 3.75vw;
+    left: 4vw;
     transform: rotate(180deg);
 }
 .center-pip-7.rank-Ten {
     top: 0.5vw;
-    right: 0;
+    right: 0.125vw;
 }
 .center-pip-8.rank-Ten {
     top: 5.25vw;
-    right: 0;
+    right: 0.125vw;
 }
 .center-pip-9.rank-Ten {
     bottom: 5.25vw;
-    right: 0;
+    right: 0.125vw;
     transform: rotate(180deg);
 }
 .center-pip-10.rank-Ten {
     bottom: 0.5vw;
-    right: 0;
+    right: 0.125vw;
     transform: rotate(180deg);
 }
 /***** Jack *****/

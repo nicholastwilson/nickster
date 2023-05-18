@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from 'framer-motion';
-import './playing-card.css';
+import './playing-card.scss';
 import svgClubs from './images/playing_cards/suit-clubs.svg';
 import svgDiamonds from './images/playing_cards/suit-diamonds.svg';
 import svgHearts from './images/playing_cards/suit-hearts.svg';
