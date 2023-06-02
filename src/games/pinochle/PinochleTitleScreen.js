@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { motion } from "framer-motion";
+import supabase from '../../supabase';
 import "./pinochle-title.scss";
 import PlayingCard, {Suits, Ranks} from "../PlayingCard";
 import PinochleGame, {createDeck} from "./PinochleGame";
@@ -23,8 +24,23 @@ export default function PinochleTitleScreen() {
         }
     }
 
+    
+    const [players, setPlayers] = useState([]);
+    useEffect(() => {
+        (async () => {
+            const { data, error } = await supabase
+                .from('test')
+                .select('*');
+            if (error) {
+                console.error('Error fetching data:', error.message);
+            } else {
+                setPlayers(data);
+            }
+        })();
+    }, []);
+
     return (
-        <div className="title-page" tabindex="0" onKeyDown={handleAddCard}>
+        <div className="title-page" tabIndex="0" onKeyDown={handleAddCard}>
             {/* Title text */}
             <motion.div className="title-text"
                 initial={{ top: "20%", left: "50%", translateX: "-50%", translateY: "-50%" }}
@@ -40,11 +56,18 @@ export default function PinochleTitleScreen() {
             </div>
             {/* Add card button */}
             <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-                <motion.button whileTap={{ translateY: "10%" }} style={{ height: "40px", width: "160px", fontSize: "20px", "box-shadow": "-1px 3px 5px rgba(0, 0, 0, 0.3)" }} onClick={handleAddCard}>
-                    <div style={{display: "flex", "font-size": "20px"}}>
+                <motion.button whileTap={{ translateY: "10%" }} style={{ height: "40px", width: "160px", fontSize: "20px", boxShadow: "-1px 3px 5px rgba(0, 0, 0, 0.3)" }} onClick={handleAddCard}>
+                    <div style={{display: "flex", fontSize: "20px"}}>
                         <div style={{color:"#D40000"}}>♥</div>  ♠  Add Card  <div style={{color:"#D40000"}}>♦</div>  ♣
                     </div>
                 </motion.button>
+            </div>
+            <div>
+                {players.map((p) => {
+                    return (
+                        <div key={p.id}>Hello: {p.name} ({p.age})</div>
+                    );
+                })}
             </div>
             {/* Select trump suit drop-down */}
             {/* Loading... */}

@@ -288,7 +288,7 @@ Center
 }
 /***** Nine *****/
 .center.rank-Nine > img {
-    width: 4.3vw;
+    width: 0.3vw;
 }
 .center-pip-1.rank-Nine {
     top: 0.5vw;
@@ -309,7 +309,7 @@ Center
     transform: rotate(180deg);
 }
 .center-pip-5.rank-Nine {
-    top: 2.75vw;
+    top: 5.50vw;
     left: 3.75vw;
 }
 .center-pip-6.rank-Nine {
