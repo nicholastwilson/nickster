@@ -52,6 +52,14 @@
 		Documentation             https://www.framer.com/motion/
         Open Replay Tutorial      https://blog.openreplay.com/doing-animations-in-react-with-framer-motion/
         Log Rocket Tutorial       https://blog.logrocket.com/framer-motion-tutorial/
+	[Supabase]
+		Documentation             https://supabase.com/docs
+		Nickster Project          https://supabase.com/dashboard/project/oquynbqnsutyoafxikxb
+		Javascript Reference      https://supabase.com/docs/reference/javascript/select
+	[WebRTC]
+		STUN Servers list         https://raw.githubusercontent.com/pradt2/always-online-stun/master/valid_hosts.txt
+	[ChatGPT]
+		ChatGPT                   https://chat.openai.com/
 
 [Miscellaneous]
 	Suit characters               ♥ <&#9829;>, ♠ <&#9824;>, ♦ <&#9830;>, ♣ <&#9827;>
