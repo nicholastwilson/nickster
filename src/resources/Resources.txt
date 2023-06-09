@@ -56,6 +56,8 @@
 		Documentation             https://supabase.com/docs
 		Nickster Project          https://supabase.com/dashboard/project/oquynbqnsutyoafxikxb
 		Javascript Reference      https://supabase.com/docs/reference/javascript/select
+	[WebRTC]
+		STUN Servers list         https://raw.githubusercontent.com/pradt2/always-online-stun/master/valid_hosts.txt
 	[ChatGPT]
 		ChatGPT                   https://chat.openai.com/
 
