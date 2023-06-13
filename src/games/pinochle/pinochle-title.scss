@@ -86,18 +86,18 @@
     // border: 1px solid brown;
 }
 .cards-container > div { position: absolute; }
-.cards-container > div:nth-of-type(1) { top: 36.00vh; left: 10.00vw; rotate: -22deg; }
-.cards-container > div:nth-of-type(2) { top: 34.50vh; left: 14.00vw; rotate: -18deg; }
-.cards-container > div:nth-of-type(3) { top: 33.00vh; left: 18.00vw; rotate: -14deg; }
-.cards-container > div:nth-of-type(4) { top: 32.00vh; left: 22.00vw; rotate: -10deg; }
-.cards-container > div:nth-of-type(5) { top: 30.00vh; left: 26.00vw; rotate: -6deg; }
-.cards-container > div:nth-of-type(6) { top: 28.50vh; left: 30.00vw; rotate: -2deg; }
-.cards-container > div:nth-of-type(7) { top: 28.50vh; left: 34.00vw; rotate: +2deg; }
-.cards-container > div:nth-of-type(8) { top: 30.00vh; left: 38.00vw; rotate: +6deg; }
-.cards-container > div:nth-of-type(9) { top: 31.50vh; left: 42.00vw; rotate: +10deg; }
-.cards-container > div:nth-of-type(10) { top: 33.00vh; left: 46.00vw; rotate: +14deg; }
-.cards-container > div:nth-of-type(11) { top: 34.50vh; left: 50.00vw; rotate: +18deg; }
-.cards-container > div:nth-of-type(12) { top: 36.00vh; left: 54.00vw; rotate: +22deg; }
+.cards-container > div:nth-of-type(1) { top: 30.00vh; left: 15.00vw; }
+.cards-container > div:nth-of-type(2) { top: 30.00vh; left: 20.00vw; }
+.cards-container > div:nth-of-type(3) { top: 30.00vh; left: 25.00vw; }
+.cards-container > div:nth-of-type(4) { top: 30.00vh; left: 30.00vw; }
+.cards-container > div:nth-of-type(5) { top: 30.00vh; left: 35.00vw; }
+.cards-container > div:nth-of-type(6) { top: 30.00vh; left: 40.00vw; }
+.cards-container > div:nth-of-type(7) { top: 30.00vh; left: 45.00vw; }
+.cards-container > div:nth-of-type(8) { top: 30.00vh; left: 50.00vw; }
+.cards-container > div:nth-of-type(9) { top: 30.00vh; left: 55.00vw; }
+.cards-container > div:nth-of-type(10) { top: 30.00vh; left: 60.00vw; }
+.cards-container > div:nth-of-type(11) { top: 30.00vh; left: 65.00vw; }
+.cards-container > div:nth-of-type(12) { top: 30.00vh; left: 70.00vw; }
 
 /* Loading text */
 .title-loading {

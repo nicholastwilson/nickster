@@ -14,7 +14,7 @@ export default function PinochleTitleScreen() {
             <PlayingCard 
                 suit={_.sample(Object.keys(Suits))} 
                 rank={_.sample(["Nine", "Jack", "Queen", "King", "Ten", "Ace"])} 
-                trumpClass={_.random(0, 3) ? "not-trump" : "trump"}
+                trumpClass={_.random(0, 4) ? "not-trump" : "trump"}
             />
         );
         if(cards.length < 12) {
@@ -23,7 +23,6 @@ export default function PinochleTitleScreen() {
             setCards([newCard]);
         }
     }
-
     
     const [players, setPlayers] = useState([]);
     useEffect(() => {

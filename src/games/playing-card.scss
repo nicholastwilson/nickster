@@ -4,20 +4,15 @@ Cards
 .card {
     width: 20vw;
     height: 28vw;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: white;
+    border-width: 0.1vw;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 1vw;
+    background-color: #FFFFFF;
     position: relative;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    /* transform: scaleX(80%) scaleY(80%); */
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
-}
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation:portrait) {
-    .card {
-        border-radius: 5px;
-        border-width: 1px;
-    }
 }
 .card * {
     position: absolute;
@@ -31,7 +26,7 @@ Cards
 Suits
 ***************************************************/
 .suit-Clubs, .suit-Spades {
-    color: black;
+    color: #000000;
 }
 .suit-Diamonds, .suit-Hearts {
     color: #D40000;
@@ -58,8 +53,6 @@ Corners
 .corner-2 {
     bottom: -0.5vw;
     right: 1.45vw;
-    /* bottom: 0px;
-    right: 0px; */
     transform: rotate(180deg);
 }
 :is(.corner-1-rank, .corner-2-rank).rank-Ten {
@@ -83,15 +76,17 @@ Center
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 10px;
+    border-radius: 1vw;
+    border-style: solid;
+    border-width: 0.25vw;
     background-size: 100% 100%;
-    background-color: white;
+    background-color: #FFFFFF;
 }
 .center.suit-Clubs, .center.suit-Spades {
-    border: 2px solid black;
+    border-color: #000000;
 }
 .center.suit-Diamonds, .center.suit-Hearts {
-    border: 2px solid #D40000;
+    border-color: #D40000;
 }
 /***** Ace *****/
 .rank-Ace.center-pip-1 {
@@ -102,277 +97,309 @@ Center
 }
 /***** Two *****/
 .center.rank-Two > img {
-    width: 44px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Two {
-    top: 14px;
-    left: 38px;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Two {
-    bottom: 14px;
-    left: 38px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Three *****/
 .center.rank-Three > img {
-    width: 44px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Three {
-    top: 14px;
-    left: 38px;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Three {
-    top: 83px;
-    left: 38px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-3.rank-Three {
-    bottom: 14px;
-    left: 38px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Four *****/
 .center.rank-Four > img {
-    width: 44px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Four {
-    top: 10px;
-    left: 4px;
+    top: 15%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Four {
-    bottom: 10px;
-    left: 4px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-3.rank-Four {
-    top: 10px;
-    right: 4px;
+    top: 15%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-4.rank-Four {
-    bottom: 10px;
-    right: 4px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Five *****/
 .center.rank-Five > img {
-    width: 44px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Five {
-    top: 10px;
-    left: 4px;
+    top: 15%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Five {
-    bottom: 10px;
-    left: 4px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-3.rank-Five {
-    top: 83px;
-    left: 38px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-4.rank-Five {
-    top: 10px;
-    right: 4px;
+    top: 15%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-5.rank-Five {
-    bottom: 10px;
-    right: 4px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Six *****/
 .center.rank-Six > img {
-    width: 44px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Six {
-    top: 10px;
-    left: 4px;
+    top: 15%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Six {
-    top: 83px;
-    left: 4px;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-3.rank-Six {
-    bottom: 10px;
-    left: 4px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-4.rank-Six {
-    top: 10px;
-    right: 4px;
+    top: 15%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-5.rank-Six {
-    top: 83px;
-    right: 4px;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-6.rank-Six {
-    bottom: 10px;
-    right: 4px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Seven *****/
 .center.rank-Seven > img {
-    width: 42px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Seven {
-    top: 10px;
-    left: 2px;
+    top: 15%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Seven {
-    top: 84px;
-    left: 2px;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-3.rank-Seven {
-    bottom: 10px;
-    left: 2px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-4.rank-Seven {
-    top: 49px;
-    left: 39px;
+    top: 33.333%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-5.rank-Seven {
-    top: 10px;
-    right: 2px;
+    top: 15%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-6.rank-Seven {
-    top: 84px;
-    right: 2px;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-7.rank-Seven {
-    bottom: 10px;
-    right: 2px;
-    transform: rotate(180deg);
+    top: 85%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Eight *****/
 .center.rank-Eight > img {
-    width: 42px;
+    width: 33.333%;
 }
 .center-pip-1.rank-Eight {
-    top: 10px;
-    left: 2px;
+    top: 12.5%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Eight {
-    top: 84px;
-    left: 2px;
+    top: 37.5%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-3.rank-Eight {
-    bottom: 10px;
-    left: 2px;
-    transform: rotate(180deg);
+    top: 62.5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-4.rank-Eight {
-    top: 49px;
-    left: 39px;
+    top: 87.5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-5.rank-Eight {
-    bottom: 49px;
-    left: 39px;
-    transform: rotate(180deg);
+    top: 12.5%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-6.rank-Eight {
-    top: 10px;
-    right: 2px;
+    top: 37.5%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-7.rank-Eight {
-    top: 84px;
-    right: 2px;
+    top: 62.5%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-8.rank-Eight {
-    bottom: 10px;
-    right: 2px;
-    transform: rotate(180deg);
+    top: 87.5%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Nine *****/
 .center.rank-Nine > img {
-    width: 4.25vw;
+    width: 33.333%;
 }
 .center-pip-1.rank-Nine {
-    top: 0.5vw;
-    left: 0.125vw;
+    top: 12.5%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Nine {
-    top: 5.25vw;
-    left: 0.125vw;
+    top: 37.5%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-3.rank-Nine {
-    bottom: 5.25vw;
-    left: 0.125vw;
-    transform: rotate(180deg);
+    top: 62.5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-4.rank-Nine {
-    bottom: 0.5vw;
-    left: 0.125vw;
-    transform: rotate(180deg);
+    top: 87.5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-5.rank-Nine {
-    top: 7.50vw;
-    left: 4vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-6.rank-Nine {
-    top: 0.5vw;
-    right: 0.125vw;
+    top: 12.5%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-7.rank-Nine {
-    top: 5.25vw;
-    right: 0.125vw;
+    top: 37.5%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-8.rank-Nine {
-    bottom: 5.25vw;
-    right: 0.125vw;
-    transform: rotate(180deg);
+    top: 62.5%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-9.rank-Nine {
-    bottom: 0.5vw;
-    right: 0.125vw;
-    transform: rotate(180deg);
+    top: 87.5%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Ten *****/
 .center.rank-Ten > img {
-    width: 4.25vw;
+    width: 33.333%;
 }
 .center-pip-1.rank-Ten {
-    top: 0.5vw;
-    left: 0.125vw;
+    top: 12.5%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-2.rank-Ten {
-    top: 5.25vw;
-    left: 0.125vw;
+    top: 37.5%;
+    left: 20%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-3.rank-Ten {
-    bottom: 5.25vw;
-    left: 0.125vw;
-    transform: rotate(180deg);
+    top: 62.5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-4.rank-Ten {
-    bottom: 0.5vw;
-    left: 0.125vw;
-    transform: rotate(180deg);
+    top: 87.5%;
+    left: 20%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-5.rank-Ten {
-    top: 2.75vw;
-    left: 4vw;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-6.rank-Ten {
-    bottom: 2.75vw;
-    left: 4vw;
-    transform: rotate(180deg);
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-7.rank-Ten {
-    top: 0.5vw;
-    right: 0.125vw;
+    top: 12.5%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-8.rank-Ten {
-    top: 5.25vw;
-    right: 0.125vw;
+    top: 37.5%;
+    left: 80%;
+    transform: translate(-50%, -50%);
 }
 .center-pip-9.rank-Ten {
-    bottom: 5.25vw;
-    right: 0.125vw;
-    transform: rotate(180deg);
+    top: 62.5%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .center-pip-10.rank-Ten {
-    bottom: 0.5vw;
-    right: 0.125vw;
-    transform: rotate(180deg);
+    top: 87.5%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Jack *****/
 .center.rank-Jack.suit-Clubs {
