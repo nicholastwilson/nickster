@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import _ from "lodash";
 import { motion } from "framer-motion";
 import supabase from '../../supabase';
 import "./pinochle-title.scss";
 import PlayingCard, {Suits, Ranks} from "../PlayingCard";
 import PinochleGame, {createDeck} from "./PinochleGame";
+import { ThemeContext } from "styled-components";
 
 export default function PinochleTitleScreen() {
+    const [gameState, setGameState] = useState({ trump: null });
+    // const [players, setPlayers] = useState([]);
     const [cards, setCards] = useState([]);
-    const [trump, setTrump] = useState(null);
+    const GameContext = createContext();
     function handleAddCard() {
         let newCard = (
             <PlayingCard 
@@ -23,57 +26,59 @@ export default function PinochleTitleScreen() {
             setCards([newCard]);
         }
     }
-    
-    const [players, setPlayers] = useState([]);
-    useEffect(() => {
-        (async () => {
-            const { data, error } = await supabase
-                .from('test')
-                .select('*');
-            if (error) {
-                console.error('Error fetching data:', error.message);
-            } else {
-                setPlayers(data);
-            }
-        })();
-    }, []);
+    // useEffect(() => {
+    //     (async () => {
+    //         const { data, error } = await supabase
+    //             .from('test')
+    //             .select('*');
+    //         if (error) {
+    //             console.error('Error fetching data:', error.message);
+    //         } else {
+    //             setPlayers(data);
+    //         }
+    //     })();
+    // }, []);
 
     return (
-        <div className="title-page" tabIndex="0" onKeyDown={handleAddCard}>
-            {/* Title text */}
-            <motion.div className="title-text"
-                initial={{ top: "20%", left: "50%", translateX: "-50%", translateY: "-50%" }}
-                animate={{ scale: [1, 1.1, 1.1, 1, 1], rotate: [0, -3, 3, -3, 3, 0] }}
-                transition={{ duration: 1, ease: "easeInOut", repeat: Infinity, repeatDelay: 3 }}
-            >
-                Nickster Cards™
-            </motion.div>
-            {/* {createTitleCards()} */}
-            {/* Cards */}
-            <div className="cards-container">
-                {cards}
-            </div>
-            {/* Add card button */}
-            <div style={{ top: "70%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-                <motion.button whileTap={{ translateY: "10%" }} style={{ height: "40px", width: "160px", fontSize: "20px", boxShadow: "-1px 3px 5px rgba(0, 0, 0, 0.3)" }} onClick={handleAddCard}>
-                    <div style={{display: "flex", fontSize: "20px"}}>
-                        <div style={{color:"#D40000"}}>♥</div>  ♠  Add Card  <div style={{color:"#D40000"}}>♦</div>  ♣
-                    </div>
+        <GameContext.Provider value={gameState}>
+            <div className="title-page" tabIndex="0" onKeyDown={handleAddCard}>
+                {/* Title text */}
+                <motion.div className="title-text"
+                    // initial={{ top: "0", left: "50%", translateX: "-50%", translateY: "0" }}
+                    animate={{ scale: [1, 1.1, 1.1, 1, 1], rotate: [0, -3, 3, -3, 3, 0] }}
+                    transition={{ duration: 1, ease: "easeInOut", repeat: Infinity, repeatDelay: 3 }}
+                >
+                    Nickster Cards™
+                </motion.div>
+                {/* Cards */}
+                <div className="cards-container">
+                    {cards}
+                </div>
+                {/* Add card button */}
+                <motion.button className="add-card-button" 
+                    whileTap={{ translate: "0% 5%"}}
+                    transition={{ duration: 0.05 }}
+                    onClick={handleAddCard}>
+                    Add Card
                 </motion.button>
+                {/* <div>
+                    {players.map((p) => {
+                        return (
+                            <div key={p.id}>{p.name} ({p.age})</div>
+                        );
+                    })}
+                </div> */}
+                {/* Select trump suit drop-down */}
+                {/* <select>
+                    <option value="not-trump">Not Trump</option>
+                    <option value="trump">Trump</option>
+                </select> */}
+                {/* Loading... */}
+                {/* <div style={{ top: "85%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
+                    <div className="title-loading">{ ("Loading...").split("").map(function (a) { return <span>{a}</span> }) }</div>
+                </div> */}
             </div>
-            <div>
-                {players.map((p) => {
-                    return (
-                        <div key={p.id}>Hello: {p.name} ({p.age})</div>
-                    );
-                })}
-            </div>
-            {/* Select trump suit drop-down */}
-            {/* Loading... */}
-            {/* <div style={{ top: "85%", left: "50%", transform: "translateX(-50%) translateY(-50%)" }}>
-                <div className="title-loading">{ ("Loading...").split("").map(function (a) { return <span>{a}</span> }) }</div>
-            </div> */}
-        </div>
+        </GameContext.Provider>
     );
 
 }

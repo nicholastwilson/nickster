@@ -35,11 +35,19 @@ export default function PlayingCard({suit, rank, trumpClass}) {
     const pipElements = [];
     for(var i = 0; i < r.pips; i++) {
         pipElements.push(
-            <img className={"center-pip-" + (i + 1) + " suit-" + suit + " rank-" + rank} src={s.svg} alt={suit} />
+            <img className={"center-pip-" + (i + 1) + " suit-" + suit + " rank-" + rank} svgImage src={s.svg} alt={suit} />
         );
     }
     return (
-        <motion.div whileTap={{ translateY: -15 }}>
+        <motion.div
+            whileTap={{ scale: 1.1 }}
+            drag
+            whileDrag={{ scale: 1.1 }}
+            // dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+            dragSnapToOrigin="true"
+            dragElastic={0.5}
+            // transition={{ duration: 0.1, ease: "easeInOut" }}
+            >
             <div className={"card " + trumpClass}>
                 <div className="card-content">
                     <div className="corners">

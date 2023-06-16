@@ -2,12 +2,12 @@
 Cards
 ***************************************************/
 .card {
-    width: 20vw;
-    height: 28vw;
-    border-width: 0.1vw;
+    width: 20vmin;
+    height: 28vmin;
+    border-width: 0.1vmin;
     border-style: solid;
     border-color: #000000;
-    border-radius: 1vw;
+    border-radius: 1vmin;
     background-color: #FFFFFF;
     position: relative;
     font-family: 'Inter', sans-serif;
@@ -41,30 +41,31 @@ Corners
 }
 .corner-1, .corner-2 {
     width: 5%;
-    font-size: 5vw;
+    font-size: 5vmin;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .corner-1 {
-    top: -0.5vw;
-    left: 1.425vw;
+    top: -0.5vmin;
+    left: 1.425vmin;
 }
 .corner-2 {
-    bottom: -0.5vw;
-    right: 1.45vw;
+    bottom: -0.5vmin;
+    right: 1.45vmin;
     transform: rotate(180deg);
 }
 :is(.corner-1-rank, .corner-2-rank).rank-Ten {
     font-family: 'Inter';
     font-weight: 500;
-    font-size: 5vw;
-    left: -1.5vw;
-    letter-spacing: -0.7vw;
+    font-size: 5vmin;
+    left: -1.5vmin;
+    letter-spacing: -0.7vmin;
 }
 .corner-1-suit, .corner-2-suit {
-    width: 3.5vw;
-    top: 5.7vw;
+    width: 3.5vmin;
+    top: 5.7vmin;
+    pointer-events: none;
 }
 
 /***************************************************
@@ -76,9 +77,9 @@ Center
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 1vw;
+    border-radius: 1vmin;
     border-style: solid;
-    border-width: 0.25vw;
+    border-width: 0.25vmin;
     background-size: 100% 100%;
     background-color: #FFFFFF;
 }
@@ -87,6 +88,9 @@ Center
 }
 .center.suit-Diamonds, .center.suit-Hearts {
     border-color: #D40000;
+}
+.center img {
+    pointer-events: none;
 }
 /***** Ace *****/
 .rank-Ace.center-pip-1 {
