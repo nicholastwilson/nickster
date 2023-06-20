@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import { motion } from 'framer-motion';
-import './playing-card.scss';
-import svgClubs from './images/playing_cards/suit-clubs.svg';
-import svgDiamonds from './images/playing_cards/suit-diamonds.svg';
-import svgHearts from './images/playing_cards/suit-hearts.svg';
-import svgSpades from './images/playing_cards/suit-spades.svg';
+import './PlayingCard.scss';
+import svgClubs from './images/suit-clubs.svg';
+import svgDiamonds from './images/suit-diamonds.svg';
+import svgHearts from './images/suit-hearts.svg';
+import svgSpades from './images/suit-spades.svg';
 
 export const Suits = {
     Clubs: { symbol: "♣", svg: svgClubs },

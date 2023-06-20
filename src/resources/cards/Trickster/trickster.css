@@ -564,7 +564,7 @@ body[data-board-color="white"] .alert button:hover:not(:disabled) {
 body[data-board-color="blue"] .alert button:focus:not(:disabled):active,
 body[data-board-color="blue"] .alert button:hover:not(:disabled):active {
   color: #0a3b76;
-}
+} 
 body[data-board-color="red"] .alert button:focus:not(:disabled):active,
 body[data-board-color="red"] .alert button:hover:not(:disabled):active {
   color: #a01414;
