@@ -1,0 +1,66 @@
+// Page
+.start-page {
+    position: relative;
+    background-color: var(--theme-color-7);
+    color: white;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+}
+.start-page>* {
+    position: absolute;
+}
+
+// Cards
+.card-jack,
+.card-queen {
+    transition: all .1s ease-in-out;
+}
+:is(.card-jack, .card-queen):active {
+    transform: scale(0.95);
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
+}
+.card-jack {
+    top: 5vmin;
+    left: 5vmin;
+    rotate: -12deg;
+}
+.card-queen {
+    top: 6.5vmin;
+    left: 6vmin;
+    rotate: 12deg;
+}
+
+// Title text
+.nickster-text {
+    top: 4vmin;
+    left: 35vmin;
+    font-size: 7vmin;
+}
+.pinochle-text {
+    top: 12vmin;
+    left: 35vmin;
+    font-size: 14vmin;
+}
+
+// Back button
+.bb-container {
+    top: 40vmin;
+    left: 3vmin;
+    width: 6vmin;
+    height: 6vmin;
+}
+
+// New game button
+.new-game-button {
+    top: 66.667%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 2vmin;
+    font-size: 4vmin;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.new-game-button:hover {
+    transform: translateY(-0.25vmin);
+}

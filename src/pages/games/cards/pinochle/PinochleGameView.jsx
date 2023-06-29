@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import _ from 'lodash';
 import { motion} from 'framer-motion';
 import PlayingCard, {Suits} from '../PlayingCard';
+import './PinochleGameView.scss';
 
 function PinochleGameView() {
     const { gameID } = useParams();

@@ -1,0 +1,22 @@
+.bb-container {
+    cursor: pointer;
+}
+
+.bb-icon-focused,
+.bb-icon-unfocused {
+    width: 100%;
+    height: 100%;
+}
+
+.bb-icon-focused,
+.bb-container:hover>.bb-icon-unfocused {
+    display: none;
+}
+
+.bb-container:hover>.bb-icon-focused {
+    display: inherit;
+}
+
+.bb-container:active>.bb-icon-focused {
+    transform: translateY(0.3vmin);
+}
