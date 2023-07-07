@@ -27,39 +27,29 @@ export const Ranks = {
     King: { symbol: "K", pips: 0 }
 }
 
-export default function PlayingCard({ suit, rank, trumpClass }) {
+export default function PlayingCard({ suit, rank, additionalClasses = "" }) {
     const s = Suits[suit];
     const r = Ranks[rank];
     const pipElements = [];
     for (var i = 0; i < r.pips; i++) {
         pipElements.push(
-            <img className={"center-pip-" + (i + 1) + " suit-" + suit + " rank-" + rank} svgImage src={s.svg} alt={suit} />
+            <img className={"center-pip-" + (i + 1) + " suit-" + suit + " rank-" + rank} svgImage src={s.svg} alt={suit} loading='eager' />
         );
     }
     return (
-        <div className={"card " + trumpClass}>
+        <div className={`card ${additionalClasses}`}>
             <div className="card-content">
                 <div className="corners">
                     <div className="corner-1">
-                        <div className={"corner-1-rank suit-" + suit + " rank-" + rank}>
-                            {r.symbol}
-                        </div>
-                        <img className={"corner-1-suit suit-" + suit + " rank-" + rank} src={s.svg} alt={suit}>
-                            {/* {s.symbol} */}
-                        </img>
+                        <div className={"corner-1-rank suit-" + suit + " rank-" + rank}>{r.symbol}</div>
+                        <img className={"corner-1-suit suit-" + suit + " rank-" + rank} src={s.svg} alt={suit} loading='eager' />
                     </div>
                     <div className="corner-2">
-                        <div className={"corner-2-rank suit-" + suit + " rank-" + rank}>
-                            {r.symbol}
-                        </div>
-                        <img className={"corner-2-suit suit-" + suit + " rank-" + rank} src={s.svg} alt={suit}>
-                            {/* {s.symbol} */}
-                        </img>
+                        <div className={"corner-2-rank suit-" + suit + " rank-" + rank}>{r.symbol}</div>
+                        <img className={"corner-2-suit suit-" + suit + " rank-" + rank} src={s.svg} alt={suit} loading='eager' />
                     </div>
                 </div>
-                <div className={"center suit-" + suit + " rank-" + rank}>
-                    {pipElements}
-                </div>
+                <div className={"center suit-" + suit + " rank-" + rank}>{pipElements}</div>
             </div>
         </div>
     );

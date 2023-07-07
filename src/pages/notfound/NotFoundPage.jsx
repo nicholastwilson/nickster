@@ -24,12 +24,12 @@ function NotFoundPage() {
                 <h1 className="text">Page Not Found</h1>
             </div>
             <div className="buttons-container">
-                <button className="button" onClick={() => navigate("/")}>
-                    <FontAwesomeIcon icon="fa-solid fa-house" />
+                <button className="button" onClick={() => navigate("/", { replace: true })}>
+                    <FontAwesomeIcon className="icon" icon="fa-solid fa-house" />
                     Home
                 </button>
-                <button className="button" onClick={() => navigate(-1)}>
-                    <FontAwesomeIcon icon="fa-solid fa-circle-arrow-left" />
+                <button className="button" onClick={() => navigate(-1, { replace: true })}>
+                    <FontAwesomeIcon className="icon" icon="fa-solid fa-circle-arrow-left" />
                     Back
                 </button>
             </div>

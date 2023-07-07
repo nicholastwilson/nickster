@@ -1,7 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import PinochleStartView from './PinochleStartView';
 import PinochleGameView from './PinochleGameView';
-import NotFoundPage from 'pages/notfound/NotFoundPage';
 import './PinochlePage.scss';
 
 function PinochlePage() {
@@ -9,7 +8,7 @@ function PinochlePage() {
         <Routes>
             <Route path="/start" element={<PinochleStartView />} />
             <Route path="/play/:gameID" element={<PinochleGameView />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<Navigate to="./start" replace />} />
         </Routes>
     );
 }
