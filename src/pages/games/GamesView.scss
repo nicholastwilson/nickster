@@ -1,0 +1,36 @@
+// Page
+.games-page {
+    position: relative;
+    background-color: var(--theme-color-7);
+    color: white;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+}
+
+.games-page>* {
+    position: absolute;
+}
+
+// Title text
+.games-title {
+    top: 4vmin;
+    left: 35vmin;
+    font-size: 7vmin;
+    text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.games-subtitle {
+    top: 12vmin;
+    left: 35vmin;
+    font-size: 14vmin;
+    text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.games-logo {
+    top: 4vmin;
+    left: 4vmin;
+    width: 24vmin;
+    height: 24vmin;
+    fill: var(--theme-color-0);
+}

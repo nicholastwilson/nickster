@@ -4,14 +4,14 @@ import svgHearts from './images/suit-hearts.svg';
 import svgSpades from './images/suit-spades.svg';
 import './PlayingCard.scss';
 
-export const Suits = {
+const Suits = {
     Clubs: { symbol: "♣", svg: svgClubs },
     Diamonds: { symbol: "♦", svg: svgDiamonds },
     Hearts: { symbol: "♥", svg: svgHearts },
     Spades: { symbol: "♠", svg: svgSpades }
 }
 
-export const Ranks = {
+const Ranks = {
     Ace: { symbol: "A", pips: 1 },
     Two: { symbol: "2", pips: 2 },
     Three: { symbol: "3", pips: 3 },
@@ -27,7 +27,7 @@ export const Ranks = {
     King: { symbol: "K", pips: 0 }
 }
 
-export default function PlayingCard({ suit, rank, additionalClasses = "" }) {
+function PlayingCard({ suit, rank, additionalClasses = "" }) {
     const s = Suits[suit];
     const r = Ranks[rank];
     const pipElements = [];
@@ -54,3 +54,5 @@ export default function PlayingCard({ suit, rank, additionalClasses = "" }) {
         </div>
     );
 }
+
+export { PlayingCard as default, Suits, Ranks };

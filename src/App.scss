@@ -2,9 +2,12 @@
   /* Disables all panning and zooming gestures */
   touch-action: none;
   /* Disable text selection */
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
 }
 
 :root {
@@ -22,8 +25,27 @@
 
 body {
   margin: 0;
+  background-color: var(--theme-color-7);
   /* Fonts */
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.app-page-enter {
+  opacity: 0;
+}
+
+.app-page-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+.app-page-exit {
+  opacity: 1;
+}
+
+.app-page-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
