@@ -34,3 +34,42 @@
     height: 24vmin;
     fill: var(--theme-color-0);
 }
+
+// Game buttons
+.game-buttons-container {
+    top: 50%;
+    left: 50%;
+    width: 50vmin;
+    height: 50vmin;
+    transform: translate(-50%, -50%);
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // gap: 1vmin;
+    // grid-auto-rows: minmax(4vmin, auto);
+}
+
+.game-buttons-container>* {
+    // width: 100%;
+    // height: 100%;
+}
+
+.game-button {
+    position: relative;
+    width: 20vmin;
+    height: 20vmin;
+}
+
+.pinochle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20vmin;
+    height: 20vmin;
+    transform: translate(-50%, -50%);
+    background-color: var(--theme-color-0);
+    border: none;
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5vmin;
+    // grid-column: 2;
+    // grid-row: 2;
+}
