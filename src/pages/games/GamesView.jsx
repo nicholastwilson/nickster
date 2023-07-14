@@ -9,11 +9,9 @@ export default function GamesView() {
             <div className="games-title">Nickster</div>
             <div className="games-subtitle">Games</div>
             <div className="game-buttons-container">
-                <div className="pinochle-button">
-                    <div className="game-button">
-                        <div className="card-jack"><PlayingCard suit="Diamonds" rank="Jack" /></div>
-                        <div className="card-queen"><PlayingCard suit="Spades" rank="Queen" /></div>
-                    </div>
+                <div id="pinochle-button" className="game-button">
+                    <div className="card-jack"><PlayingCard suit="Diamonds" rank="Jack" /></div>
+                    <div className="card-queen"><PlayingCard suit="Spades" rank="Queen" /></div>
                 </div>
             </div>
         </div>
