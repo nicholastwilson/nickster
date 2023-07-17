@@ -1,5 +1,5 @@
 // Page
-.games-page {
+.gv-page {
     position: relative;
     background-color: var(--theme-color-7);
     color: white;
@@ -8,26 +8,26 @@
     height: 100%;
 }
 
-.games-page>* {
+.gv-page>* {
     position: absolute;
 }
 
 // Title text
-.games-title {
+.gv-title {
     top: 4vmin;
     left: 35vmin;
     font-size: 7vmin;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.games-subtitle {
+.gv-subtitle {
     top: 12vmin;
     left: 35vmin;
     font-size: 14vmin;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.games-logo {
+.gv-logo {
     top: 4vmin;
     left: 4vmin;
     width: 24vmin;
@@ -36,49 +36,50 @@
 }
 
 // Game buttons
-.game-buttons-container {
+.gv-game-button {
     position: absolute;
-    width: 50vmin;
-    height: 50vmin;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-    // gap: 1vmin;
-    // grid-auto-rows: minmax(4vmin, auto);
-    border: 1px solid magenta;
-}
-
-// .game-buttons-container>* {
-//     width: 100%;
-//     height: 100%;
-// }
-
-.game-button {
-    position: absolute;
-    // top: 50%;
-    // left: 50%;
-    width: 20vmin;
-    height: 20vmin;
-    // transform: translate(-50%, -50%);
+    width: 32vmin;
+    height: 32vmin;
     background-color: var(--theme-color-0);
-    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
     border-radius: 5vmin;
+    cursor: pointer;
 }
 
-.pinochle-button {
-    // position: absolute;
+.gv-game-card {
+    position: absolute;
+    left: 50%;
+}
+
+.gv-game-text {
+    position: absolute;
+    bottom: 1vmin;
+    color: var(--theme-color-8);
+    font-weight: bold;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.gv-pinochle-button {
     top: 50%;
     left: 50%;
-    // width: 20vmin;
-    // height: 20vmin;
     transform: translate(-50%, -50%);
-    // border: none;
-    // grid-column: 2;
-    // grid-row: 2;
 }
 
-.card {
-    transform: scale(0.5);
+.gv-pinochle-button:active {
+    transform: translate(-50%, calc(-50% + 0.3vmin));
+}
+
+.gv-pinochle-card-jack {
+    top: -1vmin;
+    transform: translateX(-50%) rotate(-14deg) scale(0.7);
+}
+
+.gv-pinochle-card-queen {
+    top: -1vmin;
+    transform: translateX(-50%) rotate(14deg) scale(0.7);
+}
+
+.gv-pinochle-text {
+    font-size: 4vmin;
 }

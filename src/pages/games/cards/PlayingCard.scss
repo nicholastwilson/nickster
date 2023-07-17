@@ -1,12 +1,12 @@
 /***************************************************
 Cards
 ***************************************************/
-.card {
+.pc-card {
     width: 20vmin;
     height: 28vmin;
     border-width: 0.1vmin;
     border-style: solid;
-    border-color: #000000;
+    border-color: rgba(0, 0, 0, 0.5);
     border-radius: 1vmin;
     background-color: #FFFFFF;
     position: relative;
@@ -14,10 +14,10 @@ Cards
     font-weight: 500;
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
-.card * {
+.pc-card * {
     position: absolute;
 }
-.card-content {
+.pc-card-content {
     width: 100%;
     height: 100%;
 }
@@ -25,44 +25,44 @@ Cards
 /***************************************************
 Suits
 ***************************************************/
-.suit-Clubs, .suit-Spades {
+.pc-suit-Clubs, .pc-suit-Spades {
     color: #000000;
 }
-.suit-Diamonds, .suit-Hearts {
+.pc-suit-Diamonds, .pc-suit-Hearts {
     color: #D40000;
 }
 
 /***************************************************
 Corners
 ***************************************************/
-.corners {
+.pc-corners {
     width: 100%;
     height: 100%;
 }
-.corner-1, .corner-2 {
+.pc-corner-1, .pc-corner-2 {
     width: 5%;
     font-size: 5vmin;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.corner-1 {
+.pc-corner-1 {
     top: -0.5vmin;
     left: 1.425vmin;
 }
-.corner-2 {
+.pc-corner-2 {
     bottom: -0.5vmin;
     right: 1.45vmin;
     transform: rotate(180deg);
 }
-:is(.corner-1-rank, .corner-2-rank).rank-Ten {
+:is(.pc-corner-1-rank, .pc-corner-2-rank).pc-rank-Ten {
     font-family: 'Inter';
     font-weight: 500;
     font-size: 5vmin;
     left: -1.5vmin;
     letter-spacing: -0.7vmin;
 }
-.corner-1-suit, .corner-2-suit {
+.pc-corner-1-suit, .pc-corner-2-suit {
     width: 3.5vmin;
     top: 5.7vmin;
     pointer-events: none;
@@ -71,7 +71,7 @@ Corners
 /***************************************************
 Center
 ***************************************************/
-.center {
+.pc-center {
     width: 60%;
     height: 70%;
     top: 50%;
@@ -83,364 +83,364 @@ Center
     background-size: 100% 100%;
     background-color: #FFFFFF;
 }
-.center.suit-Clubs, .center.suit-Spades {
+.pc-center.pc-suit-Clubs, .pc-center.pc-suit-Spades {
     border-color: #000000;
 }
-.center.suit-Diamonds, .center.suit-Hearts {
+.pc-center.pc-suit-Diamonds, .pc-center.pc-suit-Hearts {
     border-color: #D40000;
 }
-.center img {
+.pc-center img {
     pointer-events: none;
 }
 /***** Ace *****/
-.rank-Ace.center-pip-1 {
+.pc-rank-Ace.pc-center-pip-1 {
     width: 75%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 /***** Two *****/
-.center.rank-Two > img {
+.pc-center.pc-rank-Two > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Two {
+.pc-center-pip-1.pc-rank-Two {
     top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Two {
+.pc-center-pip-2.pc-rank-Two {
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Three *****/
-.center.rank-Three > img {
+.pc-center.pc-rank-Three > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Three {
+.pc-center-pip-1.pc-rank-Three {
     top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Three {
+.pc-center-pip-2.pc-rank-Three {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-3.rank-Three {
+.pc-center-pip-3.pc-rank-Three {
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Four *****/
-.center.rank-Four > img {
+.pc-center.pc-rank-Four > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Four {
+.pc-center-pip-1.pc-rank-Four {
     top: 15%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Four {
+.pc-center-pip-2.pc-rank-Four {
     top: 85%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-3.rank-Four {
+.pc-center-pip-3.pc-rank-Four {
     top: 15%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-4.rank-Four {
+.pc-center-pip-4.pc-rank-Four {
     top: 85%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Five *****/
-.center.rank-Five > img {
+.pc-center.pc-rank-Five > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Five {
+.pc-center-pip-1.pc-rank-Five {
     top: 15%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Five {
+.pc-center-pip-2.pc-rank-Five {
     top: 85%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-3.rank-Five {
+.pc-center-pip-3.pc-rank-Five {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-4.rank-Five {
+.pc-center-pip-4.pc-rank-Five {
     top: 15%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-5.rank-Five {
+.pc-center-pip-5.pc-rank-Five {
     top: 85%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Six *****/
-.center.rank-Six > img {
+.pc-center.pc-rank-Six > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Six {
+.pc-center-pip-1.pc-rank-Six {
     top: 15%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Six {
+.pc-center-pip-2.pc-rank-Six {
     top: 50%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-3.rank-Six {
+.pc-center-pip-3.pc-rank-Six {
     top: 85%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-4.rank-Six {
+.pc-center-pip-4.pc-rank-Six {
     top: 15%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-5.rank-Six {
+.pc-center-pip-5.pc-rank-Six {
     top: 50%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-6.rank-Six {
+.pc-center-pip-6.pc-rank-Six {
     top: 85%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Seven *****/
-.center.rank-Seven > img {
+.pc-center.pc-rank-Seven > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Seven {
+.pc-center-pip-1.pc-rank-Seven {
     top: 15%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Seven {
+.pc-center-pip-2.pc-rank-Seven {
     top: 50%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-3.rank-Seven {
+.pc-center-pip-3.pc-rank-Seven {
     top: 85%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-4.rank-Seven {
+.pc-center-pip-4.pc-rank-Seven {
     top: 33.333%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-5.rank-Seven {
+.pc-center-pip-5.pc-rank-Seven {
     top: 15%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-6.rank-Seven {
+.pc-center-pip-6.pc-rank-Seven {
     top: 50%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-7.rank-Seven {
+.pc-center-pip-7.pc-rank-Seven {
     top: 85%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Eight *****/
-.center.rank-Eight > img {
+.pc-center.pc-rank-Eight > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Eight {
+.pc-center-pip-1.pc-rank-Eight {
     top: 12.5%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Eight {
+.pc-center-pip-2.pc-rank-Eight {
     top: 37.5%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-3.rank-Eight {
+.pc-center-pip-3.pc-rank-Eight {
     top: 62.5%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-4.rank-Eight {
+.pc-center-pip-4.pc-rank-Eight {
     top: 87.5%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-5.rank-Eight {
+.pc-center-pip-5.pc-rank-Eight {
     top: 12.5%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-6.rank-Eight {
+.pc-center-pip-6.pc-rank-Eight {
     top: 37.5%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-7.rank-Eight {
+.pc-center-pip-7.pc-rank-Eight {
     top: 62.5%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-8.rank-Eight {
+.pc-center-pip-8.pc-rank-Eight {
     top: 87.5%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Nine *****/
-.center.rank-Nine > img {
+.pc-center.pc-rank-Nine > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Nine {
+.pc-center-pip-1.pc-rank-Nine {
     top: 12.5%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Nine {
+.pc-center-pip-2.pc-rank-Nine {
     top: 37.5%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-3.rank-Nine {
+.pc-center-pip-3.pc-rank-Nine {
     top: 62.5%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-4.rank-Nine {
+.pc-center-pip-4.pc-rank-Nine {
     top: 87.5%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-5.rank-Nine {
+.pc-center-pip-5.pc-rank-Nine {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-6.rank-Nine {
+.pc-center-pip-6.pc-rank-Nine {
     top: 12.5%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-7.rank-Nine {
+.pc-center-pip-7.pc-rank-Nine {
     top: 37.5%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-8.rank-Nine {
+.pc-center-pip-8.pc-rank-Nine {
     top: 62.5%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-9.rank-Nine {
+.pc-center-pip-9.pc-rank-Nine {
     top: 87.5%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Ten *****/
-.center.rank-Ten > img {
+.pc-center.pc-rank-Ten > img {
     width: 33.333%;
 }
-.center-pip-1.rank-Ten {
+.pc-center-pip-1.pc-rank-Ten {
     top: 12.5%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-2.rank-Ten {
+.pc-center-pip-2.pc-rank-Ten {
     top: 37.5%;
     left: 20%;
     transform: translate(-50%, -50%);
 }
-.center-pip-3.rank-Ten {
+.pc-center-pip-3.pc-rank-Ten {
     top: 62.5%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-4.rank-Ten {
+.pc-center-pip-4.pc-rank-Ten {
     top: 87.5%;
     left: 20%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-5.rank-Ten {
+.pc-center-pip-5.pc-rank-Ten {
     top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.center-pip-6.rank-Ten {
+.pc-center-pip-6.pc-rank-Ten {
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-7.rank-Ten {
+.pc-center-pip-7.pc-rank-Ten {
     top: 12.5%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-8.rank-Ten {
+.pc-center-pip-8.pc-rank-Ten {
     top: 37.5%;
     left: 80%;
     transform: translate(-50%, -50%);
 }
-.center-pip-9.rank-Ten {
+.pc-center-pip-9.pc-rank-Ten {
     top: 62.5%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.center-pip-10.rank-Ten {
+.pc-center-pip-10.pc-rank-Ten {
     top: 87.5%;
     left: 80%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 /***** Jack *****/
-.center.rank-Jack.suit-Clubs {
+.pc-center.pc-rank-Jack.pc-suit-Clubs {
     background-image: url("./images/jack-clubs.png");
 }
-.center.rank-Jack.suit-Diamonds {
+.pc-center.pc-rank-Jack.pc-suit-Diamonds {
     background-image: url("./images/jack-diamonds.png");
 }
-.center.rank-Jack.suit-Hearts {
+.pc-center.pc-rank-Jack.pc-suit-Hearts {
     background-image: url("./images/jack-hearts.png");
 }
-.center.rank-Jack.suit-Spades {
+.pc-center.pc-rank-Jack.pc-suit-Spades {
     background-image: url("./images/jack-spades.png");
 }
 /***** Queen *****/
-.center.rank-Queen.suit-Clubs {
+.pc-center.pc-rank-Queen.pc-suit-Clubs {
     background-image: url("./images/queen-clubs.png");
 }
-.center.rank-Queen.suit-Diamonds {
+.pc-center.pc-rank-Queen.pc-suit-Diamonds {
     background-image: url("./images/queen-diamonds.png");
 }
-.center.rank-Queen.suit-Hearts {
+.pc-center.pc-rank-Queen.pc-suit-Hearts {
     background-image: url("./images/queen-hearts.png");
 }
-.center.rank-Queen.suit-Spades {
+.pc-center.pc-rank-Queen.pc-suit-Spades {
     background-image: url("./images/queen-spades.png");
 }
 /***** King *****/
-.center.rank-King.suit-Clubs {
+.pc-center.pc-rank-King.pc-suit-Clubs {
     background-image: url("./images/king-clubs.png");
 }
-.center.rank-King.suit-Diamonds {
+.pc-center.pc-rank-King.pc-suit-Diamonds {
     background-image: url("./images/king-diamonds.png");
 }
-.center.rank-King.suit-Hearts {
+.pc-center.pc-rank-King.pc-suit-Hearts {
     background-image: url("./images/king-hearts.png");
 }
-.center.rank-King.suit-Spades {
+.pc-center.pc-rank-King.pc-suit-Spades {
     background-image: url("./images/king-spades.png");
 }

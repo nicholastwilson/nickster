@@ -1,4 +1,4 @@
-.container {
+.nf-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +7,7 @@
     background-color: var(--theme-color-7);
 }
 
-.logo-container {
+.nf-logo-container {
     position: absolute;
     top: 25%;
     display: flex;
@@ -15,20 +15,14 @@
     margin-bottom: 2vmin;
 }
 
-.logo {
+.nf-logo {
     width: 12vmin;
     height: 12vmin;
     margin-right: 2vmin;
     fill: var(--theme-color-0);
 }
 
-@keyframes rotateLogo {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.text {
+.nf-text {
     font-size: 9vmin;
     font-weight: bold;
     letter-spacing: -0.25vmin;
@@ -36,14 +30,14 @@
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.buttons-container {
+.nf-buttons-container {
     position: absolute;
     top: 50%;
     display: flex;
     align-items: center;
 }
 
-.button {
+.nf-button {
     width: 27vmin;
     display: flex;
     align-items: center;
@@ -61,11 +55,11 @@
     cursor: pointer;
 }
 
-.icon {
+.nf-icon {
     padding-right: 1vmin;
 }
 
-.button:active {
+.nf-button:active {
     transform: translateY(0.5vmin);
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
 }

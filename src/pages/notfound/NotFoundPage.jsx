@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { ReactComponent as NicksterLogo } from 'assets/nickster_logo.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -18,18 +18,18 @@ function NotFoundPage() {
         return () => clearInterval(interval);
     })
     return (
-        <div className="container">
-            <div className="logo-container">
-                <NicksterLogo className="logo" style={{ rotate: `${rotation}deg` }} />
-                <h1 className="text">Page Not Found</h1>
+        <div className='nf-container'>
+            <div className='nf-logo-container'>
+                <NicksterLogo className='nf-logo' style={{ rotate: `${rotation}deg` }} />
+                <h1 className='nf-text'>Page Not Found</h1>
             </div>
-            <div className="buttons-container">
-                {/* <button className="button" onClick={() => navigate("/", { replace: true })}>
-                    <FontAwesomeIcon className="icon" icon="fa-solid fa-house" />
+            <div className='nf-buttons-container'>
+                {/* <button className='button' onClick={() => navigate('/', { replace: true })}>
+                    <FontAwesomeIcon className='icon' icon='fa-solid fa-house' />
                     Home
                 </button> */}
-                <button className="button" onClick={() => navigate(-1, { replace: true })}>
-                    <FontAwesomeIcon className="icon" icon="fa-solid fa-circle-arrow-left" />
+                <button className='nf-button' onClick={() => navigate(-1, { replace: true })}>
+                    <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-arrow-left' />
                     Back
                 </button>
             </div>

@@ -1,5 +1,5 @@
 // Page
-.start-page {
+.psv-start-page {
     position: relative;
     background-color: var(--theme-color-7);
     color: white;
@@ -8,42 +8,42 @@
     height: 100%;
 }
 
-.start-page>* {
+.psv-start-page>* {
     position: absolute;
 }
 
 // Cards
-.card-jack,
-.card-queen {
+.psv-card-jack,
+.psv-card-queen {
     transition: all .1s ease-in-out;
 }
 
-:is(.card-jack, .card-queen):active {
+:is(.psv-card-jack, .psv-card-queen):active {
     transform: scale(0.95);
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
 }
 
-.card-jack {
+.psv-card-jack {
     top: 5vmin;
     left: 5vmin;
-    rotate: -12deg;
+    transform: rotate(-14deg);
 }
 
-.card-queen {
+.psv-card-queen {
     top: 6.5vmin;
     left: 6vmin;
-    rotate: 12deg;
+    transform: rotate(14deg);
 }
 
 // Title text
-.nickster-text {
+.psv-nickster-text {
     top: 4vmin;
     left: 35vmin;
     font-size: 7vmin;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.pinochle-text {
+.psv-subtitle-text {
     top: 12vmin;
     left: 35vmin;
     font-size: 14vmin;
@@ -51,7 +51,7 @@
 }
 
 // Back button
-.bb-container {
+.psv-bb-container {
     top: 40vmin;
     left: 3vmin;
     width: 6vmin;
@@ -59,12 +59,12 @@
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.bb-container:active {
+.psv-bb-container:active {
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
 }
 
 // New game & Join game
-.game-button {
+.psv-game-button {
     left: 50%;
     width: 45vmin;
     height: 15vmin;
@@ -85,31 +85,32 @@
     cursor: pointer;
 }
 
-.game-button.fade-left {
-    transform: translateX(calc(-50% - 10vmin));
+.psv-game-button.psv-fade-out {
     opacity: 0;
     transition: 0.15s;
 }
 
-.game-button:hover {
-    color: var(--theme-color-9);
-    background-color: var(--theme-color-1);
+@media only screen and (min-width: 1024px) {
+    .psv-game-button:hover {
+        color: var(--theme-color-9);
+        background-color: var(--theme-color-1);
+    }
 }
 
-.game-button:active {
+.psv-game-button:active {
     transform: translateX(-50%) translateY(0.5vmin);
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
 }
 
-.new-game-button {
+.psv-new-game-button {
     top: 45vh;
 }
 
-.join-game-button {
+.psv-join-game-button {
     top: calc(45vh + 20vmin);
 }
 
-.button-text-container {
+.psv-button-text-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -117,6 +118,6 @@
     padding-left: 1vmin;
 }
 
-.button-subtext {
+.psv-button-subtext {
     font-size: 2.5vmin;
 }
