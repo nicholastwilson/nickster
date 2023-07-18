@@ -1,0 +1,48 @@
+.ow-container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background-color: var(--theme-color-7);
+    // border: 1px solid green;
+}
+
+.ow-mobile-icon, .ow-rotate-icon {
+    position: absolute;
+    color: var(--theme-color-0);
+}
+
+.ow-mobile-icon {
+    width: 20vmin;
+    height: 30vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: owRotateAnimation 4s infinite cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.ow-rotate-icon {
+    width: 10vmin;
+    height: 15vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: owRotateAnimation 4s infinite cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes owRotateAnimation {
+    0% { transform: translate(-50%, -50%) rotate(90deg); }
+    60% { transform: translate(-50%, -50%) rotate(0deg); }
+    75% { transform: translate(-50%, -50%) rotate(90deg); }
+    100% { transform: translate(-50%, -50%) rotate(90deg); }
+}
+
+.ow-text {
+    position: absolute;
+    top: calc(50% + 20vmin);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--theme-color-0);
+    font-size: 4vmin;
+    text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+
+}
