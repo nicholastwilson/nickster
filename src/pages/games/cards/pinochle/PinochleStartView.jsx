@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import PlayingCard from '../PlayingCard';
+import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCirclePlus, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
@@ -24,13 +25,19 @@ library.add(faCirclePlus, faRightToBracket);
 function PinochleStartView() {
     // const navigate = useNavigate();
     const [view, setView] = useState('start');
+    const [jackFlipped, setJackFlipped] = useState(false);
+    const [queenFlipped, setQueenFlipped] = useState(false);
     return (
         <div className='psv-start-page'>
             {/* Header title & logo */}
             <div className='psv-nickster-text'>Nickster</div>
             <div className='psv-subtitle-text'>Pinochle</div>
-            <PlayingCard suit='Diamonds' rank='Jack' additionalClasses='psv-card-jack'/>
-            <PlayingCard suit='Spades' rank='Queen' additionalClasses='psv-card-queen'/>
+            <div onClick={() => setJackFlipped(!jackFlipped)}>
+                <PlayingCard suit='Diamonds' rank='Jack' additionalClasses={`psv-card-jack ${jackFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
+            </div>
+            {/* <div onClick={() => setQueenFlipped(!queenFlipped)}>
+                <PlayingCard suit='Spades' rank='Queen' additionalClasses={`psv-card-queen ${queenFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
+            </div> */}
             {/* New & Join buttons */}
             <button className={`psv-game-button psv-new-game-button ${view !== 'start' ? 'psv-fade-out' : ''} no-select`} onClick={() => setView('new')}>
                 <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '1vmin' }} />

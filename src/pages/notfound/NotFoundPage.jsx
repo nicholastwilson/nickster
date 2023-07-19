@@ -25,10 +25,6 @@ function NotFoundPage() {
                 <h1 className='nf-text'>Page Not Found</h1>
             </div>
             <div className='nf-buttons-container'>
-                {/* <button className='button' onClick={() => navigate('/', { replace: true })}>
-                    <FontAwesomeIcon className='icon' icon='fa-solid fa-house' />
-                    Home
-                </button> */}
                 <button className='nf-button' onClick={() => navigate(-1, { replace: true })}>
                     <FontAwesomeIcon className='nf-icon' icon='fa-solid fa-circle-arrow-left' />
                     Back

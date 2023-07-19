@@ -27,7 +27,7 @@ const Ranks = {
     King: { symbol: 'K', pips: 0 }
 }
 
-function PlayingCard({ suit, rank, additionalClasses = '' }) {
+function PlayingCard({ suit, rank, additionalClasses = '', backFaceImage = '' }) {
     const s = Suits[suit];
     const r = Ranks[rank];
     const pipElements = [];
@@ -38,18 +38,23 @@ function PlayingCard({ suit, rank, additionalClasses = '' }) {
     }
     return (
         <div className={`pc-card ${additionalClasses}`}>
-            <div className='pc-card-content'>
-                <div className='pc-corners'>
-                    <div className='pc-corner-1'>
-                        <div className={'pc-corner-1-rank pc-suit-' + suit + ' pc-rank-' + rank}>{r.symbol}</div>
-                        <img className={'pc-corner-1-suit pc-suit-' + suit + ' pc-rank-' + rank} src={s.svg} alt={suit} loading='eager' />
+            <div className='pc-card-inner'>
+                <div className='pc-front-face'>
+                    <div className='pc-corners'>
+                        <div className='pc-corner-1'>
+                            <div className={'pc-corner-1-rank pc-suit-' + suit + ' pc-rank-' + rank}>{r.symbol}</div>
+                            <img className={'pc-corner-1-suit pc-suit-' + suit + ' pc-rank-' + rank} src={s.svg} alt={suit} loading='eager' />
+                        </div>
+                        <div className='pc-corner-2'>
+                            <div className={'pc-corner-2-rank pc-suit-' + suit + ' pc-rank-' + rank}>{r.symbol}</div>
+                            <img className={'pc-corner-2-suit pc-suit-' + suit + ' pc-rank-' + rank} src={s.svg} alt={suit} loading='eager' />
+                        </div>
                     </div>
-                    <div className='pc-corner-2'>
-                        <div className={'pc-corner-2-rank pc-suit-' + suit + ' pc-rank-' + rank}>{r.symbol}</div>
-                        <img className={'pc-corner-2-suit pc-suit-' + suit + ' pc-rank-' + rank} src={s.svg} alt={suit} loading='eager' />
-                    </div>
+                    <div className={'pc-center pc-suit-' + suit + ' pc-rank-' + rank}>{pipElements}</div>
                 </div>
-                <div className={'pc-center pc-suit-' + suit + ' pc-rank-' + rank}>{pipElements}</div>
+                <div className='pc-back-face'>
+                    <img className='' src={backFaceImage} alt='' loading='eager' />
+                </div>
             </div>
         </div>
     );

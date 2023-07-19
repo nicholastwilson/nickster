@@ -3,46 +3,64 @@
     min-height: 100vh;
     position: relative;
     background-color: var(--theme-color-7);
-    // border: 1px solid green;
 }
 
-.ow-mobile-icon, .ow-rotate-icon {
+.ow-icon-container {
     position: absolute;
     color: var(--theme-color-0);
+    width: 40vmin;
+    height: 50vmin;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // animation: owIconAnimation 3s infinite cubic-bezier(0.42, 0, 0.58, 1);
+    animation: owIconAnimation 5s infinite ease-in-out;
+}
+
+@keyframes owIconAnimation {
+    0% { transform: translate(-50%, -50%) rotate(90deg); }
+    20% { transform: translate(-50%, -50%) rotate(90deg); }
+    50% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+    60% { transform: translate(-50%, -50%) rotate(0deg); }
+    62% { opacity: 0; }
+    75% { transform: translate(-50%, -50%) rotate(90deg); }
+    97% { opacity: 0; }
+    100% { opacity: 1; transform: translate(-50%, -50%) rotate(90deg); }
 }
 
 .ow-mobile-icon {
-    width: 20vmin;
-    height: 30vmin;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: owRotateAnimation 4s infinite cubic-bezier(0.42, 0, 0.58, 1);
+    width: 40vmin;
+    height: 50vmin;
 }
 
 .ow-rotate-icon {
-    width: 10vmin;
-    height: 15vmin;
-    top: 50%;
+    position: absolute;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: owRotateAnimation 4s infinite cubic-bezier(0.42, 0, 0.58, 1);
+    width: 15vmin;
+    height: 25vmin;
+    animation: owRotateAnimation 5s infinite ease-in-out;
 }
 
 @keyframes owRotateAnimation {
-    0% { transform: translate(-50%, -50%) rotate(90deg); }
-    60% { transform: translate(-50%, -50%) rotate(0deg); }
-    75% { transform: translate(-50%, -50%) rotate(90deg); }
-    100% { transform: translate(-50%, -50%) rotate(90deg); }
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .ow-text {
     position: absolute;
-    top: calc(50% + 20vmin);
+    text-align: center;
+    width: 100%;
+    top: calc(40% + 35vmin);
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--theme-color-0);
-    font-size: 4vmin;
+    font-size: 10vmin;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
-
 }
