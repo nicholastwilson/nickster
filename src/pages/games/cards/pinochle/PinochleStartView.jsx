@@ -32,21 +32,21 @@ function PinochleStartView() {
             {/* Header title & logo */}
             <div className='psv-nickster-text'>Nickster</div>
             <div className='psv-subtitle-text'>Pinochle</div>
-            <div onClick={() => setJackFlipped(!jackFlipped)}>
-                <PlayingCard suit='Diamonds' rank='Jack' additionalClasses={`psv-card-jack ${jackFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
+            <div className='psv-card-jack' onClick={() => flipDelayAndUnflip(jackFlipped, setJackFlipped, 500)}>
+                <PlayingCard suit='Diamonds' rank='Jack' additionalClasses={`${jackFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
-            {/* <div onClick={() => setQueenFlipped(!queenFlipped)}>
-                <PlayingCard suit='Spades' rank='Queen' additionalClasses={`psv-card-queen ${queenFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
-            </div> */}
+            <div className='psv-card-queen' onClick={() => flipDelayAndUnflip(queenFlipped, setQueenFlipped, 500)}>
+                <PlayingCard suit='Spades' rank='Queen' additionalClasses={`${queenFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
+            </div>
             {/* New & Join buttons */}
-            <button className={`psv-game-button psv-new-game-button ${view !== 'start' ? 'psv-fade-out' : ''} no-select`} onClick={() => setView('new')}>
+            <button className={`psv-game-button psv-new-game-button ${view !== 'start' ? 'psv-fade-out' : ''}`} onClick={() => setView('new')}>
                 <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '1vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>New</div>
                     <div className='psv-button-subtext'>Start a new game</div>
                 </div>
             </button>
-            <button className={`psv-game-button psv-join-game-button ${view !== 'start' ? 'psv-fade-out' : ''} no-select`} onClick={() => setView('join')}>
+            <button className={`psv-game-button psv-join-game-button ${view !== 'start' ? 'psv-fade-out' : ''}`} onClick={() => setView('join')}>
                 <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '1vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>Join</div>
@@ -57,5 +57,14 @@ function PinochleStartView() {
         </div>
     );
 }
+
+const flipDelayAndUnflip = (isFlipped, setFlipped, delay) => {
+    if(isFlipped)
+        return;
+    setFlipped(true);
+    setTimeout(() => {
+        setFlipped(false);
+    }, delay);
+};
 
 export default PinochleStartView;

@@ -16,7 +16,7 @@ export default function GamesView() {
             <div className='gv-title'>Nickster</div>
             <div className='gv-subtitle'>Games</div>
             {/* Game buttons */}
-            <div className='gv-game-button gv-pinochle-button no-select' onClick={() => navigate('pinochle')}>
+            <div className='gv-game-button gv-pinochle-button' onClick={() => navigate('pinochle')}>
                 <div className='gv-game-card gv-pinochle-card-jack'><PlayingCard suit='Diamonds' rank='Jack' /></div>
                 <div className='gv-game-card gv-pinochle-card-queen'><PlayingCard suit='Spades' rank='Queen' /></div>
                 <div className='gv-game-text gv-pinochle-text'>Pinochle</div>
