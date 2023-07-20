@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/nickster/static/css/main.659604c0.css",
-    "main.js": "/nickster/static/js/main.f72db431.js",
+    "main.css": "/nickster/static/css/main.ba97c8e2.css",
+    "main.js": "/nickster/static/js/main.034260bb.js",
     "static/media/card-back.png": "/nickster/static/media/card-back.e0c6457e5fe13cdb17f3.png",
     "static/media/jack-hearts.png": "/nickster/static/media/jack-hearts.dbe11028967e8ab8270f.png",
     "static/media/king-hearts.png": "/nickster/static/media/king-hearts.f99fab7581a86f68f1a6.png",
@@ -21,11 +21,11 @@
     "static/media/suit-hearts.svg": "/nickster/static/media/suit-hearts.90d6d4147c4e277400b6f19d86a49df7.svg",
     "index.html": "/nickster/index.html",
     "static/media/suit-diamonds.svg": "/nickster/static/media/suit-diamonds.f5b150e3f595df2cbaa0ade10400d178.svg",
-    "main.659604c0.css.map": "/nickster/static/css/main.659604c0.css.map",
-    "main.f72db431.js.map": "/nickster/static/js/main.f72db431.js.map"
+    "main.ba97c8e2.css.map": "/nickster/static/css/main.ba97c8e2.css.map",
+    "main.034260bb.js.map": "/nickster/static/js/main.034260bb.js.map"
   },
   "entrypoints": [
-    "static/css/main.659604c0.css",
-    "static/js/main.f72db431.js"
+    "static/css/main.ba97c8e2.css",
+    "static/js/main.034260bb.js"
   ]
 }
