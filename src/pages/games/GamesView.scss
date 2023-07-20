@@ -35,6 +35,19 @@
     fill: var(--theme-color-0);
 }
 
+.gv-logo.spinning {
+    animation: spin 0.5s ease-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 // Game buttons
 .gv-game-button {
     position: absolute;

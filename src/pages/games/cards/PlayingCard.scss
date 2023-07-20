@@ -36,11 +36,12 @@ Cards
 }
 
 .pc-front-face {
+    transform: rotateX(0deg);
     z-index: 2;
 }
 
 .pc-back-face {
-    transform: rotateY(180deg);
+    transform: rotateX(0deg) rotateY(180deg);
     z-index: 1;
 }
 

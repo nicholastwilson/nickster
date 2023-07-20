@@ -25,18 +25,26 @@ library.add(faCirclePlus, faRightToBracket);
 function PinochleStartView() {
     // const navigate = useNavigate();
     const [view, setView] = useState('start');
-    const [jackFlipped, setJackFlipped] = useState(false);
-    const [queenFlipped, setQueenFlipped] = useState(false);
+    const [jackFlipping, setJackFlipping] = useState(false);
+    const [queenFlipping, setQueenFlipping] = useState(false);
+    const flip = (isFlipping, setFlipping) => {
+        if(isFlipping)
+            return;
+        setFlipping(true);
+        setTimeout(() => {
+            setFlipping(false);
+        }, 500);
+    };
     return (
         <div className='psv-start-page'>
             {/* Header title & logo */}
             <div className='psv-nickster-text'>Nickster</div>
             <div className='psv-subtitle-text'>Pinochle</div>
-            <div className='psv-card-jack' onClick={() => flipDelayAndUnflip(jackFlipped, setJackFlipped, 500)}>
-                <PlayingCard suit='Diamonds' rank='Jack' additionalClasses={`${jackFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
+            <div className='psv-card-jack' onClick={() => flip(jackFlipping, setJackFlipping)}>
+                <PlayingCard suit='Diamonds' rank='Jack' additionalClasses={`${jackFlipping ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
-            <div className='psv-card-queen' onClick={() => flipDelayAndUnflip(queenFlipped, setQueenFlipped, 500)}>
-                <PlayingCard suit='Spades' rank='Queen' additionalClasses={`${queenFlipped ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
+            <div className='psv-card-queen' onClick={() => flip(queenFlipping, setQueenFlipping)}>
+                <PlayingCard suit='Spades' rank='Queen' additionalClasses={`${queenFlipping ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
             {/* New & Join buttons */}
             <button className={`psv-game-button psv-new-game-button ${view !== 'start' ? 'psv-fade-out' : ''}`} onClick={() => setView('new')}>
@@ -57,14 +65,5 @@ function PinochleStartView() {
         </div>
     );
 }
-
-const flipDelayAndUnflip = (isFlipped, setFlipped, delay) => {
-    if(isFlipped)
-        return;
-    setFlipped(true);
-    setTimeout(() => {
-        setFlipped(false);
-    }, delay);
-};
 
 export default PinochleStartView;
