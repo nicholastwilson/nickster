@@ -47,14 +47,14 @@ function PinochleStartView() {
                 <PlayingCard suit='Spades' rank='Queen' additionalClasses={`${queenFlipping ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
             {/* New & Join buttons */}
-            <button className={`psv-game-button psv-new-game-button ${view !== 'start' ? 'psv-fade-out' : ''}`} onClick={() => setView('new')}>
+            <button className={`psv-game-button psv-new-game-button ${view === 'start' ? 'psv-fade-in' : 'psv-fade-out'}`} onClick={() => setView('new')}>
                 <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '1vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>New</div>
                     <div className='psv-button-subtext'>Start a new game</div>
                 </div>
             </button>
-            <button className={`psv-game-button psv-join-game-button ${view !== 'start' ? 'psv-fade-out' : ''}`} onClick={() => setView('join')}>
+            <button className={`psv-game-button psv-join-game-button ${view === 'start' ? 'psv-fade-in' : 'psv-fade-out'}`} onClick={() => setView('join')}>
                 <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '1vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>Join</div>
@@ -62,6 +62,11 @@ function PinochleStartView() {
                 </div>
             </button>
             {/* New game settings view */}
+            {view === 'new' && <div className={`psv-rules-container ${view === 'new' ? 'psv-fade-in' : 'psv-fade-out'}`}>
+                <div className='psv-rules-title'>Game Rules</div>
+            </div>}
+            {/* Join existing game view */}
+            
         </div>
     );
 }
