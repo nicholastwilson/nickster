@@ -19,6 +19,7 @@
 
 .psv-fade-out {
     opacity: 0;
+    pointer-events: none;
 }
 
 // Cards
@@ -109,8 +110,9 @@
 
 // New Game Rules
 .psv-rules-container {
-    top: 40vmin;
+    top: 42vmin;
     left: 5vmin;
+    width: 90vmin;
     // width: 100%;
     display: flex;
     flex-direction: column;
@@ -128,10 +130,65 @@
 
 .psv-rules-title {
     font-size: 8vmin;
+    margin-bottom: 3vmin;
     white-space: nowrap;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-.psv-input-container {
-    // Display label and input elements on each line
+.psv-rules-options-container {
+    position: relative;
+    height: 10vmin;
+}
+
+.psv-rules-label {
+    position: absolute;
+    top: 50%;
+    width: 33%;
+    transform: translateY(-50%);
+    font-size: 5vmin;
+    text-align: left;
+    color: var(--theme-color-0);
+    text-shadow: none;
+}
+
+.psv-rules-options {
+    position: absolute;
+    left: 25%;
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.psv-rules-option-button {
+    width: 10vmin;
+    height: 8vmin;
+    font-size: 4vmin;
+    text-align: center;
+    color: var(--theme-color-8);
+    background-color: var(--theme-color-0);
+    text-shadow: none;
+    border: none;
+    border-radius: 2vmin;
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.psv-option-left {
+    border-radius: 2vmin 0 0 2vmin;
+}
+
+.psv-option-right {
+    border-radius: 0 2vmin 2vmin 0;
+}
+
+.psv-option-middle {
+    border-radius: 0;
+}
+
+.psv-rules-selected-option {
+    color: var(--theme-color-0);
+    background-color: var(--theme-color-9);
+    box-shadow: -1px 3px 5px rgba(256, 256, 256, 0.25);
 }

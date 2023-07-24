@@ -27,23 +27,15 @@ function PinochleStartView() {
     const [view, setView] = useState('start');
     const [jackFlipping, setJackFlipping] = useState(false);
     const [queenFlipping, setQueenFlipping] = useState(false);
-    const flip = (isFlipping, setFlipping) => {
-        if(isFlipping)
-            return;
-        setFlipping(true);
-        setTimeout(() => {
-            setFlipping(false);
-        }, 500);
-    };
     return (
         <div className='psv-start-page'>
             {/* Header title & logo */}
             <div className='psv-nickster-text'>Nickster</div>
             <div className='psv-subtitle-text'>Pinochle</div>
-            <div className='psv-card-jack' onClick={() => flip(jackFlipping, setJackFlipping)}>
+            <div className='psv-card-jack' onClick={() => animateFlip(jackFlipping, setJackFlipping)}>
                 <PlayingCard suit='Diamonds' rank='Jack' additionalClasses={`${jackFlipping ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
-            <div className='psv-card-queen' onClick={() => flip(queenFlipping, setQueenFlipping)}>
+            <div className='psv-card-queen' onClick={() => animateFlip(queenFlipping, setQueenFlipping)}>
                 <PlayingCard suit='Spades' rank='Queen' additionalClasses={`${queenFlipping ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
             {/* New & Join buttons */}
@@ -62,13 +54,36 @@ function PinochleStartView() {
                 </div>
             </button>
             {/* New game settings view */}
-            {view === 'new' && <div className={`psv-rules-container ${view === 'new' ? 'psv-fade-in' : 'psv-fade-out'}`}>
-                <div className='psv-rules-title'>Game Rules</div>
-            </div>}
+            {/* 
+                Play:|(options)To Score,# of Hands
+                Stick the Dealer?|(options)Yes,No
+                Allow Misdeal?|(options)Yes,No
+                Ask to Throw In?|(options)Yes,No
+                Meld Display Speed:|(options)Very Slow,Slow,Med,Fast,Very Fast
+            */}
+            <div className={`psv-rules-container ${view === 'new' ? 'psv-fade-in' : 'psv-fade-out'}`}>
+                <div className='psv-rules-title'><u>Game Rules</u></div>
+                <div className='psv-rules-options-container'>
+                    <div className='psv-rules-label'>Play:</div>
+                    <div className='psv-rules-options'>
+                        <button className='psv-rules-option-button psv-option-left psv-rules-selected-option' style={{width:'50%'}}>To Score</button>
+                        <button className='psv-rules-option-button psv-option-right' style={{width:'50%'}}># of Hands</button>
+                    </div>
+                </div>
+            </div>
             {/* Join existing game view */}
             
         </div>
     );
 }
+
+const animateFlip = (isFlipping, setFlipping) => {
+    if(isFlipping)
+        return;
+    setFlipping(true);
+    setTimeout(() => {
+        setFlipping(false);
+    }, 500);
+};
 
 export default PinochleStartView;
