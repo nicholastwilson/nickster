@@ -27,6 +27,34 @@ function PinochleStartView() {
     const [view, setView] = useState('start');
     const [jackFlipping, setJackFlipping] = useState(false);
     const [queenFlipping, setQueenFlipping] = useState(false);
+    const animateFlip = (isFlipping, setFlipping) => {
+        if(isFlipping)
+            return;
+        setFlipping(true);
+        setTimeout(() => {
+            setFlipping(false);
+        }, 500);
+    };
+    const [rules, setRules] = useState({
+        play: 'score',
+        score: 150,
+        hands: 4,
+        stickDealer: 'yes',
+        allowMisdeal: 'yes',
+        meldSpeed: 'medium'
+    });
+    const createRulesOptionsElements = (ruleLabel, key, values, buttonLabels) => {
+        return (
+            <div className='psv-rules-options-container'>
+                <div className='psv-rules-label'>{ruleLabel}:</div>
+                <div className='psv-rules-options'>
+                    {values.map((v, i) => 
+                        <button key={key + i} className={`psv-rules-option-button psv-option-${(i === 0) ? 'left' : (i === values.length - 1) ? 'right' : 'middle'} ${rules[key] === v ? 'psv-rules-selected-option' : ''}`} style={{ width: (100 / values.length) + '%' }} onClick={() => setRules({ ...rules, [key]: v })}>{buttonLabels[i]}</button>
+                    )}
+                </div>
+            </div>
+        )
+    };
     return (
         <div className='psv-start-page'>
             {/* Header title & logo */}
@@ -54,36 +82,20 @@ function PinochleStartView() {
                 </div>
             </button>
             {/* New game settings view */}
-            {/* 
-                Play:|(options)To Score,# of Hands
-                Stick the Dealer?|(options)Yes,No
-                Allow Misdeal?|(options)Yes,No
-                Ask to Throw In?|(options)Yes,No
-                Meld Display Speed:|(options)Very Slow,Slow,Med,Fast,Very Fast
-            */}
             <div className={`psv-rules-container ${view === 'new' ? 'psv-fade-in' : 'psv-fade-out'}`}>
                 <div className='psv-rules-title'><u>Game Rules</u></div>
-                <div className='psv-rules-options-container'>
-                    <div className='psv-rules-label'>Play:</div>
-                    <div className='psv-rules-options'>
-                        <button className='psv-rules-option-button psv-option-left psv-rules-selected-option' style={{width:'50%'}}>To Score</button>
-                        <button className='psv-rules-option-button psv-option-right' style={{width:'50%'}}># of Hands</button>
-                    </div>
-                </div>
+                {createRulesOptionsElements('Play', 'play', ['score', 'hands'], ['To Score', '# of Hands'])}
+                {rules['play'] === 'score' && createRulesOptionsElements('To Score', 'score', [150, 200, 250], ['150', '200', '250'])}
+                {rules['play'] === 'hands' && createRulesOptionsElements('# of Hands', 'hands', [4, 5, 6], ['4', '5', '6'])}
+                {createRulesOptionsElements('Stick the Dealer', 'stickDealer', ['yes', 'no'], ['Yes', 'No'])}
+                {createRulesOptionsElements('Allow Misdeal', 'allowMisdeal', ['yes', 'no'], ['Yes', 'No'])}
+                {createRulesOptionsElements('Meld Speed', 'meldSpeed', ['slow', 'medium', 'fast'], ['Slow', 'Med', 'Fast'])}
+                {/* TODO: Add "Create" button */}
             </div>
             {/* Join existing game view */}
             
         </div>
     );
 }
-
-const animateFlip = (isFlipping, setFlipping) => {
-    if(isFlipping)
-        return;
-    setFlipping(true);
-    setTimeout(() => {
-        setFlipping(false);
-    }, 500);
-};
 
 export default PinochleStartView;
