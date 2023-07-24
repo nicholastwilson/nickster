@@ -4,10 +4,10 @@ import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCirclePlus, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faRightToBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
 import './PinochleStartView.scss';
 
-library.add(faCirclePlus, faRightToBracket);
+library.add(faCirclePlus, faRightToBracket, faXmark);
 
 /*
     Creating a new game:
@@ -68,14 +68,14 @@ function PinochleStartView() {
             </div>
             {/* New & Join buttons */}
             <button className={`psv-game-button psv-new-game-button ${view === 'start' ? 'psv-fade-in' : 'psv-fade-out'}`} onClick={() => setView('new')}>
-                <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '1vmin' }} />
+                <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '2vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>New</div>
                     <div className='psv-button-subtext'>Start a new game</div>
                 </div>
             </button>
             <button className={`psv-game-button psv-join-game-button ${view === 'start' ? 'psv-fade-in' : 'psv-fade-out'}`} onClick={() => setView('join')}>
-                <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '1vmin' }} />
+                <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '2vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>Join</div>
                     <div className='psv-button-subtext'>Join an existing game</div>
@@ -90,6 +90,16 @@ function PinochleStartView() {
                 {createRulesOptionsElements('Stick the Dealer', 'stickDealer', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Allow Misdeal', 'allowMisdeal', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Meld Speed', 'meldSpeed', ['slow', 'medium', 'fast'], ['Slow', 'Med', 'Fast'])}
+                <div className='psv-rules-button-container'>
+                    <button className='psv-rules-button' onClick={() => setView('new')}>
+                        <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '2vmin' }} />
+                        <div className='psv-rules-button-text'>Create</div>
+                    </button>
+                    <button className='psv-rules-button' onClick={() => setView('start')}>
+                        <FontAwesomeIcon className='icon' icon='fa-solid fa-xmark' style={{ marginRight: '2vmin' }} />
+                        <div className='psv-rules-button-text'>Cancel</div>
+                    </button>
+                </div>
                 {/* TODO: Add "Create" button */}
             </div>
             {/* Join existing game view */}
