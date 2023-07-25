@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import Supabase from 'utils/Supabase';
 import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCirclePlus, faRightToBracket, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faRightToBracket, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './PinochleStartView.scss';
 
-library.add(faCirclePlus, faRightToBracket, faXmark);
+library.add(faCirclePlus, faRightToBracket, faCircleArrowLeft);
 
 /*
     Creating a new game:
@@ -112,26 +112,26 @@ function PinochleStartView() {
                 {createRulesOptionsElements('Allow Misdeal', 'allowMisdeal', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Meld Speed', 'meldSpeed', ['slow', 'medium', 'fast'], ['Slow', 'Med', 'Fast'])}
                 <div className='psv-rules-button-container'>
+                    <button className='psv-rules-button' onClick={() => setView('start')}>
+                        <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-arrow-left' style={{ marginRight: '2vmin' }} />
+                        <div className='psv-rules-button-text'>Back</div>
+                    </button>
                     <button className='psv-rules-button' onClick={createNewGame}>
                         <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Create</div>
-                    </button>
-                    <button className='psv-rules-button' onClick={() => setView('start')}>
-                        <FontAwesomeIcon className='icon' icon='fa-solid fa-xmark' style={{ marginRight: '2vmin' }} />
-                        <div className='psv-rules-button-text'>Cancel</div>
                     </button>
                 </div>
             </div>
             {/* Join existing game view */}
             <div className={`psv-join-container ${view === 'join' ? 'psv-fade-in' : 'psv-fade-out'}`}>
                 <div className='psv-join-button-container'>
+                    <button className='psv-join-button' onClick={() => setView('start')}>
+                        <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-arrow-left' style={{ marginRight: '2vmin' }} />
+                        <div className='psv-rules-button-text'>Back</div>
+                    </button>
                     <button className='psv-join-button' style={{ fontSize: '5.5vmin' }} onClick={joinExistingGame}>
                         <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Join</div>
-                    </button>
-                    <button className='psv-join-button' onClick={() => setView('start')}>
-                        <FontAwesomeIcon className='icon' icon='fa-solid fa-xmark' style={{ marginRight: '2vmin' }} />
-                        <div className='psv-rules-button-text'>Cancel</div>
                     </button>
                 </div>
             </div>

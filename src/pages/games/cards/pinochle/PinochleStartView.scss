@@ -57,15 +57,15 @@
 // New game & Join game
 .psv-game-button {
     left: 50%;
-    width: 45vmin;
+    width: 50vmin;
     height: 15vmin;
-    max-width: 45vw;
+    max-width: 50vw;
     max-height: 15vh;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: left;
-    font-size: 5.5vmin;
+    font-size: 6vmin;
     font-weight: bold;
     color: var(--theme-color-8);
     background-color: var(--theme-color-0);
@@ -105,7 +105,7 @@
 }
 
 .psv-button-subtext {
-    font-size: 2.5vmin;
+    font-size: 3vmin;
 }
 
 // New Game Rules
@@ -128,6 +128,7 @@
 }
 
 .psv-rules-summary {
+    height: 10vmin;
     font-size: 3.5vmin;
     margin-bottom: 3vmin;
 }
@@ -188,6 +189,7 @@
 .psv-rules-selected-option {
     color: var(--theme-color-0);
     background-color: var(--theme-color-8);
+    box-shadow: 0 0 1vmin var(--theme-color-0);
 }
 
 .psv-rules-button-container {
@@ -197,10 +199,11 @@
     justify-content: center;
     gap: 3vmin;
     margin-top: 6vmin;
+    margin-bottom: 6vmin;
 }
 
 .psv-rules-button {
-    width: 28vmin;
+    width: 30vmin;
     height: 10vmin;
     max-width: 45vw;
     max-height: 15vh;
