@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
+// import Supabase from 'utils/Supabase';
 import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,6 +25,12 @@ library.add(faCirclePlus, faRightToBracket, faXmark);
 */
 function PinochleStartView() {
     // const navigate = useNavigate();
+    // useEffect(() => {
+    //     (async () => {
+    //         const { data, error } = await Supabase.rpc('generate_unique_player_uuid');
+    //         console.log(error ? error.message : data);
+    //     })();
+    // }, []);
     const [view, setView] = useState('start');
     const [jackFlipping, setJackFlipping] = useState(false);
     const [queenFlipping, setQueenFlipping] = useState(false);
@@ -55,6 +62,14 @@ function PinochleStartView() {
             </div>
         )
     };
+    const createNewGame = () => {
+        setView('start');
+        // TODO: API call to create a new game
+    };
+    const joinExistingGame = () => {
+        setView('start');
+        // TODO: API call to join an existing game
+    };
     return (
         <div className='psv-start-page'>
             {/* Header title & logo */}
@@ -84,14 +99,20 @@ function PinochleStartView() {
             {/* New game settings view */}
             <div className={`psv-rules-container ${view === 'new' ? 'psv-fade-in' : 'psv-fade-out'}`}>
                 <div className='psv-rules-title'><u>Game Rules</u></div>
+                <div className='psv-rules-summary'>{
+                    'Play to ' + (rules.play === 'score' ? (rules.score + ' points') : (rules.hands + ' hands')) +
+                    (rules.stickDealer === 'yes' ? ', stick the dealer' : '') +
+                    (rules.allowMisdeal === 'yes' ? ', allow misdeals' : '') +
+                    ', ' + rules.meldSpeed + ' meld speed'
+                }</div>
                 {createRulesOptionsElements('Play', 'play', ['score', 'hands'], ['To Score', '# of Hands'])}
-                {rules['play'] === 'score' && createRulesOptionsElements('To Score', 'score', [150, 200, 250], ['150', '200', '250'])}
-                {rules['play'] === 'hands' && createRulesOptionsElements('# of Hands', 'hands', [4, 5, 6], ['4', '5', '6'])}
+                {rules.play === 'score' && createRulesOptionsElements('To Score', 'score', [150, 200, 250], ['150', '200', '250'])}
+                {rules.play === 'hands' && createRulesOptionsElements('# of Hands', 'hands', [4, 5, 6], ['4', '5', '6'])}
                 {createRulesOptionsElements('Stick the Dealer', 'stickDealer', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Allow Misdeal', 'allowMisdeal', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Meld Speed', 'meldSpeed', ['slow', 'medium', 'fast'], ['Slow', 'Med', 'Fast'])}
                 <div className='psv-rules-button-container'>
-                    <button className='psv-rules-button' onClick={() => setView('new')}>
+                    <button className='psv-rules-button' onClick={createNewGame}>
                         <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Create</div>
                     </button>
@@ -100,10 +121,20 @@ function PinochleStartView() {
                         <div className='psv-rules-button-text'>Cancel</div>
                     </button>
                 </div>
-                {/* TODO: Add "Create" button */}
             </div>
             {/* Join existing game view */}
-            
+            <div className={`psv-join-container ${view === 'join' ? 'psv-fade-in' : 'psv-fade-out'}`}>
+                <div className='psv-join-button-container'>
+                    <button className='psv-join-button' style={{ fontSize: '5.5vmin' }} onClick={joinExistingGame}>
+                        <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '2vmin' }} />
+                        <div className='psv-rules-button-text'>Join</div>
+                    </button>
+                    <button className='psv-join-button' onClick={() => setView('start')}>
+                        <FontAwesomeIcon className='icon' icon='fa-solid fa-xmark' style={{ marginRight: '2vmin' }} />
+                        <div className='psv-rules-button-text'>Cancel</div>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

@@ -117,15 +117,19 @@
     flex-direction: column;
     align-items: left;
     justify-content: left;
-    padding: 1vmin;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 .psv-rules-title {
     font-size: 8vmin;
-    margin-bottom: 3vmin;
+    margin-bottom: 1vmin;
     white-space: nowrap;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.psv-rules-summary {
+    font-size: 3.5vmin;
+    margin-bottom: 3vmin;
 }
 
 .psv-rules-options-container {
@@ -196,7 +200,7 @@
 }
 
 .psv-rules-button {
-    width: 36vmin;
+    width: 28vmin;
     height: 10vmin;
     max-width: 45vw;
     max-height: 15vh;
@@ -215,6 +219,51 @@
 }
 
 .psv-rules-button:active {
+    transform: translateY(0.5vmin);
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
+}
+
+// Join Game
+.psv-join-container {
+    top: 42vmin;
+    left: 5vmin;
+    width: 90vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.psv-join-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3vmin;
+    margin-top: 6vmin;
+}
+
+.psv-join-button {
+    width: 28vmin;
+    height: 10vmin;
+    max-width: 45vw;
+    max-height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 5vmin;
+    font-weight: bold;
+    color: var(--theme-color-8);
+    background-color: var(--theme-color-0);
+    border: none;
+    border-radius: 2vmin;
+    box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+    padding-left: 2.5vmin;
+    cursor: pointer;
+}
+
+.psv-join-button:active {
     transform: translateY(0.5vmin);
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
 }
