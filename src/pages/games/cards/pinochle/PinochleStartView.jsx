@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import supabase from 'utils/supabase';
+// import supabase from 'utils/Supabase';
 import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,7 +27,7 @@ function PinochleStartView() {
     //     generateUniqueGameID();
     // }, []);
     // async function generateUniqueGameID() {
-    //     const { data, error } = await supabase.rpc('generate_unique_game_id', {
+    //     const { data, error } = await Supabase.rpc('generate_unique_game_id', {
     //         game_table: 'pinochle_games',
     //         id_column: 'game_id',
     //     });
