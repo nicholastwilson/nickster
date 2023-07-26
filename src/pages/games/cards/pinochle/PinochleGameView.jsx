@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+// import { useParams } from 'react-router-dom';
 import _ from 'lodash';
 import { motion} from 'framer-motion';
 import PlayingCard, {Suits} from '../PlayingCard';
 import './PinochleGameView.scss';
 
 function PinochleGameView() {
-    const { gameID } = useParams();
-    const [ gameState] = React.useState({
-        gameID: gameID
-    });
-    const PinochleContext = React.createContext();
-
-    // const [players, setPlayers] = useState([]);
+    // const { gameID } = useParams();
     const [cards, setCards] = useState([]);
     function handleAddCard() {
         let newCard = (
@@ -28,22 +22,8 @@ function PinochleGameView() {
             setCards([newCard]);
         }
     }
-    // useEffect(() => {
-    //     (async () => {
-    //         const { data, error } = await supabase
-    //             .from('test')
-    //             .select('*');
-    //         if (error) {
-    //             console.error('Error fetching data:', error.message);
-    //         } else {
-    //             setPlayers(data);
-    //         }
-    //     })();
-    // }, []);
-
     return (
-        <PinochleContext.Provider value={gameState}>
-            <div>Game ID: {gameID}</div>
+        <div className='pinochle-game-view'>
             <div className='title-page' tabIndex='0' onKeyDown={handleAddCard}>
                 {/* Title text */}
                 <motion.div className='title-text'
@@ -77,7 +57,7 @@ function PinochleGameView() {
                     <option value='trump'>Trump</option>
                 </select> */}
             </div>
-        </PinochleContext.Provider>
+        </div>
     );
 }
 

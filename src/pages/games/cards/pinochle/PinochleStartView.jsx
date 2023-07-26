@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
-import supabase from 'utils/supabase';
+// import supabase from 'utils/supabase';
 import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,13 +22,21 @@ import './PinochleStartView.scss';
 */
 function PinochleStartView() {
     // const [players, setPlayers] = useState([]);
+    // const [gameID, setGameID] = useState(null);
     // useEffect(() => {
-    //     console.log(getPlayers());
+    //     generateUniqueGameID();
     // }, []);
-    // async function getPlayers() {
-    //   const { data } = await supabase.from('players').select();
-    //   setPlayers(data);
-    // }
+    // async function generateUniqueGameID() {
+    //     const { data, error } = await supabase.rpc('generate_unique_game_id', {
+    //         game_table: 'pinochle_games',
+    //         id_column: 'game_id',
+    //     });
+    //     if(error) {
+    //         console.error(error);
+    //     } else {
+    //         setGameID(data);
+    //     }
+    // };
     // View
     const [view, setView] = useState('start');
     // Card animations
