@@ -1,14 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import Supabase from 'utils/Supabase';
+import supabase from 'utils/supabase';
 import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCirclePlus, faRightToBracket, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './PinochleStartView.scss';
-
-library.add(faCirclePlus, faRightToBracket, faCircleArrowLeft);
 
 /*
     Creating a new game:
@@ -24,14 +21,17 @@ library.add(faCirclePlus, faRightToBracket, faCircleArrowLeft);
     Go back to Games page
 */
 function PinochleStartView() {
-    // const navigate = useNavigate();
+    // const [players, setPlayers] = useState([]);
     // useEffect(() => {
-    //     (async () => {
-    //         const { data, error } = await Supabase.rpc('generate_unique_player_uuid');
-    //         console.log(error ? error.message : data);
-    //     })();
+    //     console.log(getPlayers());
     // }, []);
+    // async function getPlayers() {
+    //   const { data } = await supabase.from('players').select();
+    //   setPlayers(data);
+    // }
+    // View
     const [view, setView] = useState('start');
+    // Card animations
     const [jackFlipping, setJackFlipping] = useState(false);
     const [queenFlipping, setQueenFlipping] = useState(false);
     const animateFlip = (isFlipping, setFlipping) => {
@@ -42,6 +42,7 @@ function PinochleStartView() {
             setFlipping(false);
         }, 500);
     };
+    // Rules
     const [rules, setRules] = useState({
         play: 'score',
         score: 150,
@@ -62,6 +63,8 @@ function PinochleStartView() {
             </div>
         )
     };
+
+    // 
     const createNewGame = () => {
         setView('start');
         // TODO: API call to create a new game
@@ -70,8 +73,10 @@ function PinochleStartView() {
         setView('start');
         // TODO: API call to join an existing game
     };
+
     return (
         <div className='psv-start-page'>
+
             {/* Header title & logo */}
             <div className='psv-nickster-text'>Nickster</div>
             <div className='psv-subtitle-text'>Pinochle</div>
@@ -81,21 +86,23 @@ function PinochleStartView() {
             <div className='psv-card-queen' onClick={() => animateFlip(queenFlipping, setQueenFlipping)}>
                 <PlayingCard suit='Spades' rank='Queen' additionalClasses={`${queenFlipping ? 'pc-flipped' : ''}`} backFaceImage={cardBackImage}/>
             </div>
+
             {/* New & Join buttons */}
             <button className={`psv-game-button psv-new-game-button ${view === 'start' ? 'psv-fade-in' : 'psv-fade-out'}`} onClick={() => setView('new')}>
-                <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '2vmin' }} />
+                <FontAwesomeIcon className='icon' icon={faCirclePlus} style={{ marginRight: '2vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>New</div>
                     <div className='psv-button-subtext'>Start a new game</div>
                 </div>
             </button>
             <button className={`psv-game-button psv-join-game-button ${view === 'start' ? 'psv-fade-in' : 'psv-fade-out'}`} onClick={() => setView('join')}>
-                <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '2vmin' }} />
+                <FontAwesomeIcon className='icon' icon={faRightToBracket} style={{ marginRight: '2vmin' }} />
                 <div className='psv-button-text-container'>
                     <div className='psv-button-text'>Join</div>
                     <div className='psv-button-subtext'>Join an existing game</div>
                 </div>
             </button>
+
             {/* New game settings view */}
             <div className={`psv-rules-container ${view === 'new' ? 'psv-fade-in' : 'psv-fade-out'}`}>
                 <div className='psv-rules-title'><u>Game Rules</u></div>
@@ -113,30 +120,32 @@ function PinochleStartView() {
                 {createRulesOptionsElements('Meld Speed', 'meldSpeed', ['slow', 'medium', 'fast'], ['Slow', 'Med', 'Fast'])}
                 <div className='psv-rules-button-container'>
                     <button className='psv-rules-button' onClick={() => setView('start')}>
-                        <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-arrow-left' style={{ marginRight: '2vmin' }} />
+                        <FontAwesomeIcon className='icon' icon={faCircleArrowLeft} style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Back</div>
                     </button>
                     <button className='psv-rules-button' onClick={createNewGame}>
-                        <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-plus' style={{ marginRight: '2vmin' }} />
+                        <FontAwesomeIcon className='icon' icon={faCirclePlus} style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Create</div>
                     </button>
                 </div>
             </div>
+
             {/* Join existing game view */}
             <div className={`psv-join-container ${view === 'join' ? 'psv-fade-in' : 'psv-fade-out'}`}>
                 <div className='psv-join-button-container'>
                     <button className='psv-join-button' onClick={() => setView('start')}>
-                        <FontAwesomeIcon className='icon' icon='fa-solid fa-circle-arrow-left' style={{ marginRight: '2vmin' }} />
+                        <FontAwesomeIcon className='icon' icon={faCircleArrowLeft} style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Back</div>
                     </button>
                     <button className='psv-join-button' style={{ fontSize: '5.5vmin' }} onClick={joinExistingGame}>
-                        <FontAwesomeIcon className='icon' icon='fa-solid fa-right-to-bracket' style={{ marginRight: '2vmin' }} />
+                        <FontAwesomeIcon className='icon' icon={faRightToBracket} style={{ marginRight: '2vmin' }} />
                         <div className='psv-rules-button-text'>Join</div>
                     </button>
                 </div>
             </div>
+
         </div>
     );
-}
+};
 
 export default PinochleStartView;
