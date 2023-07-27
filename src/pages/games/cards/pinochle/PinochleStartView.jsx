@@ -1,6 +1,6 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import supabase from 'utils/Supabase';
+import { useNavigate } from 'react-router-dom';
+import Supabase from 'utils/Supabase';
 import PlayingCard from '../PlayingCard';
 import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,22 +21,12 @@ import './PinochleStartView.scss';
     Go back to Games page
 */
 function PinochleStartView() {
+    const navigate = useNavigate();
     // const [players, setPlayers] = useState([]);
     // const [gameID, setGameID] = useState(null);
     // useEffect(() => {
     //     generateUniqueGameID();
     // }, []);
-    // async function generateUniqueGameID() {
-    //     const { data, error } = await Supabase.rpc('generate_unique_game_id', {
-    //         game_table: 'pinochle_games',
-    //         id_column: 'game_id',
-    //     });
-    //     if(error) {
-    //         console.error(error);
-    //     } else {
-    //         setGameID(data);
-    //     }
-    // };
     // View
     const [view, setView] = useState('start');
     // Card animations
@@ -53,8 +43,7 @@ function PinochleStartView() {
     // Rules
     const [rules, setRules] = useState({
         play: 'score',
-        score: 150,
-        hands: 4,
+        goal: 150,
         stickDealer: 'yes',
         allowMisdeal: 'yes',
         meldSpeed: 'medium'
@@ -65,17 +54,34 @@ function PinochleStartView() {
                 <div className='psv-rules-label'>{ruleLabel}:</div>
                 <div className='psv-rules-options'>
                     {values.map((v, i) => 
-                        <button key={key + i} className={`psv-rules-option-button psv-option-${(i === 0) ? 'left' : (i === values.length - 1) ? 'right' : 'middle'} ${rules[key] === v ? 'psv-rules-selected-option' : ''}`} style={{ width: (100 / values.length) + '%' }} onClick={() => setRules({ ...rules, [key]: v })}>{buttonLabels[i]}</button>
+                        <button key={key + i} 
+                            className={`psv-rules-option-button psv-option-${(i === 0) ? 'left' : (i === values.length - 1) ? 'right' : 'middle'} ${rules[key] === v ? 'psv-rules-selected-option' : ''}`} 
+                            style={{ width: (100 / values.length) + '%' }} 
+                            onClick={() => setRules({ ...rules, [key]: v })}
+                        >
+                            {buttonLabels[i]}
+                        </button>
                     )}
                 </div>
             </div>
         )
     };
-
-    // 
-    const createNewGame = () => {
-        setView('start');
-        // TODO: API call to create a new game
+    const createNewGame = async () => {
+        const { data, error } = await Supabase.rpc('create_pinochle_game', {
+            settings: {
+                play: rules.play,
+                goal: rules.goal,
+                score: rules.score,
+                stickDealer: rules.stickDealer,
+                allowMisdeal: rules.allowMisdeal,
+                meldSpeed: rules.meldSpeed
+            }
+        });
+        if(error) {
+            console.error(error);
+        } else {
+            navigate('../play/' + data);
+        }
     };
     const joinExistingGame = () => {
         setView('start');
@@ -121,8 +127,8 @@ function PinochleStartView() {
                     ', ' + rules.meldSpeed + ' meld speed'
                 }</div>
                 {createRulesOptionsElements('Play', 'play', ['score', 'hands'], ['To Score', '# of Hands'])}
-                {rules.play === 'score' && createRulesOptionsElements('To Score', 'score', [150, 200, 250], ['150', '200', '250'])}
-                {rules.play === 'hands' && createRulesOptionsElements('# of Hands', 'hands', [4, 5, 6], ['4', '5', '6'])}
+                {rules.play === 'score' && createRulesOptionsElements('To Score', 'goal', [150, 200, 250], ['150', '200', '250'])}
+                {rules.play === 'hands' && createRulesOptionsElements('# of Hands', 'goal', [4, 5, 6], ['4', '5', '6'])}
                 {createRulesOptionsElements('Stick the Dealer', 'stickDealer', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Allow Misdeal', 'allowMisdeal', ['yes', 'no'], ['Yes', 'No'])}
                 {createRulesOptionsElements('Meld Speed', 'meldSpeed', ['slow', 'medium', 'fast'], ['Slow', 'Med', 'Fast'])}

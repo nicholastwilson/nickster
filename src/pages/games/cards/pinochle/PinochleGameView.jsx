@@ -1,12 +1,13 @@
 import { useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import _ from 'lodash';
 import { motion} from 'framer-motion';
 import PlayingCard, {Suits} from '../PlayingCard';
 import './PinochleGameView.scss';
 
 function PinochleGameView() {
-    // const { gameID } = useParams();
+    const { gameID } = useParams();
+    // TODO: Retrieve game settings from Supabase
     const [cards, setCards] = useState([]);
     function handleAddCard() {
         let newCard = (
@@ -23,7 +24,8 @@ function PinochleGameView() {
         }
     }
     return (
-        <div className='pinochle-game-view'>
+        <div className='pgv-game-page'>
+            <div>Game ID: {gameID}</div>
             <div className='title-page' tabIndex='0' onKeyDown={handleAddCard}>
                 {/* Title text */}
                 <motion.div className='title-text'

@@ -1,17 +1,13 @@
 [Users]
     Common
-        Create unique user ID or hash for all users?
-        Update username or alias after user logs in?
-    Guest
-        Use localStorage to store user data and preferences
-        Prompt for username and basic preferences on first run
+        {Username} persisted in <localStorage>
+        {Theme} persisted in <localStorage>
     Authenticated
-        
-        Use Supabase to store user data and preferences
-
-    Enter username 
+        {Username} persisted in <Supabase>
+        {Theme} persisted in <Supabase>
 
 [New Game]
+    Configure game settings
     Server creates a game instance
     Server creates and provides a room code
 
