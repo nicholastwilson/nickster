@@ -1,10 +1,11 @@
+
+
 [Users]
     Common
-        {Username} persisted in <localStorage>
-        {Theme} persisted in <localStorage>
+        [Local Storage] {Username}
+        [Local Storage] {Theme}
+    Guest
     Authenticated
-        {Username} persisted in <Supabase>
-        {Theme} persisted in <Supabase>
 
 [New Game]
     Configure game settings
