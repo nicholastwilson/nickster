@@ -1,25 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Supabase from 'utils/Supabase';
-import PlayingCard from '../PlayingCard';
-import cardBackImage from '../images/card-back.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus, faRightToBracket, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+import Supabase from 'features/storage/Supabase';
+import PlayingCard from '../PlayingCard';
+import cardBackImage from 'assets/images/games/cards/card-back.png';
+
 import './PinochleStartView.scss';
 
-/*
-    Creating a new game:
-    1) User is prompted to select game parameters
-    2) A Supabase API call is made to create a new game based on the parameters
-    3) If successful, user is navigated to ./game/${gameID}
-    4) If unsuccessful, user is presented with an error message
-
-    Joining an existing game:
-    1) User is prompted for the existing game ID
-    2) User is navigated to .../pinochle/game/${gameID}
-
-    Go back to Games page
-*/
 function PinochleStartView() {
     const navigate = useNavigate();
     // const [players, setPlayers] = useState([]);

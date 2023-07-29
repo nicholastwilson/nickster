@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as NicksterLogo } from 'assets/nickster_logo.svg';
+import { ReactComponent as NicksterLogo } from 'assets/images/app/nickster_logo.svg';
 import PlayingCard from './cards/PlayingCard';
+
 import './GamesView.scss';
 
 export default function GamesView() {

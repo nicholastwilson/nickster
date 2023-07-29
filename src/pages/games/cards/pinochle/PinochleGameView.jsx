@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import _ from 'lodash';
 import { motion} from 'framer-motion';
+import _ from 'lodash';
+
 import PlayingCard, {Suits} from '../PlayingCard';
+
 import './PinochleGameView.scss';
 
 function PinochleGameView() {

@@ -1,7 +1,8 @@
-import svgClubs from './images/suit-clubs.svg';
-import svgDiamonds from './images/suit-diamonds.svg';
-import svgHearts from './images/suit-hearts.svg';
-import svgSpades from './images/suit-spades.svg';
+import svgClubs from 'assets/images/games/cards/suit-clubs.svg';
+import svgDiamonds from 'assets/images/games/cards/suit-diamonds.svg';
+import svgHearts from 'assets/images/games/cards/suit-hearts.svg';
+import svgSpades from 'assets/images/games/cards/suit-spades.svg';
+
 import './PlayingCard.scss';
 
 const Suits = {

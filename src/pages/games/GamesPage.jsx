@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import GamesView from './GamesView';
 import PinochlePage from './cards/pinochle/PinochlePage';
-import NotFoundPage from 'pages/notfound/NotFoundPage';
+import NotFoundPage from 'features/routing/NotFoundPage';
 
 function GamesPage() {
     return (
