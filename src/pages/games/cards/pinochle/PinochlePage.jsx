@@ -1,14 +1,14 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from "react-router-dom";
 
-import PinochleStartView from './PinochleStartView';
-import PinochleGameView from './PinochleGameView';
+import PinochleStartView from "./PinochleStartView";
+import PinochleGameView from "./PinochleGameView";
 
 function PinochlePage() {
     return (
         <Routes>
-            <Route path='/start' element={<PinochleStartView />} />
-            <Route path='/play/:gameID' element={<PinochleGameView />} />
-            <Route path='*' element={<Navigate to='./start' replace />} />
+            <Route path="/start" element={<PinochleStartView />} />
+            <Route path="/play/:gameID" element={<PinochleGameView />} />
+            <Route path="*" element={<Navigate to="./start" replace />} />
         </Routes>
     );
 }

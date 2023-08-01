@@ -32,8 +32,9 @@
 
 body {
   margin: 0;
+  color: var(--theme-color-0);
   background-color: var(--theme-color-7);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import GamesView from './GamesView';
-import PinochlePage from './cards/pinochle/PinochlePage';
-import NotFoundPage from 'features/routing/NotFoundPage';
+import GamesView from "./GamesView";
+import PinochlePage from "./cards/pinochle/PinochlePage";
+import NotFoundPage from "pages/notfound/NotFoundPage";
 
 function GamesPage() {
     return (

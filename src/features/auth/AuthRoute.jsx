@@ -1,9 +1,9 @@
-import { Navigate } from 'react-router-dom';
-import { useLocation } from 'react-router';
+import { Navigate } from "react-router-dom";
+import { useLocation } from "react-router";
 
-import useAuth from './useAuth';
+import useAuth from "./useAuth";
 
-const ProtectedRoute = ({ children }) => {
+const AuthRoute = ({ children }) => {
     const { authToken } = useAuth();
     const location = useLocation();
 
@@ -14,4 +14,4 @@ const ProtectedRoute = ({ children }) => {
     return children;
 };
 
-export default ProtectedRoute;
+export default AuthRoute;

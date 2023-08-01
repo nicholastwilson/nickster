@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
+
+import { AuthContext } from "./AuthProvider";
 
 const useAuth = () => {
-    const [authToken, setAuthToken] = useState(null);
-    return [authToken, setAuthToken];
+    return useContext(AuthContext);
 };
 
 export default useAuth;
