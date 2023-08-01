@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as NicksterLogo } from "assets/images/app/nickster_logo.svg";
@@ -8,15 +8,26 @@ import "./GamesView.scss";
 
 export default function GamesView() {
     const navigate = useNavigate();
+
+    // Logo spinning animation
     const [logoSpinning, setLogoSpinning] = useState(false);
-    const spinLogo = () => {
+    const spinLogo = useCallback(() => {
         if(logoSpinning)
             return;
         setLogoSpinning(true);
         setTimeout(() => {
             setLogoSpinning(false);
         }, 500);
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Spin logo once after page loads
+    useEffect(() => {
+        setTimeout(() => {
+            spinLogo();
+        }, 1000);
+    }, [spinLogo]);
+    
     return (
         <div className="gv-page">
             {/* Header title & logo */}

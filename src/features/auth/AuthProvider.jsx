@@ -7,8 +7,6 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [authToken, setAuthToken] = useLocalStorage("authToken", null);
-    console.log(`[AuthProvider] authToken: ${authToken}`);
-    // console.trace();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -16,8 +14,6 @@ const AuthProvider = ({ children }) => {
         // TODO: Login user and set authentication token
         const uuid = crypto.randomUUID();
         setAuthToken(uuid);
-        console.log(`Logged in as ${uuid} (navigating to ${location.state?.from?.pathname})`);
-        // console.trace();
         navigate(location.state?.from?.pathname);
     };
 

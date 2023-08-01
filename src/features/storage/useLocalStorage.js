@@ -1,30 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useLocalStorage = (key, initialValue) => {
-    // Retrieve from local storage or generate initial value
-    const [value, setValue] = useState(() => {
-        // Check if key is already in local storage
-        console.log(`[useLocalStorage] Get "${key}" = ${JSON.parse(localStorage.getItem(key))}`);
-        // console.log(new Error().stack.replace(/.*\n/g, " -> "));
-        const storedValue = JSON.parse(localStorage.getItem(key));
-        if(storedValue)
-            return storedValue;
-        // Check for initial value generator function
-        if(initialValue instanceof Function)
-            return initialValue();
-        // Return initial value
-        return initialValue;
-    });
+    // Read value from localStorage
+    const readValue = useCallback(() => {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialValue;
+    }, [key, initialValue]);
 
-    // Update local storage when value changes
+    // State for localStorage value
+    const [storedValue, setStoredValue] = useState(readValue);
+
+    // Setter function
+    const setValue = (value) => {
+        const newValue = value instanceof Function ? value(storedValue) : value;
+        localStorage.setItem(key, JSON.stringify(newValue));
+        setStoredValue(newValue);
+    };
+
+    // Save to localStorage when value changes
     useEffect(() => {
-        console.log(`[useLocalStorage] Set "${key}" => ${JSON.stringify(value)}`);
-        // const stack = new Error().stack.replace(/.*\n/g, " -> ");
-        localStorage.setItem(key, JSON.stringify(value));
-    }, [key, value]);
+        setStoredValue(readValue());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Return value and setter
-    return [value, setValue];
+    return [storedValue, setValue];
 };
 
 export default useLocalStorage;

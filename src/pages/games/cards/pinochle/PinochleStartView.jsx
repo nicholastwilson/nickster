@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faRightToBracket, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -18,17 +18,30 @@ function PinochleStartView() {
     // }, []);
     // View
     const [view, setView] = useState("start");
+
     // Card animations
     const [jackFlipping, setJackFlipping] = useState(false);
     const [queenFlipping, setQueenFlipping] = useState(false);
-    const animateFlip = (isFlipping, setFlipping) => {
+    const animateFlip = useCallback((isFlipping, setFlipping) => {
         if(isFlipping)
             return;
         setFlipping(true);
         setTimeout(() => {
             setFlipping(false);
         }, 500);
-    };
+    }, []);
+
+    // Flip cards in staggered order after initial page load
+    useEffect(() => {
+        setTimeout(() => {
+            animateFlip(jackFlipping, setJackFlipping);
+            setTimeout(() => {
+                animateFlip(queenFlipping, setQueenFlipping);
+            }, 250);
+        }, 1000);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // Rules
     const [rules, setRules] = useState({
         play: "score",
@@ -37,6 +50,7 @@ function PinochleStartView() {
         allowMisdeal: "yes",
         meldSpeed: "medium"
     });
+
     const createRulesOptionsElements = (ruleLabel, key, values, buttonLabels) => {
         return (
             <div className="psv-rules-options-container">
@@ -55,6 +69,7 @@ function PinochleStartView() {
             </div>
         )
     };
+
     const createNewGame = async () => {
         const { data, error } = await Supabase.rpc("create_pinochle_game", {
             settings: {
@@ -72,6 +87,7 @@ function PinochleStartView() {
             navigate("../play/" + data);
         }
     };
+    
     const joinExistingGame = () => {
         setView("start");
         // TODO: API call to join an existing game
