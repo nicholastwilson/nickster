@@ -4,11 +4,10 @@ import Media from "react-media";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import AuthProvider from "./features/auth/AuthProvider";
-import AuthRoute from "./features/auth/AuthRoute";
 import LoginPage from "./pages/login/LoginPage";
 import GamesPage from "./pages/games/GamesPage";
 import NotFoundPage from "./pages/notfound/NotFoundPage";
-import OrientationWarning from "./features/devices/OrientationWarning";
+import OrientationWarning from "./pages/orientationwarning/OrientationWarning";
 
 import "./App.scss";
 
@@ -25,17 +24,9 @@ function App() {
                         <CSSTransition nodeRef={nodeRef} key={location?.key} classNames="app" timeout={200}>
                             <AuthProvider>
                                 <Routes location={location}>
-                                    <Route path="/login" element={
-                                        <LoginPage />
-                                    } />
-                                    <Route path="/games/*" element={
-                                        <AuthRoute>
-                                            <GamesPage />
-                                        </AuthRoute>
-                                    } />
-                                    <Route path="*" element={
-                                        <NotFoundPage />
-                                    } />
+                                    <Route path="/login" element={<LoginPage />} />
+                                    <Route path="/games/*" element={<GamesPage />} />
+                                    <Route path="*" element={<NotFoundPage />} />
                                 </Routes>
                             </AuthProvider>
                         </CSSTransition>

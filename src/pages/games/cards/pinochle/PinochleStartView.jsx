@@ -1,8 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faRightToBracket, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import useDebouncedTimer from "hooks/useDebouncedTimer.js";
 import Supabase from "features/storage/Supabase";
 import PlayingCard from "../PlayingCard";
 import cardBackImage from "assets/images/games/cards/card-back.png";
@@ -20,27 +22,8 @@ function PinochleStartView() {
     const [view, setView] = useState("start");
 
     // Card animations
-    const [jackFlipping, setJackFlipping] = useState(false);
-    const [queenFlipping, setQueenFlipping] = useState(false);
-    const animateFlip = useCallback((isFlipping, setFlipping) => {
-        if(isFlipping)
-            return;
-        setFlipping(true);
-        setTimeout(() => {
-            setFlipping(false);
-        }, 500);
-    }, []);
-
-    // Flip cards in staggered order after initial page load
-    useEffect(() => {
-        setTimeout(() => {
-            animateFlip(jackFlipping, setJackFlipping);
-            setTimeout(() => {
-                animateFlip(queenFlipping, setQueenFlipping);
-            }, 250);
-        }, 1000);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const [jackFlipping, triggerJackFlipping] = useDebouncedTimer(500, 750, 1000);
+    const [queenFlipping, triggerQueenFlipping] = useDebouncedTimer(500, 750, 1250);
 
     // Rules
     const [rules, setRules] = useState({
@@ -99,10 +82,10 @@ function PinochleStartView() {
             {/* Header title & logo */}
             <div className="psv-nickster-text">Nickster</div>
             <div className="psv-subtitle-text">Pinochle</div>
-            <div className="psv-card-jack" onClick={() => animateFlip(jackFlipping, setJackFlipping)}>
+            <div className="psv-card-jack" onClick={triggerJackFlipping}>
                 <PlayingCard suit="Diamonds" rank="Jack" additionalClasses={`${jackFlipping ? "pc-flipped" : ""}`} backFaceImage={cardBackImage}/>
             </div>
-            <div className="psv-card-queen" onClick={() => animateFlip(queenFlipping, setQueenFlipping)}>
+            <div className="psv-card-queen" onClick={triggerQueenFlipping}>
                 <PlayingCard suit="Spades" rank="Queen" additionalClasses={`${queenFlipping ? "pc-flipped" : ""}`} backFaceImage={cardBackImage}/>
             </div>
 
