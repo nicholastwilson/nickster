@@ -227,6 +227,10 @@
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
 }
 
+.psv-rules-button-text {
+    margin-bottom: 0.5vmin;
+}
+
 // Join Game
 .psv-join-container {
     top: 42vmin;
@@ -270,4 +274,8 @@
 .psv-join-button:active {
     transform: translateY(0.5vmin);
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.75);
+}
+
+.psv-rules-button-text {
+    margin-bottom: 0.5vmin;
 }

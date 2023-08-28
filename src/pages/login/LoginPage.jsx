@@ -1,5 +1,6 @@
-// import { useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 // import _ from "lodash";
+import Supabase from "features/storage/Supabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,6 +12,50 @@ import "./LoginPage.scss";
 const LoginPage = () => {
     // const { authToken, handleLogin } = useAuth();
     const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000);
+    const [enableControls, setEnableControls] = useState(true);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const sb = Supabase;
+
+    // useEffect(() => {
+    //     (async () => {
+    //         console.log("[useEffect] Get session...");
+    //         const { data, error } = await Supabase.auth.getSession();
+    //         console.log("[useEffect] data=" + JSON.stringify(data) + " error=" + JSON.stringify(error));
+    //     })();
+    // }, []);
+
+    const handleLogin = async () => {
+        console.log("Logging in...");
+        setEnableControls(false);
+
+        // sb.auth.signInWithPassword({
+        //     email,
+        //     password
+        // })
+        console.log(window.location.origin + window.location.pathname);
+        setTimeout(async () => {
+            let { data, error } = await sb.auth.signInWithOAuth({
+                provider: 'github',
+                // queryParams: {
+                //     redirect_uri: window.location.origin + window.location.pathname
+                // },
+                // options: {
+                //     // redirectTo: window.location.origin + window.location.pathname,
+                //     skipBrowserRedirect: true,
+                // }
+            });
+            console.log("[handleLogin] data=" + JSON.stringify(data) + " error=" + JSON.stringify(error));
+        }, 1000);
+
+        // let { data, error } = await Supabase.auth.updateUser({
+        //     password: newPassword,
+        // });
+        // if (data) alert("Password updated successfully!")
+        // if (error) alert("There was an error updating your password.")
+
+        setEnableControls(true);
+    };
 
     return (
         <div className="login-page">
@@ -21,6 +66,13 @@ const LoginPage = () => {
             <div className="login-logo" onClick={triggerLogoAnimating}>
                 <FontAwesomeIcon className="login-logo" icon={faCircleUser} />
                 <div className={`red-line ${logoAnimating ? "scanning-vertical" : ""}`} />
+            </div>
+
+            {/* Credentials form */}
+            <div className="login-form-container">
+                <input className="login-email-input" type="text" placeholder="Email" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
+                <input className="login-password-input" type="password" placeholder="Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} />
+                <button className="login-button" disabled={!enableControls} onClick={handleLogin}>Login</button>
             </div>
 
         </div>

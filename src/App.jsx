@@ -24,6 +24,7 @@ function App() {
                         <CSSTransition nodeRef={nodeRef} key={location?.key} classNames="app" timeout={200}>
                             <AuthProvider>
                                 <Routes location={location}>
+                                    <Route path="/" element={<GamesPage />} />
                                     <Route path="/login" element={<LoginPage />} />
                                     <Route path="/games/*" element={<GamesPage />} />
                                     <Route path="*" element={<NotFoundPage />} />
