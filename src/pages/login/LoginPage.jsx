@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import jwtDecode from "jwt-decode";
 // import _ from "lodash";
 import Supabase from "features/storage/Supabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,28 +26,69 @@ const LoginPage = () => {
     //     })();
     // }, []);
 
+    const [access_token, setAccessToken] = useState(null);
+    const [refresh_token, setRefreshToken] = useState(null);
+  
+    // Get the current access token from local storage.
+    const getAccessToken = async () => {
+      const accessToken = localStorage.getItem("access_token");
+      setAccessToken(accessToken);
+    };
+  
+    // Get the current refresh token from local storage.
+    const getRefreshToken = async () => {
+      const refreshToken = localStorage.getItem("refresh_token");
+      setRefreshToken(refreshToken);
+    };
+  
+    // Decode the access token and print the decoded content to the console.
+    const decodeAccessToken = async () => {
+      if (access_token) {
+        const decodedAccessToken = jwtDecode(access_token);
+        console.log("Decoded access token:");
+        console.log(decodedAccessToken);
+      }
+    };
+  
+    // Decode the refresh token and print the decoded content to the console.
+    const decodeRefreshToken = async () => {
+      if (refresh_token) {
+        const decodedRefreshToken = jwtDecode(refresh_token);
+        console.log("Decoded refresh token:");
+        console.log(decodedRefreshToken);
+      }
+    };
+  
+    // useEffect(() => {
+    //   getAccessToken();
+    //   getRefreshToken();
+    // }, []);
+
     const handleLogin = async () => {
         console.log("Logging in...");
         setEnableControls(false);
 
-        // sb.auth.signInWithPassword({
-        //     email,
-        //     password
-        // })
-        console.log(window.location.origin + window.location.pathname);
-        setTimeout(async () => {
-            let { data, error } = await sb.auth.signInWithOAuth({
-                provider: 'github',
-                // queryParams: {
-                //     redirect_uri: window.location.origin + window.location.pathname
-                // },
-                // options: {
-                //     // redirectTo: window.location.origin + window.location.pathname,
-                //     skipBrowserRedirect: true,
-                // }
-            });
-            console.log("[handleLogin] data=" + JSON.stringify(data) + " error=" + JSON.stringify(error));
-        }, 1000);
+        const { data, error } = await sb.auth.signInWithPassword({
+            email,
+            password
+        });
+        console.log("[handleLogin] data=" + JSON.stringify(data) + " error=" + JSON.stringify(error));
+
+
+        // console.log(window.location.origin + window.location.pathname);
+        // setTimeout(async () => {
+        //     let { data, error } = await sb.auth.signInWithOAuth({
+        //         provider: 'github',
+        //         // queryParams: {
+        //         //     redirect_uri: window.location.origin + window.location.pathname
+        //         // },
+        //         // options: {
+        //         //     // redirectTo: window.location.origin + window.location.pathname,
+        //         //     skipBrowserRedirect: true,
+        //         // }
+        //     });
+        //     console.log("[handleLogin] data=" + JSON.stringify(data) + " error=" + JSON.stringify(error));
+        // }, 1000);
 
         // let { data, error } = await Supabase.auth.updateUser({
         //     password: newPassword,
@@ -73,6 +115,14 @@ const LoginPage = () => {
                 <input className="login-email-input" type="text" placeholder="Email" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
                 <input className="login-password-input" type="password" placeholder="Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} />
                 <button className="login-button" disabled={!enableControls} onClick={handleLogin}>Login</button>
+            </div>
+
+            
+            <div>
+            <button onClick={getAccessToken}>Get access token</button>
+            <button onClick={getRefreshToken}>Get refresh token</button>
+            <button onClick={decodeAccessToken}>Decode access token</button>
+            <button onClick={decodeRefreshToken}>Decode refresh token</button>
             </div>
 
         </div>
