@@ -28,7 +28,8 @@ function PinochleStartView() {
     // Rules
     const [rules, setRules] = useState({
         play: "score",
-        goal: 150,
+        score: 150,
+        hands: 4,
         stickDealer: "yes",
         allowMisdeal: "yes",
         meldSpeed: "medium"
@@ -57,8 +58,8 @@ function PinochleStartView() {
         const { data, error } = await Supabase.rpc("create_pinochle_game", {
             settings: {
                 play: rules.play,
-                goal: rules.goal,
-                score: rules.score,
+                ...(rules.play === "score" && { score: rules.score }),
+                ...(rules.play === "hands" && { hands: rules.hands }),
                 stickDealer: rules.stickDealer,
                 allowMisdeal: rules.allowMisdeal,
                 meldSpeed: rules.meldSpeed
@@ -81,7 +82,7 @@ function PinochleStartView() {
 
             {/* Header title & logo */}
             <div className="psv-nickster-text">Nickster</div>
-            <div className="psv-subtitle-text">Pinochle</div>
+            <div className="psv-subtitle-text">Nuckle</div>
             <div className="psv-card-jack" onClick={triggerJackFlipping}>
                 <PlayingCard suit="Diamonds" rank="Jack" additionalClasses={`${jackFlipping ? "pc-flipped" : ""}`} backFaceImage={cardBackImage}/>
             </div>
@@ -115,8 +116,8 @@ function PinochleStartView() {
                     ", " + rules.meldSpeed + " meld speed"
                 }</div>
                 {createRulesOptionsElements("Play", "play", ["score", "hands"], ["To Score", "# of Hands"])}
-                {rules.play === "score" && createRulesOptionsElements("To Score", "goal", [150, 200, 250], ["150", "200", "250"])}
-                {rules.play === "hands" && createRulesOptionsElements("# of Hands", "goal", [4, 5, 6], ["4", "5", "6"])}
+                {rules.play === "score" && createRulesOptionsElements("To Score", "score", [150, 200, 250], ["150", "200", "250"])}
+                {rules.play === "hands" && createRulesOptionsElements("# of Hands", "hands", [4, 5, 6], ["4", "5", "6"])}
                 {createRulesOptionsElements("Stick the Dealer", "stickDealer", ["yes", "no"], ["Yes", "No"])}
                 {createRulesOptionsElements("Allow Misdeal", "allowMisdeal", ["yes", "no"], ["Yes", "No"])}
                 {createRulesOptionsElements("Meld Speed", "meldSpeed", ["slow", "medium", "fast"], ["Slow", "Med", "Fast"])}

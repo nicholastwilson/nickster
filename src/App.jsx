@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Media from "react-media";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -19,12 +19,12 @@ function App() {
             {matches =>
                 matches ? (
                     <OrientationWarning />
-                ) : (
+            ) : (
                     <TransitionGroup>
                         <CSSTransition nodeRef={nodeRef} key={location?.key} classNames="app" timeout={200}>
                             <AuthProvider>
                                 <Routes location={location}>
-                                    <Route path="/" element={<GamesPage />} />
+                                    <Route path="/" element={<Navigate to="/games" replace />} />
                                     <Route path="/login" element={<LoginPage />} />
                                     <Route path="/games/*" element={<GamesPage />} />
                                     <Route path="*" element={<NotFoundPage />} />
