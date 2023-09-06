@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 import Supabase from "features/storage/Supabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-hot-toast";
 
 // import useAuth from "features/auth/useAuth";
 import useDebouncedTimer from "hooks/useDebouncedTimer.js";
@@ -20,6 +21,13 @@ const LoginPage = () => {
 
     const handleLogin = async () => {
         setEnableControls(false);
+        toast.error("Oh no!");
+        toast("Info");
+        const toastId = toast.loading("Loading...");
+        setTimeout(() => {
+            toast.dismiss(toastId);
+        }, 3000);
+        toast.success("Logged in!");
         // toast.info("Logging in...");
         // const { data, error } = await sb.auth.signInWithPassword({
         //     email,
