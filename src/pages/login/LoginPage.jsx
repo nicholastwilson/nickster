@@ -74,15 +74,17 @@ const LoginPage = () => {
         <div className="login-page">
 
             {/* Header title & logo */}
-            <div className="login-nickster-text">Nickster</div>
-            <div className="login-subtitle-text">Welcome</div>
-            <div className="login-logo" onClick={triggerLogoAnimating}>
-                <FontAwesomeIcon className="login-logo" icon={faCircleUser} />
-                <div className={`red-line ${logoAnimating ? "scanning-vertical" : ""}`} />
+            <div className="login-title-container">
+                <div className="login-nickster-text">Nickster</div>
+                <div className="login-subtitle-text">Welcome</div>
+                <div className="login-logo" onClick={triggerLogoAnimating}>
+                    <FontAwesomeIcon className="login-logo" icon={faCircleUser} />
+                    <div className={`red-line ${logoAnimating ? "scanning-vertical" : ""}`} />
+                </div>
             </div>
 
             {/* Credentials form */}
-            {/* <div className="login-form-outer-container"> */}
+            <div className="login-form-outer-container">
                 <div className="login-form-container">
                     <div className="login-header-container">
                         <div className="login-header">Login</div>
@@ -97,7 +99,7 @@ const LoginPage = () => {
                     </div>
                     <button className="login-guest-button" disabled={!enableControls} onClick={handleLoginAsGuest}>Continue as Guest</button>
                 </div>
-            {/* </div> */}
+            </div>
 
         </div>
     );
