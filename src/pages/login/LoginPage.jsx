@@ -19,15 +19,12 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const sb = Supabase;
 
-    const handleLogin = async () => {
+    const handleLoginUser = async () => {
         setEnableControls(false);
-        toast.error("Oh no!");
-        toast("Info");
-        const toastId = toast.loading("Loading...");
         setTimeout(() => {
-            toast.dismiss(toastId);
-        }, 3000);
-        toast.success("Logged in!");
+            toast.success("Logged in!");
+            setEnableControls(true);
+        }, 2000);
         // toast.info("Logging in...");
         // const { data, error } = await sb.auth.signInWithPassword({
         //     email,
@@ -62,8 +59,16 @@ const LoginPage = () => {
         // if (data) alert("Password updated successfully!")
         // if (error) alert("There was an error updating your password.")
 
-        setEnableControls(true);
+        // setEnableControls(true);
     };
+
+    const handleLoginAsGuest = async () => {
+        setEnableControls(false);
+        setTimeout(() => {
+            toast.success("Logged in as guest!");
+            setEnableControls(true);
+        }, 2000);
+    }
 
     return (
         <div className="login-page">
@@ -77,113 +82,25 @@ const LoginPage = () => {
             </div>
 
             {/* Credentials form */}
-            <div className="login-form-container">
-                <input className="login-email-input" type="text" placeholder="Email" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
-                <input className="login-password-input" type="password" placeholder="Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} />
-                <button className="login-button" disabled={!enableControls} onClick={handleLogin}>Login</button>
-            </div>
+            {/* <div className="login-form-outer-container"> */}
+                <div className="login-form-container">
+                    <div className="login-header-container">
+                        <div className="login-header">Login</div>
+                    </div>
+                    <input className="login-email-input" type="text" placeholder="&#9993; Email" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
+                    <input className="login-password-input" type="password" placeholder="&#128274;&#xfe0e; Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} />
+                    <button className="login-button" disabled={!enableControls} onClick={handleLoginUser}>Login</button>
+                    <div className="login-or-container">
+                        <div className="login-or-line"></div>
+                        <div className="login-or-text">OR</div>
+                        <div className="login-or-line"></div>
+                    </div>
+                    <button className="login-guest-button" disabled={!enableControls} onClick={handleLoginAsGuest}>Continue as Guest</button>
+                </div>
+            {/* </div> */}
 
         </div>
     );
-
-    // return (
-    //     <div className="login-page">
-
-    //         {/* Header title & logo */}
-    //         <div className="login-nickster-text">Nickster</div>
-    //         <div className="login-subtitle-text">Welcome</div>
-    //         <FontAwesomeIcon className="icon" icon={faUser} />
-    //         <div className="login-card-jack" onClick={() => animateFlip(jackFlipping, setJackFlipping)}>
-    //             <PlayingCard suit="Diamonds" rank="Jack" additionalClasses={`${jackFlipping ? "pc-flipped" : ""}`} backFaceImage={cardBackImage} />
-    //         </div>
-    //         <div className="login-card-queen" onClick={() => animateFlip(queenFlipping, setQueenFlipping)}>
-    //             <PlayingCard suit="Spades" rank="Queen" additionalClasses={`${queenFlipping ? "pc-flipped" : ""}`} backFaceImage={cardBackImage} />
-    //         </div>
-
-    //         {/* New & Join buttons */}
-    //         <button className={`login-game-button login-new-game-button ${view === "start" ? "login-fade-in" : "login-fade-out"}`} onClick={() => setView("new")}>
-    //             <FontAwesomeIcon className="icon" icon={faCirclePlus} style={{ marginRight: "2vmin" }} />
-    //             <div className="login-button-text-container">
-    //                 <div className="login-button-text">New</div>
-    //                 <div className="login-button-subtext">Start a new game</div>
-    //             </div>
-    //         </button>
-    //         <button className={`login-game-button login-join-game-button ${view === "start" ? "login-fade-in" : "login-fade-out"}`} onClick={() => setView("join")}>
-    //             <FontAwesomeIcon className="icon" icon={faRightToBracket} style={{ marginRight: "2vmin" }} />
-    //             <div className="login-button-text-container">
-    //                 <div className="login-button-text">Join</div>
-    //                 <div className="login-button-subtext">Join an existing game</div>
-    //             </div>
-    //         </button>
-
-    //         {/* New game settings view */}
-    //         <div className={`login-rules-container ${view === "new" ? "login-fade-in" : "login-fade-out"}`}>
-    //             <div className="login-rules-title"><u>Game Rules</u></div>
-    //             <div className="login-rules-summary">{
-    //                 "Play to " + (rules.play === "score" ? (rules.score + " points") : (rules.hands + " hands")) +
-    //                 (rules.stickDealer === "yes" ? ", stick the dealer" : "") +
-    //                 (rules.allowMisdeal === "yes" ? ", allow misdeals" : "") +
-    //                 ", " + rules.meldSpeed + " meld speed"
-    //             }</div>
-    //             {createRulesOptionsElements("Play", "play", ["score", "hands"], ["To Score", "# of Hands"])}
-    //             {rules.play === "score" && createRulesOptionsElements("To Score", "goal", [150, 200, 250], ["150", "200", "250"])}
-    //             {rules.play === "hands" && createRulesOptionsElements("# of Hands", "goal", [4, 5, 6], ["4", "5", "6"])}
-    //             {createRulesOptionsElements("Stick the Dealer", "stickDealer", ["yes", "no"], ["Yes", "No"])}
-    //             {createRulesOptionsElements("Allow Misdeal", "allowMisdeal", ["yes", "no"], ["Yes", "No"])}
-    //             {createRulesOptionsElements("Meld Speed", "meldSpeed", ["slow", "medium", "fast"], ["Slow", "Med", "Fast"])}
-    //             <div className="login-rules-button-container">
-    //                 <button className="login-rules-button" onClick={() => setView("start")}>
-    //                     <FontAwesomeIcon className="icon" icon={faCircleArrowLeft} style={{ marginRight: "2vmin" }} />
-    //                     <div className="login-rules-button-text">Back</div>
-    //                 </button>
-    //                 <button className="login-rules-button" onClick={createNewGame}>
-    //                     <FontAwesomeIcon className="icon" icon={faCirclePlus} style={{ marginRight: "2vmin" }} />
-    //                     <div className="login-rules-button-text">Create</div>
-    //                 </button>
-    //             </div>
-    //         </div>
-
-    //         {/* Join existing game view */}
-    //         <div className={`login-join-container ${view === "join" ? "login-fade-in" : "login-fade-out"}`}>
-    //             <div className="login-join-button-container">
-    //                 <button className="login-join-button" onClick={() => setView("start")}>
-    //                     <FontAwesomeIcon className="icon" icon={faCircleArrowLeft} style={{ marginRight: "2vmin" }} />
-    //                     <div className="login-rules-button-text">Back</div>
-    //                 </button>
-    //                 <button className="login-join-button" style={{ fontSize: "5.5vmin" }} onClick={joinExistingGame}>
-    //                     <FontAwesomeIcon className="icon" icon={faRightToBracket} style={{ marginRight: "2vmin" }} />
-    //                     <div className="login-rules-button-text">Join</div>
-    //                 </button>
-    //             </div>
-    //         </div>
-
-    //     </div>
-    // );
-
-
-    // return (
-    //     <div className="gv-page">
-    //         {/* Header title & logo */}
-    //         <NicksterLogo className={`gv-logo ${logoSpinning ? "spinning" : ""}`} onClick={spinLogo} />
-    //         <div className="gv-title">Nickster</div>
-    //         <div className="gv-subtitle">Games</div>
-    //         {/* Game buttons */}
-    //         <div className="gv-game-button gv-pinochle-button" onClick={() => navigate("pinochle")}>
-    //             <div className="gv-game-card gv-pinochle-card-jack"><PlayingCard suit="Diamonds" rank="Jack" /></div>
-    //             <div className="gv-game-card gv-pinochle-card-queen"><PlayingCard suit="Spades" rank="Queen" /></div>
-    //             <div className="gv-game-text gv-pinochle-text">Pinochle</div>
-    //         </div>
-    //     </div>
-    // );
-
-
-    // return (
-    //     <div>
-    //         <h1>Login Page</h1>
-    //         <div>Logged in as {authToken}</div>
-    //         <button type="button" onClick={handleLogin}>Login</button>
-    //     </div>
-    // );
 }
 
 export default LoginPage;
