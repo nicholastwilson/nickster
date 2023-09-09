@@ -20,11 +20,12 @@ const LoginPage = () => {
     const sb = Supabase;
 
     const handleLoginUser = async () => {
-        setEnableControls(false);
-        setTimeout(() => {
-            toast.success("Logged in!");
-            setEnableControls(true);
-        }, 2000);
+        // setEnableControls(false);
+        // setTimeout(() => {
+        //     toast.success("Logged in!");
+        //     setEnableControls(true);
+        // }, 2000);
+
         // toast.info("Logging in...");
         // const { data, error } = await sb.auth.signInWithPassword({
         //     email,
@@ -63,11 +64,11 @@ const LoginPage = () => {
     };
 
     const handleLoginAsGuest = async () => {
-        setEnableControls(false);
-        setTimeout(() => {
-            toast.success("Logged in as guest!");
-            setEnableControls(true);
-        }, 2000);
+        // setEnableControls(false);
+        // setTimeout(() => {
+        //     toast.success("Welcome, Guest!");
+        //     setEnableControls(true);
+        // }, 2000);
     }
 
     return (

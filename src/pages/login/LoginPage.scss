@@ -86,7 +86,7 @@
 .login-form-container {
     position: absolute;
     width: 50vmin;
-    height: 65vmin;
+    height: 75vmin;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -132,12 +132,13 @@
 
 .login-button,
 .login-guest-button {
-    width: 30vmin;
+    width: 36vmin;
     height: 7vmin;
-    font-size: 3vmin;
-    color: var(--theme-color-0);
-    background-color: var(--theme-color-7);
-    border: 1px solid var(--theme-color-9);
+    font-size: 3.5vmin;
+    font-weight: bold;
+    color: var(--theme-color-9);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--theme-color-8);
     border-radius: 5vmin;
     box-shadow: -1px 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -148,15 +149,15 @@
 
 @media only screen and (min-width: 1024px) {
     :is(.login-button, .login-guest-button):hover {
-        color: var(--theme-color-9);
-        background-color: var(--theme-color-0);
+        // color: var(--theme-color-9);
+        // background-color: var(--theme-color-0);
     }
 }
 
 :is(.login-button, .login-guest-button):active {
     transform: translateY(0.5vmin);
-    color: var(--theme-color-9);
-    background-color: var(--theme-color-0);
+    // color: var(--theme-color-9);
+    // background-color: var(--theme-color-0);
     box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
