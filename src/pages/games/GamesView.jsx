@@ -13,11 +13,11 @@ export default function GamesView() {
     const navigate = useNavigate();
     const sb = Supabase;
     const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(500, 750, 1000);
-    const [authUser, setAuthUser] = useState(null);
-    useEffect(() => {
-        setAuthUser(sb.auth.getUser());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // const [authUser, setAuthUser] = useState(null);
+    // useEffect(() => {
+    //     setAuthUser(sb.auth.getUser());
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
     
     return (
         <div className="gv-page">
@@ -25,11 +25,11 @@ export default function GamesView() {
             <NicksterLogo className={`gv-logo ${logoAnimating ? "spinning" : ""}`} onClick={triggerLogoAnimating}/>
             <div className="gv-title">Nickster</div>
             <div className="gv-subtitle">Games</div>
-            {authUser ? (
+            {/* {authUser ? (
                 <div className="gv-login-button" onClick={() => navigate("games")}/>
             ) : (
                 <div className="gv-login-button" onClick={() => navigate("login")}/>
-            )}
+            )} */}
             {/* Game buttons */}
             <div className="gv-game-button gv-pinochle-button" onClick={() => navigate("pinochle")}>
                 <div className="gv-game-card gv-pinochle-card-jack"><PlayingCard suit="Diamonds" rank="Jack" /></div>
