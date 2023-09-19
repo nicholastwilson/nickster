@@ -4,14 +4,12 @@ import Media from "react-media";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Toaster } from "react-hot-toast";
 
-import ProtectedRoute from "./features/auth/ProtectedRoute";
-import LoginPage from "./pages/login/LoginPage";
-import GamesPage from "./pages/games/GamesPage";
-import NotFoundPage from "./pages/notfound/NotFoundPage";
-import OrientationWarning from "./pages/orientationwarning/OrientationWarning";
+import ProtectedRoute from "pages/auth/ProtectedRoute";
+import GamesPage from "pages/games/GamesPage";
+import NotFoundPage from "pages/notfound/NotFoundPage";
+import OrientationWarning from "pages/orientationwarning/OrientationWarning";
 
 import "./App.scss";
-import LoginModal from "./features/auth/LoginModal";
 
 function App() {
     const nodeRef = useRef(null);

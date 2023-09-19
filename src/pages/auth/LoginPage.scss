@@ -96,7 +96,7 @@
     justify-content: flex-start;
     gap: 1vmin;
     border-radius: 3vmin;
-    background-color: var(--theme-color-0);
+    background-color: var(--theme-color-1);
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -117,27 +117,30 @@
 }
 
 .login-email-input,
-.login-password-input {
+.login-password-input,
+.login-guest-name-input {
     width: 85%;
     height: 5vmin;
+    background-color: var(--theme-color-0);
     border: 1px solid var(--theme-color-9);
     border-radius: 2vmin;
     padding-left: 2vmin;
     font-size: 3vmin;
 }
 
-:is(.login-email-input, .login-password-input):focus {
+:is(.login-email-input, .login-password-input, .login-guest-name-input):focus {
     outline: none;
 }
 
 .login-button,
 .login-guest-button {
-    width: 36vmin;
+    width: 46vmin;
     height: 7vmin;
     font-size: 3.5vmin;
     font-weight: bold;
-    color: var(--theme-color-9);
-    background-color: rgba(255, 255, 255, 0.5);
+    color: var(--theme-color-0);
+    // background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--theme-color-7);
     border: 1px solid var(--theme-color-8);
     border-radius: 5vmin;
     box-shadow: -1px 4px 6px rgba(0, 0, 0, 0.5);

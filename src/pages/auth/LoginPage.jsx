@@ -11,7 +11,7 @@ import useDebouncedTimer from "hooks/useDebouncedTimer.js";
 
 import "./LoginPage.scss";
 
-const LoginPage = () => {
+function LoginPage() {
     // const { authToken, handleLogin } = useAuth();
     const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000);
     const [enableControls, setEnableControls] = useState(true);
@@ -98,6 +98,7 @@ const LoginPage = () => {
                         <div className="login-or-text">OR</div>
                         <div className="login-or-line"></div>
                     </div>
+                    <input className="login-guest-name-input" type="text" placeholder="&#x1F604;&#xfe0e; Name" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
                     <button className="login-guest-button" disabled={!enableControls} onClick={handleLoginAsGuest}>Continue as Guest</button>
                 </div>
             </div>

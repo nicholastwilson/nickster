@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import LoginModal from 'features/auth/LoginModal';
+import LoginPage from 'pages/auth/LoginPage';
 import useTimeout from 'hooks/useTimeout';
 import useInterval from 'hooks/useInterval';
 import { ReactComponent as NicksterLogo } from "assets/images/app/nickster_logo.svg";
@@ -36,7 +36,7 @@ const ProtectedRoute = ({ element }) => {
             </div>
         );
     } else if(state === "login") {
-        return <LoginModal />
+        return <LoginPage />
     } else {
         return element;
     }
