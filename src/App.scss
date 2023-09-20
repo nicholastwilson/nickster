@@ -1,3 +1,5 @@
+// Themes
+
 :root {
   --theme-color-0: #FFFFFF;
   --theme-color-1: #C3CCD5;
@@ -10,6 +12,17 @@
   --theme-color-8: #292F39;
   --theme-color-9: #000000;
 }
+
+body {
+  margin: 0;
+  color: var(--theme-color-0);
+  background-color: var(--theme-color-7);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// User Interactions
 
 * {
   // touch-action: none;
@@ -30,14 +43,7 @@
   outline: none !important;
 }
 
-body {
-  margin: 0;
-  color: var(--theme-color-0);
-  background-color: var(--theme-color-7);
-  font-family: "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+// Animations
 
 .app-enter {
   opacity: 0;
@@ -63,4 +69,22 @@ body {
   -ms-filter: blur(2px);
   -o-filter: blur(2px);
   filter: blur(2px);
+}
+
+.pop-in {
+  animation: pop-in 0.25s ease-in;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

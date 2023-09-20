@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import useLocalStorage from "features/storage/useLocalStorage";
+import useLocalStorage from "hooks/useLocalStorage";
 
 const AuthContext = createContext(null);
 

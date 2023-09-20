@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-const useLocalStorage = (key, initialValue) => {
+const useLocalStorage = (key, initialValue = null) => {
     // Read value from localStorage
     const readValue = useCallback(() => {
         const item = localStorage.getItem(key);

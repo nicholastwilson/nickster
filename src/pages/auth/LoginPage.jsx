@@ -1,105 +1,123 @@
-import { useEffect, useState } from "react";
-import jwtDecode from "jwt-decode";
-// import _ from "lodash";
+import { useEffect, useState, useRef } from "react";
 import Supabase from "features/storage/Supabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
 
-// import useAuth from "features/auth/useAuth";
 import useDebouncedTimer from "hooks/useDebouncedTimer.js";
 
 import "./LoginPage.scss";
 
-function LoginPage() {
-    // const { authToken, handleLogin } = useAuth();
+function LoginPage({setProfileID}) {
     const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000);
+    const [showingForm, setShowingForm] = useState(false);
     const [enableControls, setEnableControls] = useState(true);
+    const [loggingIn, setLoggingIn] = useState(false);
+    const [guestLoggingIn, setGuestLoggingIn] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const sb = Supabase;
+    const [name, setName] = useState("");
+    const emailFieldRef = useRef(null);
+    const passwordFieldRef = useRef(null);
+    const nameFieldRef = useRef(null);
+    
+    // Show login form on initial render
+    useEffect(() => setShowingForm(true), []);
 
     const handleLoginUser = async () => {
-        // setEnableControls(false);
-        // setTimeout(() => {
-        //     toast.success("Logged in!");
-        //     setEnableControls(true);
-        // }, 2000);
-
-        // toast.info("Logging in...");
-        // const { data, error } = await sb.auth.signInWithPassword({
-        //     email,
-        //     password
-        // });
-        // if(data) {
-
-        // } else {
-
-        //     console.log(error);
-        // }
-
-
-        // console.log(window.location.origin + window.location.pathname);
-        // setTimeout(async () => {
-        //     let { data, error } = await sb.auth.signInWithOAuth({
-        //         provider: 'github',
-        //         // queryParams: {
-        //         //     redirect_uri: window.location.origin + window.location.pathname
-        //         // },
-        //         // options: {
-        //         //     // redirectTo: window.location.origin + window.location.pathname,
-        //         //     skipBrowserRedirect: true,
-        //         // }
-        //     });
-        //     console.log("[handleLogin] data=" + JSON.stringify(data) + " error=" + JSON.stringify(error));
-        // }, 1000);
-
-        // let { data, error } = await Supabase.auth.updateUser({
-        //     password: newPassword,
-        // });
-        // if (data) alert("Password updated successfully!")
-        // if (error) alert("There was an error updating your password.")
-
-        // setEnableControls(true);
+        // Check for input
+        if(!email || !password) {
+            toast.error("Enter email and password");
+            emailFieldRef.current.select();
+            return;
+        }
+        // Login user
+        setEnableControls(false);
+        setLoggingIn(true);
+        const {data, error} = await Supabase.auth.signInWithPassword({ email, password });
+        setLoggingIn(false);
+        setEnableControls(true);
+        // Login failed
+        if(error) {
+            toast.error(error.message);
+            setTimeout(() => emailFieldRef.current.select(), 0);
+        }
+        // Login succeeded
+        else if(data) {
+            setEmail("");
+            setPassword("");
+            emailFieldRef.current.value = "";
+            passwordFieldRef.current.value = "";
+            setTimeout(() => emailFieldRef.current.select(), 0);
+            toast.success("Logged in!");
+        }
     };
-
-    const handleLoginAsGuest = async () => {
-        // setEnableControls(false);
-        // setTimeout(() => {
-        //     toast.success("Welcome, Guest!");
-        //     setEnableControls(true);
-        // }, 2000);
-    }
+    
+    const handleGuestLogin = async () => {
+        // Check for input
+        if(!name) {
+            toast.error("Please enter a name");
+            nameFieldRef.current.select();
+            return;
+        }
+        // Guest login
+        setEnableControls(false);
+        setGuestLoggingIn(true);
+        // TODO: Use Supabase to login
+        setTimeout(() => {
+            // TODO: Use Supabase
+            setGuestLoggingIn(false);
+            setEnableControls(true);
+            setName("");
+            nameFieldRef.current.value = "";
+            setProfileID(crypto.randomUUID());
+            // navigate(0);
+            toast.success("Welcome, " + name + "!");
+            setTimeout(() => nameFieldRef.current.select(), 0);
+        }, 1000);
+    };
 
     return (
         <div className="login-page">
 
             {/* Header title & logo */}
             <div className="login-title-container">
+                {/* Title */}
                 <div className="login-nickster-text">Nickster</div>
                 <div className="login-subtitle-text">Welcome</div>
+                {/* Logo */}
                 <div className="login-logo" onClick={triggerLogoAnimating}>
                     <FontAwesomeIcon className="login-logo" icon={faCircleUser} />
                     <div className={`red-line ${logoAnimating ? "scanning-vertical" : ""}`} />
                 </div>
             </div>
 
-            {/* Credentials form */}
-            <div className="login-form-outer-container">
+            {/* Login form */}
+            <div className={`login-form-outer-container ${showingForm ? "pop-in" : ""}`}>
                 <div className="login-form-container">
+                    {/* Header */}
                     <div className="login-header-container">
                         <div className="login-header">Login</div>
                     </div>
-                    <input className="login-email-input" type="text" placeholder="&#9993; Email" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
-                    <input className="login-password-input" type="password" placeholder="&#128274;&#xfe0e; Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} />
-                    <button className="login-button" disabled={!enableControls} onClick={handleLoginUser}>Login</button>
+                    {/* Authenticated Login */}
+                    <input className="login-email-input" type="text" ref={emailFieldRef} placeholder="&#9993; Email" autoFocus disabled={!enableControls} onChange={e => setEmail(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
+                    <input className="login-password-input" type="password" ref={passwordFieldRef} placeholder="&#128274;&#xfe0e; Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
+                    <button className="login-button" disabled={!enableControls} onClick={handleLoginUser}>
+                        <FontAwesomeIcon className={`login-button-icon ${loggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
+                        <div className="login-button-text" disabled={!enableControls}>Login</div>
+                    </button>
+                    {/* Separator */}
                     <div className="login-or-container">
                         <div className="login-or-line"></div>
                         <div className="login-or-text">OR</div>
                         <div className="login-or-line"></div>
                     </div>
-                    <input className="login-guest-name-input" type="text" placeholder="&#x1F604;&#xfe0e; Name" disabled={!enableControls} onChange={e => setEmail(e.target.value)} />
-                    <button className="login-guest-button" disabled={!enableControls} onClick={handleLoginAsGuest}>Continue as Guest</button>
+                    {/* Guest Login */}
+                    <input className="login-guest-name-input" type="text" ref={nameFieldRef} placeholder="&#x1F604;&#xfe0e; Name" disabled={!enableControls} onChange={e => setName(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleGuestLogin()} />
+                    <button className="login-guest-button" disabled={!enableControls} onClick={handleGuestLogin}>
+                        <FontAwesomeIcon className={`login-button-icon ${guestLoggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
+                        <div className="login-button-text" disabled={!enableControls}>Continue as Guest</div>
+                    </button>
                 </div>
             </div>
 

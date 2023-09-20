@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
+import * as Auth from 'features/auth/Auth';
 import LoginPage from 'pages/auth/LoginPage';
-import useTimeout from 'hooks/useTimeout';
 import useInterval from 'hooks/useInterval';
+import useLocalStorage from 'hooks/useLocalStorage';
 import { ReactComponent as NicksterLogo } from "assets/images/app/nickster_logo.svg";
 
 import './ProtectedRoute.scss';
@@ -13,19 +13,18 @@ const ProtectedRoute = ({ element }) => {
     const [state, setState] = useState("loading");
     const [loadingRotation, setLoadingRotation] = useState((Date.now() * 0.03333) % 360);
     useInterval(() => setLoadingRotation((Date.now() * 0.03333) % 360), 16);  // ~60fps
-    useTimeout(() => setState("login"), 1000);
 
     // Login state
-    const [profileID, setProfileID] = useState(null);
+    const [profileID, setProfileID] = useLocalStorage(Auth.LOCALSTORAGE_KEY_NICKSTER_PROFILE_ID);
     useEffect(() => {
-        const profileID = localStorage.getItem('profileID');
-        setProfileID(profileID);
-        if(profileID) {
-            setState("protected");
-        } else {
-            setState("login");
-        }
-    }, []);
+        setTimeout(() => {
+            if(profileID) {
+                setState("protected");
+            } else {
+                setState("login");
+            }
+        });
+    }, [profileID]);
 
     // User is logged in; allow access to the original route
     if(state === "loading") {
@@ -36,7 +35,7 @@ const ProtectedRoute = ({ element }) => {
             </div>
         );
     } else if(state === "login") {
-        return <LoginPage />
+        return <LoginPage setProfileID={setProfileID} />
     } else {
         return element;
     }
