@@ -1,14 +1,16 @@
 import { useEffect, useState, useRef } from "react";
-import Supabase from "features/storage/Supabase";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
 
+import Supabase from "features/storage/Supabase";
+import { setProfile } from "features/auth/profileSlice";
 import useDebouncedTimer from "hooks/useDebouncedTimer.js";
 
 import "./LoginPage.scss";
 
-function LoginPage({setProfileID}) {
+function LoginPage() {
     const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000);
     const [showingForm, setShowingForm] = useState(false);
     const [enableControls, setEnableControls] = useState(true);
@@ -20,9 +22,13 @@ function LoginPage({setProfileID}) {
     const emailFieldRef = useRef(null);
     const passwordFieldRef = useRef(null);
     const nameFieldRef = useRef(null);
+    const dispatch = useDispatch();
     
     // Show login form on initial render
     useEffect(() => {
+        // Clear previous Supabase session
+        Supabase.auth.signOut();
+        // Show login form
         setShowingForm(true);
         setTimeout(() => emailFieldRef.current.select(), 0);
     }, []);
@@ -56,7 +62,7 @@ function LoginPage({setProfileID}) {
                     }
                     // Profile successfully retrieved
                     else {
-                        setProfileID(data.id);
+                        dispatch(setProfile(data));
                         setEmail("");
                         setPassword("");
                         emailFieldRef.current.value = "";
@@ -90,7 +96,7 @@ function LoginPage({setProfileID}) {
             }
             // Login succeeded
             else {
-                setProfileID(data.id);
+                dispatch(setProfile(data));
                 setName("");
                 nameFieldRef.current.value = "";
                 toast.success("Welcome, " + name + "!");

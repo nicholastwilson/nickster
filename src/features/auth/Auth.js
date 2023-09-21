@@ -1,15 +1,19 @@
-const LOCALSTORAGE_KEY_NICKSTER_PROFILE_ID = "nickster_profile_id";
+const LOCALSTORAGE_KEY_NICKSTER_PROFILE = "nickster_profile";
 
 function hasNicksterProfile() {
-    return localStorage.getItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE_ID) !== null;
+    return localStorage.getItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE) !== null;
 }
 
-function getNicksterProfileID() {
-    const storedValue = localStorage.getItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE_ID);
+function getNicksterProfile() {
+    const storedValue = localStorage.getItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE);
     if(storedValue === null)
         return null;
     else
         return JSON.parse(storedValue);
+}
+
+function setNicksterProfile(profile) {
+    localStorage.setItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE, JSON.stringify(profile));
 }
 
 function hasSupabaseProfile() {
@@ -17,8 +21,9 @@ function hasSupabaseProfile() {
 }
 
 export {
-    LOCALSTORAGE_KEY_NICKSTER_PROFILE_ID,
+    LOCALSTORAGE_KEY_NICKSTER_PROFILE,
     hasNicksterProfile,
-    getNicksterProfileID,
+    getNicksterProfile,
+    setNicksterProfile,
     hasSupabaseProfile
 }
