@@ -22,9 +22,12 @@ function LoginPage({setProfileID}) {
     const nameFieldRef = useRef(null);
     
     // Show login form on initial render
-    useEffect(() => setShowingForm(true), []);
+    useEffect(() => {
+        setShowingForm(true);
+        setTimeout(() => emailFieldRef.current.select(), 0);
+    }, []);
 
-    const handleLoginUser = async () => {
+    const handleLoginUser = function() {
         // Check for input
         if(!email || !password) {
             toast.error("Enter email and password");
@@ -34,26 +37,40 @@ function LoginPage({setProfileID}) {
         // Login user
         setEnableControls(false);
         setLoggingIn(true);
-        const {data, error} = await Supabase.auth.signInWithPassword({ email, password });
-        setLoggingIn(false);
-        setEnableControls(true);
-        // Login failed
-        if(error) {
-            toast.error(error.message);
-            setTimeout(() => emailFieldRef.current.select(), 0);
-        }
-        // Login succeeded
-        else if(data) {
-            setEmail("");
-            setPassword("");
-            emailFieldRef.current.value = "";
-            passwordFieldRef.current.value = "";
-            setTimeout(() => emailFieldRef.current.select(), 0);
-            toast.success("Logged in!");
-        }
+        Supabase.auth.signInWithPassword({ email, password }).then(({ data, error }) => {
+            // Login failed
+            if(error) {
+                toast.error(error.message);
+                setTimeout(() => emailFieldRef.current.select(), 0);
+                setLoggingIn(false);
+                setEnableControls(true);
+            }
+            // Login succeeded
+            else {
+                // Retrieve profile using email
+                Supabase.rpc('get_authenticated_user_profile', { email }).then(({ data, error }) => {
+                    // Failed to get profile
+                    if(error) {
+                        toast.error(error.message);
+                        setTimeout(() => emailFieldRef.current.select(), 0);
+                    }
+                    // Profile successfully retrieved
+                    else {
+                        setProfileID(data.id);
+                        setEmail("");
+                        setPassword("");
+                        emailFieldRef.current.value = "";
+                        passwordFieldRef.current.value = "";
+                        toast.success("Welcome back, " + data.name + "!");
+                    }
+                    setLoggingIn(false);
+                    setEnableControls(true);
+                });
+            }
+        });
     };
     
-    const handleGuestLogin = async () => {
+    const handleGuestLogin = function() {
         // Check for input
         if(!name) {
             toast.error("Please enter a name");
@@ -63,18 +80,24 @@ function LoginPage({setProfileID}) {
         // Guest login
         setEnableControls(false);
         setGuestLoggingIn(true);
-        // TODO: Use Supabase to login
-        setTimeout(() => {
-            // TODO: Use Supabase
+        Supabase.rpc('create_guest_profile', { name }).then(({ data, error }) => {
+            // Login failed
+            if(error) {
+                toast.error(error.message);
+                setTimeout(() => nameFieldRef.current.select(), 0);
+                setGuestLoggingIn(false);
+                setEnableControls(true);
+            }
+            // Login succeeded
+            else {
+                setProfileID(data.id);
+                setName("");
+                nameFieldRef.current.value = "";
+                toast.success("Welcome, " + name + "!");
+            }
             setGuestLoggingIn(false);
             setEnableControls(true);
-            setName("");
-            nameFieldRef.current.value = "";
-            setProfileID(crypto.randomUUID());
-            // navigate(0);
-            toast.success("Welcome, " + name + "!");
-            setTimeout(() => nameFieldRef.current.select(), 0);
-        }, 1000);
+        });
     };
 
     return (
