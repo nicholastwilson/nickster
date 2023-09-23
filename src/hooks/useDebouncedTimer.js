@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import _ from "lodash";
 
 const useDebouncedTimer = (duration, period = duration, initialDelay = -1) => {
@@ -6,15 +6,14 @@ const useDebouncedTimer = (duration, period = duration, initialDelay = -1) => {
     const [active, setActive] = useState(false);
 
     // Debounced trigger function
-    const startTimer = useCallback(
+    const startTimer = useMemo(() => 
         _.debounce(() => {
             setActive(true);
             setTimeout(() => {
                 setActive(false);
             }, duration);
         }, period, { leading: true, trailing: false, maxWait: period })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    , []);
+    , [period, duration]);
 
     // Spin logo once after page loads
     useEffect(() => {
@@ -23,8 +22,7 @@ const useDebouncedTimer = (duration, period = duration, initialDelay = -1) => {
                 startTimer();
             }, initialDelay);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [initialDelay, startTimer]);
 
 
     // Debounced trigger function

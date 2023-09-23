@@ -1,6 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
-import _ from "lodash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faRightToBracket, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -55,7 +54,15 @@ function PinochleStartView() {
     };
 
     const createNewGame = async () => {
-        const { data, error } = await Supabase.rpc("create_pinochle_game", {
+        // CREATE OR REPLACE FUNCTION start_game(
+        //     profile_id UUID, 
+        //     type TEXT,
+        //     min_players INTEGER, 
+        //     max_players INTEGER, 
+        //     settings JSONB
+        //   )
+        const { data, error } = await Supabase.rpc("start_game", {
+            // profile_id: Auth.getProfile().id,
             settings: {
                 play: rules.play,
                 ...(rules.play === "score" && { score: rules.score }),
