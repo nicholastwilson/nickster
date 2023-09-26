@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
@@ -11,6 +11,8 @@ import useDebouncedTimer from "hooks/useDebouncedTimer.js";
 import "./LoginPage.scss";
 
 function LoginPage() {
+    const profile = useSelector(state => state.profile);
+    const dispatch = useDispatch();
     const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000);
     const [showingForm, setShowingForm] = useState(false);
     const [enableControls, setEnableControls] = useState(true);
@@ -18,11 +20,10 @@ function LoginPage() {
     const [guestLoggingIn, setGuestLoggingIn] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
+    const [name, setName] = useState(!profile?.user_id && profile?.name ? profile.name : "");
     const emailFieldRef = useRef(null);
     const passwordFieldRef = useRef(null);
     const nameFieldRef = useRef(null);
-    const dispatch = useDispatch();
     
     // Show login form on initial render
     useEffect(() => {
@@ -30,7 +31,15 @@ function LoginPage() {
         Supabase.auth.signOut();
         // Show login form
         setShowingForm(true);
-        setTimeout(() => emailFieldRef.current.select(), 0);
+        // Configure fields
+        setTimeout(() => {
+            if(profile?.user_id) {
+                emailFieldRef.current.select();
+            } else {
+                nameFieldRef.current.value = (profile?.name ? profile.name : "");
+                nameFieldRef.current.select();
+            }
+        }, 0);
     }, []);
 
     const handleLoginUser = function() {
@@ -62,7 +71,7 @@ function LoginPage() {
                     }
                     // Profile successfully retrieved
                     else {
-                        dispatch(setProfile(data));
+                        dispatch(setProfile({ ...data, validated: true }));
                         setEmail("");
                         setPassword("");
                         emailFieldRef.current.value = "";
@@ -79,31 +88,52 @@ function LoginPage() {
     const handleGuestLogin = function() {
         // Check for input
         if(!name) {
-            toast.error("Please enter a name");
+            toast.error("Enter a name");
             nameFieldRef.current.select();
             return;
         }
         // Guest login
         setEnableControls(false);
         setGuestLoggingIn(true);
-        Supabase.rpc('create_guest_profile', { name }).then(({ data, error }) => {
-            // Login failed
-            if(error) {
-                toast.error(error.message);
-                setTimeout(() => nameFieldRef.current.select(), 0);
+        // Create guest profile
+        if(!profile?.id) {
+            Supabase.rpc('create_guest_profile', { name }).then(({ data, error }) => {
+                // Login failed
+                if(error) {
+                    toast.error(error.message);
+                    setTimeout(() => nameFieldRef.current.select(), 0);
+                }
+                // Login succeeded
+                else {
+                    dispatch(setProfile({ ...data, validated: true }));
+                    toast.success("Welcome, " + name + "!");
+                }
                 setGuestLoggingIn(false);
                 setEnableControls(true);
-            }
-            // Login succeeded
-            else {
-                dispatch(setProfile(data));
-                setName("");
-                nameFieldRef.current.value = "";
-                toast.success("Welcome, " + name + "!");
-            }
-            setGuestLoggingIn(false);
-            setEnableControls(true);
-        });
+            });
+        }
+        // Update guest profile
+        else {
+            Supabase.rpc("update_user_profile", {
+                "id": profile.id,
+                "user_id": profile.user_id,
+                "name": name,
+                "preferences": profile.preferences
+            }).then(({ data, error }) => {
+                // Profile update failed
+                if(error || data?.success === false) {
+                    toast.error(error ? error.message : data.message);
+                    setTimeout(() => nameFieldRef.current.select(), 0);
+                }
+                // Profile update succeeded
+                else {
+                    dispatch(setProfile({ ...profile, name: name, validated: true }));
+                    toast.success("Welcome, " + name + "!");
+                }
+                setGuestLoggingIn(false);
+                setEnableControls(true);
+            });
+        }
     };
 
     return (

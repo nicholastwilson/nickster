@@ -46,6 +46,21 @@
     }
 }
 
+// Sign out button
+.gv-profile-button {
+    position: absolute;
+    top: 3vmin;
+    right: 3vmin;
+    width: 7vmin;
+    height: 7vmin;
+    cursor: pointer;
+}
+
+.gv-profile-button>.gv-icon {
+    width: 100%;
+    height: 100%;
+}
+
 // Game buttons
 .gv-game-button {
     position: absolute;

@@ -75,6 +75,14 @@
 }
 
 @media only screen and (min-width: 1024px) {
+    .psv-game-button {
+        width: 40vmin;
+        height: 12vmin;
+        max-width: 40vw;
+        max-height: 12vh;
+        font-size: 5vmin;
+        border-radius: 3vmin;
+    }
     .psv-game-button:hover {
         color: var(--theme-color-9);
         background-color: var(--theme-color-1);
@@ -94,6 +102,22 @@
     top: calc(45vh + 20vmin);
 }
 
+@media only screen and (min-width: 1024px) {
+    .psv-join-game-button {
+        top: calc(45vh + 15vmin);
+    }
+}
+
+.psv-back-button {
+    top: calc(45vh + 40vmin);
+}
+
+@media only screen and (min-width: 1024px) {
+    .psv-back-button {
+        top: calc(45vh + 30vmin);
+    }
+}
+
 .psv-button-text-container {
     display: flex;
     flex-direction: column;
@@ -106,11 +130,19 @@
     font-size: 3vmin;
 }
 
+@media only screen and (min-width: 1024px) {
+    .psv-button-subtext {
+        font-size: 2.25vmin;
+    }
+}
+
 // New Game Rules
 .psv-rules-container {
+    width: 90vmin;
     top: 42vmin;
     left: 5vmin;
-    width: 90vmin;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -118,11 +150,25 @@
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
+@media only screen and (min-width: 1024px) {
+    .psv-rules-container {
+        width: 70vmin;
+        top: 25vmin;
+        // border: 1px solid magenta;
+    }
+}
+
 .psv-rules-title {
     font-size: 8vmin;
-    margin-bottom: 1vmin;
+    margin-bottom: 2vmin;
     white-space: nowrap;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (min-width: 1024px) {
+    .psv-rules-title {
+        font-size: 6vmin;
+    }
 }
 
 .psv-rules-summary {
@@ -133,10 +179,25 @@
     text-shadow: none;
 }
 
+@media only screen and (min-width: 1024px) {
+    .psv-rules-summary {
+        height: 3vmin;
+        font-size: 2.5vmin;
+        margin-bottom: 5vmin;
+    }
+}
+
 .psv-rules-options-container {
     position: relative;
     height: 10vmin;
     margin-top: 3vmin;
+}
+
+@media only screen and (min-width: 1024px) {
+    .psv-rules-options-container {
+        height: 8vmin;
+        margin-top: 1vmin;
+    }
 }
 
 .psv-rules-label {
@@ -148,6 +209,12 @@
     text-align: left;
     color: var(--theme-color-0);
     text-shadow: none;
+}
+
+@media only screen and (min-width: 1024px) {
+    .psv-rules-label {
+        font-size: 3vmin;
+    }
 }
 
 .psv-rules-options {
@@ -172,6 +239,14 @@
     border-radius: 2vmin;
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+}
+
+@media only screen and (min-width: 1024px) {
+    .psv-rules-option-button {
+        width: 7vmin;
+        height: 6vmin;
+        font-size: 2.5vmin;
+    }  
 }
 
 .psv-option-left {
@@ -202,6 +277,13 @@
     margin-bottom: 6vmin;
 }
 
+@media only screen and (min-width: 1024px) {
+    .psv-rules-button-container {
+        margin-top: 2.5vmin;
+        margin-bottom: 2.5vmin;
+    }
+}
+
 .psv-rules-button {
     width: 30vmin;
     height: 10vmin;
@@ -219,6 +301,14 @@
     box-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
     padding-left: 2.5vmin;
     cursor: pointer;
+}
+
+@media only screen and (min-width: 1024px) {
+    .psv-rules-button {
+        width: 20vmin;
+        height: 7vmin;
+        font-size: 3vmin;
+    }
 }
 
 .psv-rules-button:active {

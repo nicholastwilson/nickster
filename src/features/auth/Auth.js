@@ -13,7 +13,10 @@ function getNicksterProfile() {
 }
 
 function setNicksterProfile(profile) {
-    localStorage.setItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE, JSON.stringify(profile));
+    if(profile)
+        localStorage.setItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE, JSON.stringify(profile));
+    else
+        localStorage.removeItem(LOCALSTORAGE_KEY_NICKSTER_PROFILE);
 }
 
 function hasSupabaseProfile() {

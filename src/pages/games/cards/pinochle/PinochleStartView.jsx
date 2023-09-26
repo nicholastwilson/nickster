@@ -9,6 +9,7 @@ import PlayingCard from "../PlayingCard";
 import cardBackImage from "assets/images/games/cards/card-back.png";
 
 import "./PinochleStartView.scss";
+import { useSelector } from "react-redux";
 
 function PinochleStartView() {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ function PinochleStartView() {
     // }, []);
     // View
     const [view, setView] = useState("start");
+    const profile = useSelector(state => state.profile);
 
     // Card animations
     const [jackFlipping, triggerJackFlipping] = useDebouncedTimer(500, 750, 1000);
@@ -54,15 +56,11 @@ function PinochleStartView() {
     };
 
     const createNewGame = async () => {
-        // CREATE OR REPLACE FUNCTION start_game(
-        //     profile_id UUID, 
-        //     type TEXT,
-        //     min_players INTEGER, 
-        //     max_players INTEGER, 
-        //     settings JSONB
-        //   )
         const { data, error } = await Supabase.rpc("start_game", {
-            // profile_id: Auth.getProfile().id,
+            profile_id: profile.id,
+            type: "pinochle",
+            min_players: 4,
+            max_players: 4,
             settings: {
                 play: rules.play,
                 ...(rules.play === "score" && { score: rules.score }),
@@ -72,10 +70,10 @@ function PinochleStartView() {
                 meldSpeed: rules.meldSpeed
             }
         });
-        if(error) {
-            console.error(error);
+        if(error || (data && data.success === false)) {
+            console.error(error ? error.message : data.message);
         } else {
-            navigate("../play/" + data);
+            navigate("../play/" + data.game_id);
         }
     };
     
@@ -110,6 +108,12 @@ function PinochleStartView() {
                 <div className="psv-button-text-container">
                     <div className="psv-button-text">Join</div>
                     <div className="psv-button-subtext">Join an existing game</div>
+                </div>
+            </button>
+            <button className={`psv-game-button psv-back-button ${view === "start" ? "psv-fade-in" : "psv-fade-out"}`} onClick={() => navigate("../..")}>
+                <FontAwesomeIcon className="icon" icon={faCircleArrowLeft} style={{ marginRight: "2vmin" }} />
+                <div className="psv-button-text-container">
+                    <div className="psv-button-text" style={{ marginBottom: "1vmin" }} >Back</div>
                 </div>
             </button>
 
