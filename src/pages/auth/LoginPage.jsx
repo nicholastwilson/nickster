@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faCircleNotch, faBugSlash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-hot-toast";
 
 import Supabase from "features/storage/Supabase";
@@ -21,25 +21,21 @@ function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState(!profile?.user_id && profile?.name ? profile.name : "");
+    const [showDebug, setShowDebug] = useState(false);
     const emailFieldRef = useRef(null);
     const passwordFieldRef = useRef(null);
     const nameFieldRef = useRef(null);
     
     // Show login form on initial render
     useEffect(() => {
-        // Clear previous Supabase session
-        Supabase.auth.signOut();
         // Show login form
         setShowingForm(true);
         // Configure fields
         setTimeout(() => {
-            if(profile?.user_id) {
-                emailFieldRef.current.select();
-            } else {
-                nameFieldRef.current.value = (profile?.name ? profile.name : "");
-                nameFieldRef.current.select();
-            }
+            nameFieldRef.current.value = (profile?.name ? profile.name : "");
+            nameFieldRef.current.select();
         }, 0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleLoginUser = function() {
@@ -52,6 +48,9 @@ function LoginPage() {
         // Login user
         setEnableControls(false);
         setLoggingIn(true);
+        // Sign out Supabase user profile first
+        if(profile?.user_id)
+            Supabase.auth.signOut();
         Supabase.auth.signInWithPassword({ email, password }).then(({ data, error }) => {
             // Login failed
             if(error) {
@@ -143,7 +142,7 @@ function LoginPage() {
             <div className="login-title-container">
                 {/* Title */}
                 <div className="login-nickster-text">Nickster</div>
-                <div className="login-subtitle-text">Welcome</div>
+                <div className="login-subtitle-text">{profile?.id ? "Profile" : "Welcome"}</div>
                 {/* Logo */}
                 <div className="login-logo" onClick={triggerLogoAnimating}>
                     <FontAwesomeIcon className="login-logo" icon={faCircleUser} />
@@ -151,15 +150,28 @@ function LoginPage() {
                 </div>
             </div>
 
+            {/* Debug button */}
+            <div className="login-debug-button" onClick={() => setShowDebug(!showDebug)}>
+                <FontAwesomeIcon className={`login-debug-logo ${showDebug ? "display-debug" : ""}`} icon={faBugSlash} />
+            </div>
+            {showDebug && <div className="login-debug-container" hidden={!showDebug}>
+                {Object.keys(localStorage).map(key => (
+                    <div className="login-debug-text">{key + " = " + JSON.stringify(JSON.parse(localStorage.getItem(key)), null, 2)}</div>
+                ))}
+            </div>}
+
             {/* Login form */}
             <div className={`login-form-outer-container ${showingForm ? "pop-in" : ""}`}>
                 <div className="login-form-container">
                     {/* Header */}
                     <div className="login-header-container">
-                        <div className="login-header">Login</div>
+                        <div className="login-header">{profile?.id ? "Profile" : "Login"}</div>
                     </div>
                     {/* Authenticated Login */}
-                    <input className="login-email-input" type="text" ref={emailFieldRef} placeholder="&#9993; Email" autoFocus disabled={!enableControls} onChange={e => setEmail(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
+                    <div classname="login-email-field-container">
+                        <div className="login-email-label">Email:</div>
+                        <input className="login-email-input" type="text" ref={emailFieldRef} placeholder="&#9993; Email" autoFocus disabled={!enableControls} onChange={e => setEmail(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
+                    </div>
                     <input className="login-password-input" type="password" ref={passwordFieldRef} placeholder="&#128274;&#xfe0e; Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
                     <button className="login-button" disabled={!enableControls} onClick={handleLoginUser}>
                         <FontAwesomeIcon className={`login-button-icon ${loggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
@@ -175,7 +187,7 @@ function LoginPage() {
                     <input className="login-guest-name-input" type="text" ref={nameFieldRef} placeholder="&#x1F604;&#xfe0e; Name" disabled={!enableControls} onChange={e => setName(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleGuestLogin()} />
                     <button className="login-guest-button" disabled={!enableControls} onClick={handleGuestLogin}>
                         <FontAwesomeIcon className={`login-button-icon ${guestLoggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
-                        <div className="login-button-text" disabled={!enableControls}>Continue as Guest</div>
+                        <div className="login-button-text" disabled={!enableControls}>{profile?.id ? "Update" : "Guest"}</div>
                     </button>
                 </div>
             </div>

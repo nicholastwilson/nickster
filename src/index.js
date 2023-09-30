@@ -9,11 +9,11 @@ import store from './features/storage/store';
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);
 root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <HashRouter>
             <Provider store={store}>
                 <App />
             </Provider>
         </HashRouter>
-    </React.StrictMode>
+    // </React.StrictMode>
 );
