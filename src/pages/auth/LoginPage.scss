@@ -27,11 +27,26 @@
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
+@media screen and (min-width: 1024px) {
+    .login-nickster-text {
+        left: 30vmin;
+        font-size: 6vmin;
+    }
+}
+
 .login-subtitle-text {
     top: 12vmin;
     left: 35vmin;
     font-size: 14vmin;
     text-shadow: -1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 1024px) {
+    .login-subtitle-text {
+        top: 10vmin;
+        left: 30vmin;
+        font-size: 12vmin;
+    }
 }
 
 .login-logo {
@@ -42,6 +57,13 @@
     fill: var(--theme-color-0);
     border: 1px solid var(--theme-color-7);
     transition: border-color 0.5s ease-in-out;
+}
+
+@media screen and (min-width: 1024px) {
+    .login-logo {
+        width: 20vmin;
+        height: 20vmin;
+    }
 }
 
 .red-line {
@@ -137,15 +159,15 @@
 
 .login-form-container {
     position: absolute;
-    width: 70vmin;
-    height: 70vmin;
-    top: 50%;
+    width: 60vmin;
+    // height: 75vmin;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 1vmin;
     border-radius: 3vmin;
     background-color: var(--theme-color-1);
@@ -154,31 +176,21 @@
 
 @media screen and (min-width: 1024px) {
     .login-form-container {
-        width: 70vmin;
-        height: 65vmin;
+        width: 50vmin;
+        height: 60vmin;
     }
 }
 
 .login-header-container {
     width: 100%;
-    height: 15vmin;
     position: relative;
-}
-
-@media screen and (min-width: 1024px) {
-    .login-header-container {
-        width: 100%;
-        height: 12vmin;
-    }
+    margin-top: 2vmin;
 }
 
 .login-header {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 7vmin;
     font-weight: bold;
+    text-align: center;
     color: var(--theme-color-9);
 }
 
@@ -198,10 +210,15 @@
 }
 
 .login-label {
-    // top: 0vmin;
     font-size: 2.5vmin;
     margin-left: 2vmin;
     color: var(--theme-color-9);
+}
+
+@media screen and (min-width: 1024px) {
+    .login-label {
+        font-size: 2vmin;
+    }
 }
 
 .login-input-container {
@@ -215,34 +232,29 @@
     height: 5vmin;
     font-size: 3vmin;
     padding-left: 2vmin;
+    padding-right: 2vmin;
     background-color: var(--theme-color-0);
     border: 1px solid var(--theme-color-7);
     border-radius: 2vmin;
+}
+
+@media screen and (min-width: 1024px) {
+    .login-input {
+        width: 90%;
+        height: 4vmin;
+        font-size: 3vmin;
+    }
 }
 
 .login-input:focus {
     outline: none;
 }
 
-// :is(.login-email-input, .login-password-input, .login-guest-name-input) {
-//     width: 85%;
-//     height: 5vmin;
-//     background-color: var(--theme-color-0);
-//     border: 1px solid var(--theme-color-9);
-//     border-radius: 2vmin;
-//     padding-left: 2vmin;
-//     font-size: 3vmin;
-//     border: 1px solid maroon;
-// }
-
-// :is(.login-email-input, .login-password-input, .login-guest-name-input):focus {
-//     outline: none;
-// }
-
 .login-button, .login-guest-button {
     width: 46vmin;
     height: 7vmin;
     margin-top: 2vmin;
+    margin-bottom: 3vmin;
     font-size: 3.5vmin;
     font-weight: bold;
     color: var(--theme-color-0);
@@ -254,7 +266,7 @@
 
 @media screen and (min-width: 1024px) {
     .login-button, .login-guest-button {
-        width: 36vmin;
+        width: 30vmin;
         height: 5.5vmin;
         font-size: 3vmin;
     }

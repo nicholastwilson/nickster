@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 
 import Supabase from "features/storage/Supabase";
 import { setProfile } from "features/auth/profileSlice";
+import { hasSupabaseProfile } from "features/auth/Auth";
 import useDebouncedTimer from "hooks/useDebouncedTimer.js";
 
 import "./LoginPage.scss";
@@ -20,7 +21,7 @@ function LoginPage() {
     const [guestLoggingIn, setGuestLoggingIn] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState(!profile?.user_id && profile?.name ? profile.name : "");
+    const [name, setName] = useState(profile?.name);
     const [showDebug, setShowDebug] = useState(false);
     const emailFieldRef = useRef(null);
     const passwordFieldRef = useRef(null);
@@ -39,7 +40,7 @@ function LoginPage() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleLoginUser = function() {
+    const handleLoginUser = async function() {
         // Check for input
         if(!email || !password) {
             toast.error("Enter email and password");
@@ -50,8 +51,9 @@ function LoginPage() {
         setEnableControls(false);
         setLoggingIn(true);
         // Sign out Supabase user profile first
-        if(profile?.user_id)
-            Supabase.auth.signOut();
+        if(hasSupabaseProfile()) {
+            await Supabase.auth.signOut();
+        }
         Supabase.auth.signInWithPassword({ email, password }).then(({ data, error }) => {
             // Login failed
             if(error) {
@@ -85,7 +87,7 @@ function LoginPage() {
         });
     };
     
-    const handleGuestLogin = function() {
+    const handleGuestLogin = async function() {
         // Check for input
         if(!name) {
             toast.error("Enter a name");
