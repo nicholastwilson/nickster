@@ -25,6 +25,7 @@ function LoginPage() {
     const emailFieldRef = useRef(null);
     const passwordFieldRef = useRef(null);
     const nameFieldRef = useRef(null);
+    const hasProfile = profile && profile.id;
     
     // Show login form on initial render
     useEffect(() => {
@@ -95,7 +96,7 @@ function LoginPage() {
         setEnableControls(false);
         setGuestLoggingIn(true);
         // Create guest profile
-        if(!profile?.id) {
+        if(!hasProfile) {
             Supabase.rpc('create_guest_profile', { name }).then(({ data, error }) => {
                 // Login failed
                 if(error) {
@@ -142,7 +143,7 @@ function LoginPage() {
             <div className="login-title-container">
                 {/* Title */}
                 <div className="login-nickster-text">Nickster</div>
-                <div className="login-subtitle-text">{profile?.id ? "Profile" : "Welcome"}</div>
+                <div className="login-subtitle-text">Welcome</div>
                 {/* Logo */}
                 <div className="login-logo" onClick={triggerLogoAnimating}>
                     <FontAwesomeIcon className="login-logo" icon={faCircleUser} />
@@ -160,37 +161,73 @@ function LoginPage() {
                 ))}
             </div>}
 
-            {/* Login form */}
-            <div className={`login-form-outer-container ${showingForm ? "pop-in" : ""}`}>
-                <div className="login-form-container">
-                    {/* Header */}
-                    <div className="login-header-container">
-                        <div className="login-header">{profile?.id ? "Profile" : "Login"}</div>
+            {/* Profile or Login form */}
+            {hasProfile ? (
+                // Profile form
+                <div className={`login-form-outer-container ${showingForm ? "pop-in" : ""}`}>
+                    <div className="login-form-container">
+                        {/* Header */}
+                        <div className="login-header-container">
+                            <div className="login-header">Profile</div>
+                        </div>
+                        {/* Guest Login */}
+                        <div className="login-field-container">
+                            <label className="login-label">Name</label>
+                            <div className="login-input-container">
+                                <input className="login-input" type="text" ref={nameFieldRef} disabled={!enableControls} onChange={e => setName(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleGuestLogin()} />
+                            </div>
+                        </div>
+                        <button className="login-guest-button" disabled={!enableControls} onClick={handleGuestLogin}>
+                            <FontAwesomeIcon className={`login-button-icon ${guestLoggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
+                            <div className="login-button-text" disabled={!enableControls}>Save</div>
+                        </button>
                     </div>
-                    {/* Authenticated Login */}
-                    <div classname="login-email-field-container">
-                        <div className="login-email-label">Email:</div>
-                        <input className="login-email-input" type="text" ref={emailFieldRef} placeholder="&#9993; Email" autoFocus disabled={!enableControls} onChange={e => setEmail(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
-                    </div>
-                    <input className="login-password-input" type="password" ref={passwordFieldRef} placeholder="&#128274;&#xfe0e; Password" disabled={!enableControls} onChange={e => setPassword(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
-                    <button className="login-button" disabled={!enableControls} onClick={handleLoginUser}>
-                        <FontAwesomeIcon className={`login-button-icon ${loggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
-                        <div className="login-button-text" disabled={!enableControls}>Login</div>
-                    </button>
-                    {/* Separator */}
-                    <div className="login-or-container">
-                        <div className="login-or-line"></div>
-                        <div className="login-or-text">OR</div>
-                        <div className="login-or-line"></div>
-                    </div>
-                    {/* Guest Login */}
-                    <input className="login-guest-name-input" type="text" ref={nameFieldRef} placeholder="&#x1F604;&#xfe0e; Name" disabled={!enableControls} onChange={e => setName(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleGuestLogin()} />
-                    <button className="login-guest-button" disabled={!enableControls} onClick={handleGuestLogin}>
-                        <FontAwesomeIcon className={`login-button-icon ${guestLoggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
-                        <div className="login-button-text" disabled={!enableControls}>{profile?.id ? "Update" : "Guest"}</div>
-                    </button>
                 </div>
-            </div>
+            ) : (
+                // Login form
+                <div className={`login-form-outer-container ${showingForm ? "pop-in" : ""}`}>
+                    <div className="login-form-container">
+                        {/* Header */}
+                        <div className="login-header-container">
+                            <div className="login-header">Login</div>
+                        </div>
+                        {/* Authenticated Login */}
+                        <div className="login-field-container">
+                            <label className="login-label">Email</label>
+                            <div className="login-input-container">
+                                <input className="login-input" type="text" ref={emailFieldRef} autoFocus disabled={!enableControls} onChange={e => setEmail(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
+                            </div>
+                        </div>
+                        <div className="login-field-container">
+                            <label className="login-label">Password</label>
+                            <div className="login-input-container">
+                                <input className="login-input" type="password" ref={passwordFieldRef} disabled={!enableControls} onChange={e => setPassword(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleLoginUser()} />
+                            </div>
+                        </div>
+                        <button className="login-button" disabled={!enableControls} onClick={handleLoginUser}>
+                            <FontAwesomeIcon className={`login-button-icon ${loggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
+                            <div className="login-button-text" disabled={!enableControls}>Login</div>
+                        </button>
+                        {/* Separator */}
+                        <div className="login-or-container">
+                            <div className="login-or-line"></div>
+                            <div className="login-or-text">OR</div>
+                            <div className="login-or-line"></div>
+                        </div>
+                        {/* Guest Login */}
+                        <div className="login-field-container">
+                            <label className="login-label">Name</label>
+                            <div className="login-input-container">
+                                <input className="login-input" type="text" ref={nameFieldRef} disabled={!enableControls} onChange={e => setName(e.target.value)} onKeyPress={(e) => e.key === "Enter" && handleGuestLogin()} />
+                            </div>
+                        </div>
+                        <button className="login-guest-button" disabled={!enableControls} onClick={handleGuestLogin}>
+                            <FontAwesomeIcon className={`login-button-icon ${guestLoggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
+                            <div className="login-button-text" disabled={!enableControls}>Guest</div>
+                        </button>
+                    </div>
+                </div>
+            )}
 
         </div>
     );

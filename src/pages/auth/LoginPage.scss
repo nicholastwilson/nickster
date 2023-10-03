@@ -155,7 +155,7 @@
 @media screen and (min-width: 1024px) {
     .login-form-container {
         width: 70vmin;
-        height: 60vmin;
+        height: 65vmin;
     }
 }
 
@@ -188,41 +188,56 @@
     }
 }
 
-.login-email-field-container {
-    width: 100%;
-    height: 10vmin;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 2vmin;
-    border: 1px solid magenta;
-}
-
-.login-email-label {
-    width: 10vmin;
-    // height: 100%;
-    // height: 10vmin;
-    font-size: 3vmin;
-    color: var(--theme-color-9);
-    border: 1px solid green;
-}
-
-:is(.login-email-input, .login-password-input, .login-guest-name-input) {
+.login-field-container {
     width: 85%;
-    height: 5vmin;
-    background-color: var(--theme-color-0);
-    border: 1px solid var(--theme-color-9);
-    border-radius: 2vmin;
-    padding-left: 2vmin;
-    font-size: 3vmin;
-    border: 1px solid maroon;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    background-color: var(--theme-color-1);
 }
 
-:is(.login-email-input, .login-password-input, .login-guest-name-input):focus {
+.login-label {
+    // top: 0vmin;
+    font-size: 2.5vmin;
+    margin-left: 2vmin;
+    color: var(--theme-color-9);
+}
+
+.login-input-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 2vmin;
+}
+
+.login-input {
+    width: 95%;
+    height: 5vmin;
+    font-size: 3vmin;
+    padding-left: 2vmin;
+    background-color: var(--theme-color-0);
+    border: 1px solid var(--theme-color-7);
+    border-radius: 2vmin;
+}
+
+.login-input:focus {
     outline: none;
 }
+
+// :is(.login-email-input, .login-password-input, .login-guest-name-input) {
+//     width: 85%;
+//     height: 5vmin;
+//     background-color: var(--theme-color-0);
+//     border: 1px solid var(--theme-color-9);
+//     border-radius: 2vmin;
+//     padding-left: 2vmin;
+//     font-size: 3vmin;
+//     border: 1px solid maroon;
+// }
+
+// :is(.login-email-input, .login-password-input, .login-guest-name-input):focus {
+//     outline: none;
+// }
 
 .login-button, .login-guest-button {
     width: 46vmin;
@@ -290,7 +305,7 @@
     gap: 1vmin;
     width: 90%;
     height: 5vmin;
-    margin: 1vmin 0 1vmin 0;
+    // margin: 1vmin 0 1vmin 0;
 }
 
 .login-or-line {
@@ -301,7 +316,7 @@
 
 .login-or-text {
     margin: 0 1vmin;
-    font-size: 3vmin;
+    font-size: 2.5vmin;
     font-weight: bold;
     color: var(--theme-color-9);
 }
