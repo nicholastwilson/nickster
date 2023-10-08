@@ -160,7 +160,6 @@
 .login-form-container {
     position: absolute;
     width: 60vmin;
-    // height: 75vmin;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -177,7 +176,6 @@
 @media screen and (min-width: 1024px) {
     .login-form-container {
         width: 50vmin;
-        height: 60vmin;
     }
 }
 

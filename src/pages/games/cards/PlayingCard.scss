@@ -33,6 +33,7 @@ Cards
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    border-radius: 1vmin;
 }
 
 .pc-front-face {
@@ -476,4 +477,14 @@ Back Face
     height: 100%;
     object-fit: cover;
     pointer-events: none;
+}
+
+/***************************************************
+Trump
+***************************************************/
+.pc-trump-gold {
+    background-color: #FFD700;
+}
+.pc-trump-blue {
+    background-color: #00ccff;
 }

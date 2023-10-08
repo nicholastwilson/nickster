@@ -58,6 +58,7 @@ function PinochleStartView() {
     const createNewGame = async () => {
         const { data, error } = await Supabase.rpc("start_game", {
             profile_id: profile.id,
+            user_id: profile.user_id,
             type: "pinochle",
             min_players: 4,
             max_players: 4,
@@ -70,8 +71,8 @@ function PinochleStartView() {
                 meldSpeed: rules.meldSpeed
             }
         });
-        if(error || (data && data.success === false)) {
-            console.error(error ? error.message : data.message);
+        if(error || !data || data.success !== true) {
+            console.error(error ? error.message : data ? data.message : "Error starting game");
         } else {
             navigate("../play/" + data.game_id);
         }

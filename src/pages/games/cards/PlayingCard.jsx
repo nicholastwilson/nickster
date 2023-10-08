@@ -28,7 +28,7 @@ const Ranks = {
     King: { symbol: "K", pips: 0 }
 }
 
-function PlayingCard({ suit, rank, additionalClasses = "", backFaceImage = "" }) {
+function PlayingCard({ suit, rank, trump = false, trumpColor = "gold", additionalClasses = "", backFaceImage = "" }) {
     const s = Suits[suit];
     const r = Ranks[rank];
     const pipElements = [];
@@ -40,7 +40,7 @@ function PlayingCard({ suit, rank, additionalClasses = "", backFaceImage = "" })
     return (
         <div className={`pc-card ${additionalClasses}`}>
             <div className="pc-card-inner">
-                <div className="pc-front-face">
+                <div className={`pc-front-face ${trump ? "pc-trump-" + trumpColor : ""}`}>
                     <div className="pc-corners">
                         <div className="pc-corner-1">
                             <div className={"pc-corner-1-rank pc-suit-" + suit + " pc-rank-" + rank}>{r.symbol}</div>

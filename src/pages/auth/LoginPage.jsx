@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faCircleNotch, faBugSlash } from "@fortawesome/free-solid-svg-icons";
@@ -29,7 +29,7 @@ function LoginPage() {
     const hasProfile = profile && profile.id;
     
     // Show login form on initial render
-    useEffect(() => {
+    useLayoutEffect(() => {
         // Show login form
         setShowingForm(true);
         // Configure fields
