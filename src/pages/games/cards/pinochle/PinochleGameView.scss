@@ -36,20 +36,20 @@
     transform: rotateY(180deg);
 }
 
-.pgv-cards-container>.pc-card {
+.pgv-cards-container>.pgv-card {
     position: absolute;
     bottom: -15vmin;
 }
 
-.pc-card:nth-child(1)  { bottom: -15vmin; left: 10vmin; transform: rotate(-12deg); }
-.pc-card:nth-child(2)  { bottom: -14vmin; left: 14vmin; transform: rotate(-10deg); }
-.pc-card:nth-child(3)  { bottom: -13vmin; left: 18vmin; transform: rotate(-7deg); }
-.pc-card:nth-child(4)  { bottom: -12vmin; left: 23vmin; transform: rotate(-6deg); }
-.pc-card:nth-child(5)  { left: 33vmin; transform: rotate(-4deg); }
-.pc-card:nth-child(6)  { left: 40vmin; transform: rotate(-2deg); }
-.pc-card:nth-child(7)  { left: 47vmin; transform: rotate(2deg); }
-.pc-card:nth-child(8)  { left: 55vmin; transform: rotate(4deg); }
-.pc-card:nth-child(9)  { left: 65vmin; transform: rotate(6deg); }
-.pc-card:nth-child(10) { left: 75vmin; transform: rotate(8deg); }
-.pc-card:nth-child(11) { left: 95vmin; transform: rotate(10deg); }
-.pc-card:nth-child(12) { left: 115vmin; transform: rotate(12deg); }
+.pgv-card:nth-child(1)  { bottom: -15vmin; left: 10vmin; transform: rotate(-12deg); }
+.pgv-card:nth-child(2)  { bottom: -14vmin; left: 14vmin; transform: rotate(-10deg); }
+.pgv-card:nth-child(3)  { bottom: -13vmin; left: 18vmin; transform: rotate(-7deg); }
+.pgv-card:nth-child(4)  { bottom: -12vmin; left: 23vmin; transform: rotate(-6deg); }
+.pgv-card:nth-child(5)  { bottom: -11vmin; left: 33vmin; transform: rotate(-4deg); }
+.pgv-card:nth-child(6)  { bottom: -10vmin; left: 40vmin; transform: rotate(-2deg); }
+.pgv-card:nth-child(7)  { bottom: -9vmin; left: 47vmin; transform: rotate(2deg); }
+.pgv-card:nth-child(8)  { bottom: -8vmin; left: 55vmin; transform: rotate(4deg); }
+.pgv-card:nth-child(9)  { bottom: -7vmin; left: 65vmin; transform: rotate(6deg); }
+.pgv-card:nth-child(10) { bottom: -6vmin; left: 75vmin; transform: rotate(8deg); }
+.pgv-card:nth-child(11) { bottom: -5vmin; left: 95vmin; transform: rotate(10deg); }
+.pgv-card:nth-child(12) { bottom: -4vmin; left: 115vmin; transform: rotate(12deg); }
