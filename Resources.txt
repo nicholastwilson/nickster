@@ -1,0 +1,93 @@
+[Edit]
+	Source                        /nickster/src
+	Git Repository                https://github.com/nicholastwilson/nickster.git
+	Git Resync                    reset --hard origin/main
+
+[Test]
+	Npm Start                     npm start
+	Test URL                      http://localhost:3000
+
+[Build]
+	Npm Build                     npm run build
+	Git Stage                     git add .
+	Git Commit                    git commit -a -m ""
+	Git Push                      git push
+
+[Deploy]
+	Deploy to GitHub Pages        npm run deploy
+
+[Run]
+	GitHub Pages URL              https://nicholastwilson.github.io/nickster
+
+[Troubleshoot]
+	Git Status                    git status
+	Git Commit History            git log
+	Git Remote Branches Status    git remote show origin
+	Git Config                    git config -l --show-origin --show-scope
+	Npm Installed Packages        npm list
+
+[Resources]
+
+	[AI]
+		ChatGPT                   https://chat.openai.com
+		Bard                      https://bard.chat
+		Claude                    https://claude.ai
+		
+	[CSS]
+	    CSS Reference             https://developer.mozilla.org/en-US/docs/Web/CSS
+	    W3 CSS Reference          https://www.w3schools.com/css/default.asp
+	    W3 CSS Selectors          https://www.w3schools.com/css/css_selectors.asp
+	    W3 CSS Animations         https://www.w3schools.com/css/css3_animations.asp
+	    CSS Animations            https://www.lambdatest.com/blog/css-animations-tutorial
+	    Styled Components         https://styled-components.com/docs/api
+		
+	[Fonts]
+		Font Awesome              https://fontawesome.com/search?o=r&m=free
+		Google Fonts              https://fonts.google.com
+
+    [Framer Motion]
+		Documentation             https://www.framer.com/motion
+        Open Replay Tutorial      https://blog.openreplay.com/doing-animations-in-react-with-framer-motion
+        Log Rocket Tutorial       https://blog.logrocket.com/framer-motion-tutorial
+
+	[Git]
+	    Git Reference             https://git-scm.com/docs
+	    Git Visual Reference      https://marklodato.github.io/visual-git-guide/index-en.html
+	    GitHub Pages Deployment   https://create-react-app.dev/docs/deployment#github-pages
+
+	[HTML]
+		HTML Reference            https://developer.mozilla.org/en-US/docs/Web/HTML
+		HTML Cheat Sheet          https://www.w3schools.com/html/html_cheat_sheet.asp
+		HTML Suit characters      ♥ <&#9829;>, ♠ <&#9824;>, ♦ <&#9830;>, ♣ <&#9827;>
+
+	[Markdown]
+		Markdown Reference        https://www.markdownguide.org/basic-syntax
+		Markdown Cheat Sheet      https://www.markdownguide.org/cheat-sheet
+		Table creator             https://tableconvert.com
+		ASCIIFlow                 https://asciiflow.com
+
+	[React]
+	    React JS                  https://reactjs.org/tutorial/tutorial.html
+	    Create React App          https://create-react-app.dev/docs/getting-started
+	    W3 React                  https://www.w3schools.com/react/default.asp
+	    React Animations          https://github.com/FormidableLabs/react-animations
+		
+	[Supabase]
+		Supabase Documentation    https://supabase.com/docs
+		Nickster Project          https://supabase.com/dashboard/project/oquynbqnsutyoafxikxb
+		Javascript Reference      https://supabase.com/docs/reference/javascript/select
+
+	[SVG]
+		Mozilla Documentation     https://developer.mozilla.org/en-US/docs/Web/SVG
+		SVG Cheat Sheet           https://www.w3schools.com/svg/svg_cheat_sheet.asp
+		SVG to JSX                https://svg2jsx.com
+		SVG Crop                  https://svgcrop.com
+		SVG Icons                 https://www.svgrepo.com
+		Optimize SVGs (SVGO)      https://github.com/svg/svgo
+		                          npm -g install svgo
+		                          svgo -r -f /path/to/svgs -o /path/to/outputs
+
+	[WebRTC]
+		WebRTC Reference          https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
+		WebRTC Documentation      https://webrtc.github.io/samples
+		STUN Servers list         https://raw.githubusercontent.com/pradt2/always-online-stun/master/valid_hosts.txt
