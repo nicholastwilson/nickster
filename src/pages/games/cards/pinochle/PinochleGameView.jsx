@@ -74,8 +74,9 @@ function PinochleGameView() {
     // }
     return (
         <div className="pgv-game-page">
-            <div style={{ marginTop: "2vmin" }}>Game ID: {gameID}</div>
+
             <div style={{ marginBottom: "2vmin" }} onClick={() => setTrumpSuit(_.sample(Object.keys(Suits)))}>Trump: {trumpSuit}</div>
+            
             {/* Cards */}
             <div className="pgv-cards-container">
                 {deck}
@@ -84,8 +85,49 @@ function PinochleGameView() {
             {/* <motion.button className="pgv-add-card-button" style={{ marginBottom: "2vmin" }} whileTap={{ translate: "0% 5%"}} transition={{ duration: 0.05 }} onClick={handleAddCard}>
                 Add Card
             </motion.button> */}
+
+            {/* Player Hands */}
+            {/* Player Bids */}
+            {/* Scorecard */}
+            {/* Rules */}
+
         </div>
     );
+    /*
+        - Background
+            - Color w/ Gradient
+        - Buttons
+            - Invite players to join
+            - Leave game
+            - Start game
+            - Continue to next round
+            - Start a new game
+            - Bids
+            - Pass
+            - Trump suit
+            - Throw In
+            - Misdeal
+            - Shoot the moon
+            - Scores
+            - Rules
+            - Settings
+        - Cards
+            - Deal to all players
+            - Player hands
+            - Highlight meld for each suit
+            - Highlight meld to score
+            - Show meld
+            - Play a card
+        - Label
+            - Players
+            - Rules
+            - Scores
+            - Settings
+            - Bids
+            - Meld
+            - Trump
+            - Target bid
+    */
 }
 
 export default PinochleGameView;
