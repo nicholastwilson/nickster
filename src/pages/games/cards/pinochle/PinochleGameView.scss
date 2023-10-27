@@ -10,14 +10,23 @@
     gap: 1vmin;
 }
 
-.pgv-add-card-button {
+.pgv-trump-label {
     position: absolute;
-    left: 50%;
+    font-size: 10vmin;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
-.pgv-cards-container {
+// .pgv-add-card-button {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+// }
+
+.pgv-player-cards-container {
     flex: 1;
     position: relative;
     // display: flex;
@@ -36,20 +45,33 @@
     transform: rotateY(180deg);
 }
 
-.pgv-cards-container>.pgv-card {
+.pgv-player-cards-container>.pgv-card {
     position: absolute;
     bottom: -15vmin;
 }
 
-.pgv-card:nth-child(1)  { bottom: -15vmin; left: 10vmin; transform: rotate(-12deg); }
-.pgv-card:nth-child(2)  { bottom: -14vmin; left: 14vmin; transform: rotate(-10deg); }
-.pgv-card:nth-child(3)  { bottom: -13vmin; left: 18vmin; transform: rotate(-7deg); }
-.pgv-card:nth-child(4)  { bottom: -12vmin; left: 23vmin; transform: rotate(-6deg); }
-.pgv-card:nth-child(5)  { bottom: -11vmin; left: 33vmin; transform: rotate(-4deg); }
-.pgv-card:nth-child(6)  { bottom: -10vmin; left: 40vmin; transform: rotate(-2deg); }
-.pgv-card:nth-child(7)  { bottom: -9vmin; left: 47vmin; transform: rotate(2deg); }
-.pgv-card:nth-child(8)  { bottom: -8vmin; left: 55vmin; transform: rotate(4deg); }
-.pgv-card:nth-child(9)  { bottom: -7vmin; left: 65vmin; transform: rotate(6deg); }
-.pgv-card:nth-child(10) { bottom: -6vmin; left: 75vmin; transform: rotate(8deg); }
-.pgv-card:nth-child(11) { bottom: -5vmin; left: 95vmin; transform: rotate(10deg); }
-.pgv-card:nth-child(12) { bottom: -4vmin; left: 115vmin; transform: rotate(12deg); }
+.pgv-card:nth-child(1) { bottom: -15vmin; left: 20vw; }
+.pgv-card:nth-child(2) { bottom: -15vmin; left: 24vw; }
+.pgv-card:nth-child(3) { bottom: -15vmin; left: 28vw; }
+.pgv-card:nth-child(4) { bottom: -15vmin; left: 32vw; }
+.pgv-card:nth-child(5) { bottom: -15vmin; left: 36vw; }
+.pgv-card:nth-child(6) { bottom: -15vmin; left: 40vw; }
+.pgv-card:nth-child(7) { bottom: -15vmin; left: 44vw; }
+.pgv-card:nth-child(8) { bottom: -15vmin; left: 48vw; }
+.pgv-card:nth-child(9) { bottom: -15vmin; left: 52vw; }
+.pgv-card:nth-child(10) { bottom: -15vmin; left: 56vw; }
+.pgv-card:nth-child(11) { bottom: -15vmin; left: 60vw; }
+.pgv-card:nth-child(12) { bottom: -15vmin; left: 64vw; }
+
+// .pgv-card:nth-child(1 ) { bottom: -15vmin; left:  10vw; transform: rotate(-12deg); }
+// .pgv-card:nth-child(2 ) { bottom: -14vmin; left:  14vw; transform: rotate(-10deg); }
+// .pgv-card:nth-child(3 ) { bottom: -13vmin; left:  18vw; transform: rotate(-7deg ); }
+// .pgv-card:nth-child(4 ) { bottom: -12vmin; left:  23vw; transform: rotate(-6deg ); }
+// .pgv-card:nth-child(5 ) { bottom: -11vmin; left:  33vw; transform: rotate(-4deg ); }
+// .pgv-card:nth-child(6 ) { bottom: -10vmin; left:  40vw; transform: rotate(-2deg ); }
+// .pgv-card:nth-child(7 ) { bottom: -9vmin ; left:  47vw; transform: rotate(2deg  ); }
+// .pgv-card:nth-child(8 ) { bottom: -8vmin ; left:  55vw; transform: rotate(4deg  ); }
+// .pgv-card:nth-child(9 ) { bottom: -7vmin ; left:  65vw; transform: rotate(6deg  ); }
+// .pgv-card:nth-child(10) { bottom: -6vmin ; left:  75vw; transform: rotate(8deg  ); }
+// .pgv-card:nth-child(11) { bottom: -5vmin ; left:  95vw; transform: rotate(10deg ); }
+// .pgv-card:nth-child(12) { bottom: -4vmin ; left: 115vw; transform: rotate(12deg ); }
