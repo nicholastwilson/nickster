@@ -118,7 +118,7 @@ function LoginPage() {
         else {
             Supabase.rpc("update_user_profile", {
                 "id": profile.id,
-                "user_id": profile.user_id,
+                "user_id": profile.user_id && profile.user_id !== "" ? profile.user_id : null,
                 "name": name,
                 "preferences": profile.preferences
             }).then(({ data, error }) => {

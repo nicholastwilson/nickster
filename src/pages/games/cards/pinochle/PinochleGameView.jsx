@@ -15,7 +15,7 @@ function PinochleGameView() {
     const { gameID } = useParams();
     const profile = useSelector(state => state.profile);
     const [cards, setCards] = useState(null);
-    const [trumpSuit, setTrumpSuit] = useState(_.sample(Object.keys(Suits)), []);
+    const [trumpSuit, setTrumpSuit] = useState(null);
 
     // Retrieve game state
     useEffect(() => {
@@ -30,15 +30,18 @@ function PinochleGameView() {
                 toast.error(data.message);
                 return;
             }
+            const suitOrder = ["H", "S", "D", "C"];
+            const rankOrder = ["A", "T", "K", "Q", "J", "9"];
             data.hand = data.hand.sort((a, b) => {
                 const aSuit = a.substring(1, 2);
                 const bSuit = b.substring(1, 2);
                 if(aSuit !== bSuit) {
-                    return aSuit.localeCompare(bSuit);
+                    return suitOrder.indexOf(aSuit) - suitOrder.indexOf(bSuit);
                 } else {
-                    return a.substring(0, 1).localeCompare(b.substring(0, 1));
+                    return rankOrder.indexOf(a.substring(0, 1)) - rankOrder.indexOf(b.substring(0, 1));
                 }
             });
+            setTrumpSuit(() => data.trump);
             console.log("Hand: " + data.hand);
             toast.success("Welcome to the game, " + profile.name + "!");
             const toSuit = (s) => (s === 'C') ? "Clubs" : (s === 'D') ? "Diamonds" : (s === 'S') ? "Spades" : "Hearts";
@@ -125,7 +128,7 @@ function PinochleGameView() {
     return (
         <div className="pgv-game-page">
 
-            <div className="pgv-trump-label" onClick={() => setTrumpSuit(_.sample(Object.keys(Suits)))}>Trump: {trumpSuit}</div>
+            {trumpSuit && <div className="pgv-trump-label">Trump: {trumpSuit}</div>}
             
             {/* Cards */}
             {/* <div className="pgv-cards-container">
