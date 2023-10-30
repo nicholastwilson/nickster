@@ -19,6 +19,9 @@ function PinochleGameView() {
 
     // Retrieve game state
     useEffect(() => {
+        if(!profile.id || !gameID) {
+            return;
+        }
         Supabase.rpc("get_game_state", { profile_id: profile.id, game_id: gameID }).then(res => {
             console.log("Response: " + JSON.stringify(res));
             if(res.status !== 200) {
@@ -43,7 +46,7 @@ function PinochleGameView() {
             });
             setTrumpSuit(() => data.trump);
             console.log("Hand: " + data.hand);
-            toast.success("Welcome to the game, " + profile.name + "!");
+            toast.success("Welcome, " + profile.name + "!");
             const toSuit = (s) => (s === 'C') ? "Clubs" : (s === 'D') ? "Diamonds" : (s === 'S') ? "Spades" : "Hearts";
             const toRank = (r) => (r === '9') ? "Nine" : (r === 'J') ? "Jack" : (r === 'Q') ? "Queen" : (r === 'K') ? "King" : (r === 'T') ? "Ten" : (r === 'A') ? "Ace" : "";
             setCards(data.hand.map((c, i) => {
@@ -128,7 +131,7 @@ function PinochleGameView() {
     return (
         <div className="pgv-game-page">
 
-            {trumpSuit && <div className="pgv-trump-label">Trump: {trumpSuit}</div>}
+            {trumpSuit && <div className="pgv-trump-label"><div style={{display: "inline-block", color: trumpSuit == 'Hearts' || trumpSuit == 'Diamonds' ? "red" : "black"}}>{Suits[trumpSuit].symbol}</div></div>}
             
             {/* Cards */}
             {/* <div className="pgv-cards-container">
@@ -139,11 +142,16 @@ function PinochleGameView() {
                 Add Card
             </motion.button> */}
 
+            {/* Player Bids */}
+            
+            {/* Player ID */}
+            <div className="pgv-player-id">
+                {profile.name}
+            </div>
             {/* Player Hands */}
             <div className="pgv-player-cards-container">
                 {cards}
             </div>
-            {/* Player Bids */}
             {/* Scorecard */}
             {/* Rules */}
 
