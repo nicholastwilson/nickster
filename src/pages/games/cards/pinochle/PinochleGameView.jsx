@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+ipor { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion} from "framer-motion";
 import _ from "lodash";
@@ -14,8 +14,47 @@ import "./PinochleGameView.scss";
 function PinochleGameView() {
     const { gameID } = useParams();
     const profile = useSelector(state => state.profile);
-    const [cards, setCards] = useState(null);
+    const [playerNames, setPlayerNames] = useState([profile.name, '', '', '']);
+    const [gamePhase, setGamePhase] = useState('loading');
+    const [playerHand, setPlayerHand] = useState(null);
+    const [player2Hand, setPlayer2Hand] = useState(null);
+    const [player3Hand, setPlayer3Hand] = useState(null);
+    const [player4Hand, setPlayer4Hand] = useState(null);
     const [trumpSuit, setTrumpSuit] = useState(null);
+    
+    /*
+        - Buttons
+            - Invite players to join
+            - Leave game
+            - Start game
+            - Continue to next round
+            - Start a new game
+            - Bids
+            - Pass
+            - Trump suit
+            - Throw In
+            - Misdeal
+            - Shoot the moon
+            - Scores
+            - Rules
+            - Settings
+        - Cards
+            - Deal to all players
+            - Player hands
+            - Highlight meld for each suit
+            - Highlight meld to score
+            - Show meld
+            - Play a card
+        - Label
+            - Players
+            - Rules
+            - Scores
+            - Settings
+            - Bids
+            - Meld
+            - Trump
+            - Target bid
+    */
 
     // Retrieve game state
     useEffect(() => {
@@ -33,7 +72,7 @@ function PinochleGameView() {
                 toast.error(data.message);
                 return;
             }
-            const suitOrder = ["H", "S", "D", "C"];
+          const suitOrder = ["H", "S", "D", "C"];
             const rankOrder = ["A", "T", "K", "Q", "J", "9"];
             data.hand = data.hand.sort((a, b) => {
                 const aSuit = a.substring(1, 2);
@@ -49,7 +88,7 @@ function PinochleGameView() {
             toast.success("Welcome, " + profile.name + "!");
             const toSuit = (s) => (s === 'C') ? "Clubs" : (s === 'D') ? "Diamonds" : (s === 'S') ? "Spades" : "Hearts";
             const toRank = (r) => (r === '9') ? "Nine" : (r === 'J') ? "Jack" : (r === 'Q') ? "Queen" : (r === 'K') ? "King" : (r === 'T') ? "Ten" : (r === 'A') ? "Ace" : "";
-            setCards(data.hand.map((c, i) => {
+            setHand(data.hand.map((c, i) => {
                 return (
                     <div key={i} className="pgv-card" style={{ cursor: "pointer" }}>
                         <PlayingCard 
@@ -150,7 +189,7 @@ function PinochleGameView() {
             </div>
             {/* Player Hands */}
             <div className="pgv-player-cards-container">
-                {cards}
+                {hand}
             </div>
             {/* Scorecard */}
             {/* Rules */}
