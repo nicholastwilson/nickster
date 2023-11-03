@@ -1,4 +1,5 @@
-ipor { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { signal } from "@preact/signals-react";
 import { useParams } from "react-router-dom";
 import { motion} from "framer-motion";
 import _ from "lodash";
@@ -14,15 +15,50 @@ import "./PinochleGameView.scss";
 function PinochleGameView() {
     const { gameID } = useParams();
     const profile = useSelector(state => state.profile);
-    const [playerNames, setPlayerNames] = useState([profile.name, '', '', '']);
-    const [gamePhase, setGamePhase] = useState('loading');
-    const [playerHand, setPlayerHand] = useState(null);
-    const [player2Hand, setPlayer2Hand] = useState(null);
-    const [player3Hand, setPlayer3Hand] = useState(null);
-    const [player4Hand, setPlayer4Hand] = useState(null);
-    const [trumpSuit, setTrumpSuit] = useState(null);
     
+    // Game settings
+    const [gameRules, setGameRules] = useState({
+        targetScore: 0,  // 150, 250, 300
+        meldSpeed: null,  // "very slow", "slow", "medium", "fast", "very fast"
+        allowMisdeal: null  // true, false
+    });
+
+    // Game state
+    const [gamePhase, setGamePhase] = useState("loading");  // "loading", "joining", "bidding", "declaring", "passing", "tricks", "summary", ...
+    const [playerPosition, setPlayerPosition] = useState(null);  // Player position in the game (1-4)
+    const [playerNames, setPlayerNames] = useState(null);  // Player names, starting from this player and going clockwise around the table: ["Mickey", "Goofy", "Donald", "Nick"]
+    const [teamPlayers, setTeamPlayers] = useState(null);  // Pairs of player positions for each team: [ [1, 3], [2, 4] ]
+    const [roundScores, setRoundScores] = useState(null);  // Scores for each round: [ [42, 13], [-37, 7], [5, 44], ... ]
+    const [roundHands, setRoundHands] = useState(null);  // Hands for each round: [ [ ["AH", "JD", ...], ["QS", "9C", ...], [...], [...] ], ... ]
+
+    // Round state
+    const [dealingPlayer, setDealingPlayer] = useState(null);  // Player who is dealing (1-4)
+    const [playerHand, setPlayerHand] = useState(null);  // Player hand: ["AH", "JD", ...]
+    const [playerHandCounts, setPlayerHandCounts] = useState(null);  // Number of cards for each player: [ 12, 12, 11, 11 ]
+    const [declaringPlayer, setDeclaringPlayer] = useState(null);  // Player who won the bid and declares trump
+    const [trumpSuit, setTrumpSuit] = useState(null);  // Trump suit for the round
+    const [playerMelds, setPlayerMelds] = useState(null);  // Player meld points: [ 22, 5, 3, 6 ]
+    const [playerScores, setPlayerScores] = useState(null);  // Player meld and trick scores: [ 22, 5, 3, 6 ]
+
     /*
+        Join Game | Players join the game | `join_game()` → `game_settings` | NEW `game_players` | `player-joined` |
+            | Players retrieve game settings | `get_game_settings()` | GET `games.settings` |  |
+        Start Round | Players signal to start a round | `pinochle_start_round()` → `round_started` | SET `dealer`, `player_hands`, `initial_hands` | `round-started` |
+            | Players retrieve initial game state | `get_game_state()` | GET `games.state` |  |
+        Bidding | Players take turns bidding, passing, or calling for a misdeal | `pinochle_bid(bid)` | SET `player_bids` | `player-bid` |
+            |  | `pinochle_pass()` | SET `player_bids` | `player-passed` |
+            |  | `pinochle_misdeal()` | SET `player_hands`, `player_bids` | `player-misdeals` |
+        Declare Trump | Player with the highest bid declares trump | `pinochle_declare_trump(suit)` | SET `target_score`, `trump_suit` | `trump-declared` |
+        Partner Pass | Partner passes cards to declaring player | `pinochle_partner_pass(cards)` | SET `player_hands` | `partner-passed` |
+        Declarer Pass | Declarer passed cards back to partner | `pinochle_declarer_pass(cards)` | SET `player_hands` | `declarer-passed` |
+        Declarer Throws In | Declarer throws in the hand voluntarily | `pinochle_throw_in()` |  | `hand-thrown-in` |
+        Shoot the Moon | Declarer indicates that they will attempt to shoot the moon | `pinochle_shoot_the_moon()` | SET `shoot_the_moon`, `target_score` | `shooting-the-moon` |
+        Choose Meld | Players choose meld to score | `pinochle_meld()` | SET `player_melds`, `player_scores` | `player-melded` |
+        Declarer Forfeits | Declarer's team is unable to score enough points to make the bid | `pinochle_fail_bid()` |  | `failed-bid` |
+        Play Card | Player plays a card from their hand | `pinochle_play_card()` → `winning_player` | SET `trick_cards`, `player_hands`, `player_scores` | `card-played` |
+        End Round | The round ends, scores are totaled, and summary is shown | `pinochle_get_round_summary()` → `player_hands` | SET `team_scores` |  |
+        Leave Game | Player leaves the game | `leave_game()` | SET `game_players` | `player-left` |
+
         - Buttons
             - Invite players to join
             - Leave game
@@ -64,7 +100,7 @@ function PinochleGameView() {
         Supabase.rpc("get_game_state", { profile_id: profile.id, game_id: gameID }).then(res => {
             console.log("Response: " + JSON.stringify(res));
             if(res.status !== 200) {
-                toast.error('Error communicating with Nickster server');
+                toast.error("Error communicating with Nickster server");
                 return;
             }
             const data = res.data;
@@ -86,9 +122,9 @@ function PinochleGameView() {
             setTrumpSuit(() => data.trump);
             console.log("Hand: " + data.hand);
             toast.success("Welcome, " + profile.name + "!");
-            const toSuit = (s) => (s === 'C') ? "Clubs" : (s === 'D') ? "Diamonds" : (s === 'S') ? "Spades" : "Hearts";
-            const toRank = (r) => (r === '9') ? "Nine" : (r === 'J') ? "Jack" : (r === 'Q') ? "Queen" : (r === 'K') ? "King" : (r === 'T') ? "Ten" : (r === 'A') ? "Ace" : "";
-            setHand(data.hand.map((c, i) => {
+            const toSuit = (s) => (s === "C") ? "Clubs" : (s === "D") ? "Diamonds" : (s === "S") ? "Spades" : "Hearts";
+            const toRank = (r) => (r === "9") ? "Nine" : (r === "J") ? "Jack" : (r === "Q") ? "Queen" : (r === "K") ? "King" : (r === "T") ? "Ten" : (r === "A") ? "Ace" : "";
+            setPlayerHand(data.hand.map((c, i) => {
                 return (
                     <div key={i} className="pgv-card" style={{ cursor: "pointer" }}>
                         <PlayingCard 
@@ -102,7 +138,83 @@ function PinochleGameView() {
                 );
             }));
         });
+
+        // Test changing game mode
+        setTimeout(() => {
+            setGamePhase("bidding");
+        }, 2000);
     }, [profile.id, gameID, trumpSuit]);
+
+    const loadingView = (
+        <div className="pgv-loading-text">Loading...</div>
+    );
+    return (
+        <>
+            {gamePhase === "loading" && loadingView}
+
+            {gamePhase === "bidding" && <div className="pgv-game-page">
+
+                {trumpSuit && <div className="pgv-trump-label"><div style={{display: "inline-block", color: trumpSuit == "Hearts" || trumpSuit == "Diamonds" ? "red" : "black"}}>{Suits[trumpSuit].symbol}</div></div>}
+                
+                {/* Cards */}
+                {/* <div className="pgv-cards-container">
+                    {deck}
+                </div> */}
+                {/* Add card button */}
+                {/* <motion.button className="pgv-add-card-button" style={{ marginBottom: "2vmin" }} whileTap={{ translate: "0% 5%"}} transition={{ duration: 0.05 }} onClick={handleAddCard}>
+                    Add Card
+                </motion.button> */}
+
+                {/* Player Bids */}
+                
+                {/* Player ID */}
+                <div className="pgv-player-id">
+                    {profile.name}
+                </div>
+                {/* Player Hands */}
+                <div className="pgv-player-cards-container">
+                    {playerHand}
+                </div>
+                {/* Scorecard */}
+                {/* Rules */}
+
+            </div>}
+        </>
+    );
+
+    /*
+        - Buttons
+            - Invite players to join
+            - Leave game
+            - Start game
+            - Continue to next round
+            - Start a new game
+            - Bids
+            - Pass
+            - Trump suit
+            - Throw In
+            - Misdeal
+            - Shoot the moon
+            - Scores
+            - Rules
+            - Settings
+        - Cards
+            - Deal to all players
+            - Player hands
+            - Highlight meld for each suit
+            - Highlight meld to score
+            - Show meld
+            - Play a card
+        - Label
+            - Players
+            - Rules
+            - Scores
+            - Settings
+            - Bids
+            - Meld
+            - Trump
+            - Target bid
+    */
 
     // TODO: Retrieve game settings from Supabase
     // const [trumpSuit, setTrumpSuit] = useState(_.sample(Object.keys(Suits)), []);
@@ -167,68 +279,6 @@ function PinochleGameView() {
     //         setCards([newCard]);
     //     }
     // }
-    return (
-        <div className="pgv-game-page">
-
-            {trumpSuit && <div className="pgv-trump-label"><div style={{display: "inline-block", color: trumpSuit == 'Hearts' || trumpSuit == 'Diamonds' ? "red" : "black"}}>{Suits[trumpSuit].symbol}</div></div>}
-            
-            {/* Cards */}
-            {/* <div className="pgv-cards-container">
-                {deck}
-            </div> */}
-            {/* Add card button */}
-            {/* <motion.button className="pgv-add-card-button" style={{ marginBottom: "2vmin" }} whileTap={{ translate: "0% 5%"}} transition={{ duration: 0.05 }} onClick={handleAddCard}>
-                Add Card
-            </motion.button> */}
-
-            {/* Player Bids */}
-            
-            {/* Player ID */}
-            <div className="pgv-player-id">
-                {profile.name}
-            </div>
-            {/* Player Hands */}
-            <div className="pgv-player-cards-container">
-                {hand}
-            </div>
-            {/* Scorecard */}
-            {/* Rules */}
-
-        </div>
-    );
-    /*
-        - Buttons
-            - Invite players to join
-            - Leave game
-            - Start game
-            - Continue to next round
-            - Start a new game
-            - Bids
-            - Pass
-            - Trump suit
-            - Throw In
-            - Misdeal
-            - Shoot the moon
-            - Scores
-            - Rules
-            - Settings
-        - Cards
-            - Deal to all players
-            - Player hands
-            - Highlight meld for each suit
-            - Highlight meld to score
-            - Show meld
-            - Play a card
-        - Label
-            - Players
-            - Rules
-            - Scores
-            - Settings
-            - Bids
-            - Meld
-            - Trump
-            - Target bid
-    */
 }
 
 export default PinochleGameView;
