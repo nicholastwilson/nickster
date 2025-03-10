@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { signal } from "@preact/signals-react";
 import { useParams } from "react-router-dom";
-import { motion} from "framer-motion";
 import _ from "lodash";
 import { toast } from "react-hot-toast";
 
@@ -40,28 +38,87 @@ function PinochleGameView() {
     const [playerMelds, setPlayerMelds] = useState(null);  // Player meld points: [ 22, 5, 3, 6 ]
     const [playerScores, setPlayerScores] = useState(null);  // Player meld and trick scores: [ 22, 5, 3, 6 ]
 
+    // useEffect(() => {
+    //     const game_id = gameID;
+    //     Supabase.channel("game-" + game_id)
+    //         .on("postgres_changes", { event: "UPDATE", schema: "public", table: "games", filter: "id=eq." + game_id }, payload => {
+    //             console.log("games: " + JSON.stringify(payload));
+    //         })
+    //         .subscribe();
+    //     Supabase.channel("game_players-" + game_id)
+    //         .on("postgres_changes", { event: "UPDATE", schema: "public", table: "game_players", filter: "profile_id=eq." + profile.id }, payload => {
+    //             console.log("game_players: " + JSON.stringify(payload));
+    //         })
+    //         .subscribe();
+    //     return () => Supabase.removeAllChannels();
+    // }, []);
+
     /*
-        |--------------------|------------------------------------------------------------------|---------------------------------------------|----------------------------------------------|-------------------|
-        | Action             | Description                                                      | Function                                    | Data Changes                                 | Event Emitted     |
-        |--------------------|------------------------------------------------------------------|---------------------------------------------|----------------------------------------------|-------------------|
-        | Join Game          | Players join the game                                            | join_game() → game_settings                 | NEW game_players                             | player-joined     |
-        |                    | Players retrieve game settings                                   | get_game_settings()                         | GET games.settings                           |                   |
-        | Start Round        | Players signal to start a round                                  | pinochle_start_round() → round_started      | SET dealer, player_hands, initial_hands      | round-started     |
-        |                    | Players retrieve initial game state                              | get_game_state()                            | GET games.state                              |                   |
-        | Bidding            | Players take turns bidding, passing, or calling for a misdeal    | pinochle_bid(bid)                           | SET player_bids                              | player-bid        |
-        |                    |                                                                  | pinochle_pass()                             | SET player_bids                              | player-passed     |
-        |                    |                                                                  | pinochle_misdeal()                          | SET player_hands, player_bids                | player-misdeals   |
-        | Declare Trump      | Player with the highest bid declares trump                       | pinochle_declare_trump(suit)                | SET target_score, trump_suit                 | trump-declared    |
-        | Partner Pass       | Partner passes cards to declaring player                         | pinochle_partner_pass(cards)                | SET player_hands                             | partner-passed    |
-        | Declarer Pass      | Declarer passed cards back to partner                            | pinochle_declarer_pass(cards)               | SET player_hands                             | declarer-passed   |
-        | Declarer Throws In | Declarer throws in the hand voluntarily                          | pinochle_throw_in()                         |                                              | hand-thrown-in    |
-        | Shoot the Moon     | Declarer indicates that they will attempt to shoot the moon      | pinochle_shoot_the_moon()                   | SET shoot_the_moon, target_score             | shooting-the-moon |
-        | Choose Meld        | Players choose meld to score                                     | pinochle_meld()                             | SET player_melds, player_scores              | player-melded     |
-        | Declarer Forfeits  | Declarer's team is unable to score enough points to make the bid | pinochle_fail_bid()                         |                                              | failed-bid        |
-        | Play Card          | Player plays a card from their hand                              | pinochle_play_card() → winning_player       | SET trick_cards, player_hands, player_scores | card-played       |
-        | End Round          | The round ends, scores are totaled, and summary is shown         | pinochle_get_round_summary() → player_hands | SET team_scores                              |                   |
-        | Leave Game         | Player leaves the game                                           | leave_game()                                | SET game_players                             | player-left       |
-        |--------------------|------------------------------------------------------------------|---------------------------------------------|----------------------------------------------|-------------------|
+
+Write PostgreSQL code for a player_action() function that:
+	- Takes a game_id (TEXT), action_type (TEXT), and action_data (JSONB) parameters
+	- Returns a JSONB response indicating success (i.e., {"success": true}) or failure (i.e., {"success": false, "message": ...}). A success response is the default.
+	- Uses a 'game_state' JSONB variable for the current value of the 'state' field in the 'games' table
+	- Uses a 'player_state' JSONB variable for the current value of the player state, which is the element of the 'game_state.players' array at index 'player_idx'
+	- Changes to the game state should use a SQL update statement like "UPDATE games SET state = ... WHERE id = game_id"
+	- Changes to a player state should update games.state.players at the specified index, where the 'current player' is at index 'player_idx'
+
+Here are the actions that a player can make, action data being passed, changes to games.state and success or failure response for each action:
+1. 'switch_position', {"newPosition": INTEGER}
+	- If newPosition = 0, delete 'switchRequested' property in current player's state
+	- If 'profileId' property doesn't exist in player state at index (newPosition - 1), switch player state array elements at player_idx and (newPosition - 1) indexes
+	- If 'profileId' property does exist in player state at index (newPosition - 1), set 'switchRequested' property of player state at index player_idx to newPosition
+2. 'signal_start', {"signalStart": BOOLEAN}
+	- Set 'startSignaled' to signalStart for current player
+3. 'bid', {"bid": TEXT}
+	- Create or append action_data.bid to 'bids' array for current player
+4. 'pass', NULL
+	- Create or append 'PASS' to 'bids' array for current player
+5. 'misdeal', NULL
+	- Set 
+	
+[Game State]
+phase (TEXT)
+misdeal (BOOLEAN)
+teams (JSONB[]):
+	players (INTEGER[])
+	scores (INTEGER[])
+players (JSONB[]):
+	profileId (UUID)
+	name (TEXT)
+	switchRequested (INTEGER)
+	hand (TEXT[])
+	bids (TEXT[])
+	melds (TEXT[][])
+	score (INTEGER)
+previousRounds (JSONB[]):
+	teams (JSONB[]):
+		hands (TEXT[][])
+		bids (TEXT[])
+		melds (TEXT[][])
+	
+         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+        | Action             | Description                                                      | Function                                    | Data Changes                                 |
+        |--------------------|------------------------------------------------------------------|---------------------------------------------|----------------------------------------------|
+        | Create Game        | Players create a new game                                        | create_game()                               | NEW games                                    |
+        | Join Game          | Players join the game                                            | join_game() → game_settings                 | NEW game_players                             |
+        |                    | Players retrieve game settings                                   | get_game_settings()                         | GET games.settings                           |
+        | Start Round        | Players signal to start a round                                  | pinochle_start_round() → round_started      | SET dealer, player_hands, initial_hands      |
+        |                    | Players retrieve initial game state                              | get_game_state()                            | GET games.state                              |
+        | Bidding            | Players take turns bidding, passing, or calling for a misdeal    | pinochle_bid(bid)                           | SET player_bids                              |
+        |                    |                                                                  | pinochle_pass()                             | SET player_bids                              |
+        |                    |                                                                  | pinochle_misdeal()                          | SET player_hands, player_bids                |
+        | Declare Trump      | Player with the highest bid declares trump                       | pinochle_declare_trump(suit)                | SET target_score, trump_suit                 |
+        | Partner Pass       | Partner passes cards to declaring player                         | pinochle_partner_pass(cards)                | SET player_hands                             |
+        | Declarer Pass      | Declarer passed cards back to partner                            | pinochle_declarer_pass(cards)               | SET player_hands                             |
+        | Declarer Throws In | Declarer throws in the hand voluntarily                          | pinochle_throw_in()                         |                                              |
+        | Shoot the Moon     | Declarer indicates that they will attempt to shoot the moon      | pinochle_shoot_the_moon()                   | SET shoot_the_moon, target_score             |
+        | Choose Meld        | Players choose meld to score                                     | pinochle_meld()                             | SET player_melds, player_scores              |
+        | Declarer Forfeits  | Declarer's team is unable to score enough points to make the bid | pinochle_fail_bid()                         |                                              |
+        | Play Card          | Player plays a card from their hand                              | pinochle_play_card() → winning_player       | SET trick_cards, player_hands, player_scores |
+        | End Round          | The round ends, scores are totaled, and summary is shown         | pinochle_get_round_summary() → player_hands | SET team_scores                              |
+        | Leave Game         | Player leaves the game                                           | leave_game()                                | SET game_players                             |
+         ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
         Game Phases
             - Create Game

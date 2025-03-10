@@ -248,7 +248,7 @@
     outline: none;
 }
 
-.login-button, .login-guest-button {
+.login-button, .login-guest-button, .logout-button {
     width: 46vmin;
     height: 7vmin;
     margin-top: 2vmin;
@@ -263,29 +263,29 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .login-button, .login-guest-button {
+    .login-button, .login-guest-button, .logout-button {
         width: 30vmin;
         height: 5.5vmin;
         font-size: 3vmin;
     }
 }
 
-:is(.login-button, .login-guest-button):focus {
+:is(.login-button, .login-guest-button, .logout-button):focus {
     outline: none;
 }
 
-:is(.login-button, .login-guest-button):active {
+:is(.login-button, .login-guest-button, .logout-button):active {
     transform: translateY(0.5vmin);
     box-shadow: -1px 1px 1.5px rgba(0, 0, 0, 0.5);
 }
 
-:is(.login-button, .login-guest-button):disabled {
+:is(.login-button, .login-guest-button, .logout-button):disabled {
     color: var(--theme-color-1); 
     touch-action: none;
     pointer-events: none;
 }
 
-:is(.login-button, .login-guest-button) {
+:is(.login-button, .login-guest-button, .logout-button) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -293,17 +293,17 @@
     gap: 0.5vmin;
 }
 
-.login-button-icon {
+.login-button-icon, .logout-button-icon {
     margin-left: 1vmin;
     margin-right: 1vmin;
     color: var(--theme-color-7);
 }
 
-.login-button-icon.fa-spin {
+.login-button-icon.fa-spin, .logout-button.fa-spin {
     color: var(--theme-color-0);
 }
 
-.login-button-text {
+.login-button-text, .logout-button-text {
     margin-right: 6vmin;
 }
 

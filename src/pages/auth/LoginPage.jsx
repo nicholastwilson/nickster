@@ -14,11 +14,12 @@ import "./LoginPage.scss";
 function LoginPage() {
     const profile = useSelector(state => state.profile);
     const dispatch = useDispatch();
-    const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000);
+    const [logoAnimating, triggerLogoAnimating] = useDebouncedTimer(1000, 1000, 1000);
     const [showingForm, setShowingForm] = useState(false);
     const [enableControls, setEnableControls] = useState(true);
     const [loggingIn, setLoggingIn] = useState(false);
     const [guestLoggingIn, setGuestLoggingIn] = useState(false);
+    const [loggingOut, setLoggingOut] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState(profile?.name);
@@ -71,6 +72,11 @@ function LoginPage() {
                         toast.error(error.message);
                         setTimeout(() => emailFieldRef.current.select(), 0);
                     }
+                    // Profile not found
+                    else if(data === null) {
+                        toast.error("Profile not found");
+                        setTimeout(() => emailFieldRef.current.select(), 0);
+                    }
                     // Profile successfully retrieved
                     else {
                         dispatch(setProfile({ ...data, validated: true }));
@@ -117,7 +123,7 @@ function LoginPage() {
         // Update guest profile
         else {
             Supabase.rpc("update_user_profile", {
-                "id": profile.id,
+                "profile_id": profile.id,
                 "user_id": profile.user_id && profile.user_id !== "" ? profile.user_id : null,
                 "name": name,
                 "preferences": profile.preferences
@@ -136,6 +142,28 @@ function LoginPage() {
                 setEnableControls(true);
             });
         }
+    };
+
+    const handleLogoutUser = async function() {
+        // Login user
+        setEnableControls(false);
+        setLoggingOut(true);
+        // Sign out Supabase user profile first
+        if(hasSupabaseProfile()) {
+            await Supabase.auth.signOut();
+        }
+        // Clear user profile
+        dispatch(setProfile(null));
+        toast.success("Logged out");
+        // Wait for 1 second before reloading
+        setTimeout(() => {
+            setLoggingOut(false);
+            setEnableControls(true);
+            window.location.reload(false);
+        }, 1500);
+        // Reset form
+        // setGuestLoggingIn(false);
+        // setEnableControls(true);
     };
 
     return (
@@ -172,7 +200,7 @@ function LoginPage() {
                         <div className="login-header-container">
                             <div className="login-header">Profile</div>
                         </div>
-                        {/* Guest Login */}
+                        {/* Fields */}
                         <div className="login-field-container">
                             <label className="login-label">Name</label>
                             <div className="login-input-container">
@@ -183,6 +211,15 @@ function LoginPage() {
                             <FontAwesomeIcon className={`login-button-icon ${guestLoggingIn ? "fa-spin" : ""}`} icon={faCircleNotch} />
                             <div className="login-button-text" disabled={!enableControls}>Save</div>
                         </button>
+                        {/* Separator */}
+                        <div className="login-or-container">
+                            <div className="login-or-line"></div>
+                        </div>
+                        {/* Logout button */}
+                        <div className="logout-button" disabled={!enableControls} onClick={handleLogoutUser}>
+                            <FontAwesomeIcon className={`logout-button-icon ${loggingOut ? "fa-spin" : ""}`} icon={faCircleNotch} />
+                            <div className="logout-button-text" disabled={!enableControls}>Logout</div>
+                        </div>
                     </div>
                 </div>
             ) : (
